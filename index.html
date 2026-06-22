@@ -1,1310 +1,1053 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Δημήτρης &amp; Χρύσα · 26.12.2026</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Δημήτρης & Χρύσα · 26.12.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant:ital,wght@0,300;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --deep:   #07100a;
+      --forest: #0d1a10;
+      --pine:   #132019;
+      --gold:   #c8a255;
+      --gold-l: #dfc07a;
+      --gold-d: #8a6b28;
+      --cream:  #ede0c0;
+      --red:    #7a1414;
+    }
 
-    <!-- Google Fonts: calligraphic & refined -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--deep);
+      color:var(--cream);
+      font-family:'Inter',sans-serif;
+      font-weight:300;
+      font-size:15px;
+      line-height:1.85;
+      overflow-x:hidden;
+    }
 
-    <style>
-        /* ── Reset & variables ── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    /* particles */
+    #cv{position:fixed;inset:0;pointer-events:none;z-index:0}
 
-        :root {
-            --deep: #0a130d;
-            --forest: #102016;
-            --pine: #183325;
-            --gold: #c9a84c;
-            --gold-light: #e8c97a;
-            --gold-pale: #f5e6b8;
-            --cream: #f0e6c8;
-            --wreath-green: #2d5a3d;
-            --berry-red: #b53b3b;
-            --mist: rgba(201, 168, 76, 0.10);
-            --shadow-glow: rgba(201, 168, 76, 0.25);
-        }
+    /* glows */
+    .gl{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+    .g1{width:700px;height:700px;background:rgba(15,50,22,0.45);top:-150px;left:-150px}
+    .g2{width:500px;height:500px;background:rgba(200,162,85,0.04);bottom:0;right:-100px}
+    .g3{width:500px;height:500px;background:rgba(10,35,16,0.38);top:42%;left:50%;transform:translate(-50%,-50%)}
 
-        html {
-            scroll-behavior: smooth;
-        }
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1.3rem 3.5rem;
+      background:linear-gradient(to bottom,rgba(7,16,10,0.96) 60%,transparent);
+    }
+    .nav-logo{
+      font-family:'Playfair Display',serif;
+      font-style:italic;font-size:1.25rem;
+      letter-spacing:0.08em;color:var(--gold);
+    }
+    nav ul{list-style:none;display:flex;gap:2.8rem}
+    nav a{
+      color:var(--cream);text-decoration:none;
+      font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;
+      opacity:0.55;transition:opacity .3s,color .3s;
+    }
+    nav a:hover{opacity:1;color:var(--gold-l)}
 
-        body {
-            background: var(--deep);
-            color: var(--cream);
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 15px;
-            line-height: 1.8;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+    /* CORNER DECOR — real photo-texture images via CSS */
+    .corner-layer{
+      position:fixed;inset:0;pointer-events:none;z-index:10;
+    }
+    /* We use 4 positioned img elements inside */
+    .corner-layer img{
+      position:absolute;
+      width:340px;
+      height:auto;
+      opacity:0.88;
+      filter:drop-shadow(0 4px 18px rgba(0,0,0,0.7));
+    }
+    .c-tl{top:-10px;left:-10px;transform-origin:top left}
+    .c-tr{top:-10px;right:-10px;transform-origin:top right;transform:scaleX(-1)}
+    .c-bl{bottom:-10px;left:-10px;transform-origin:bottom left;transform:scaleY(-1)}
+    .c-br{bottom:-10px;right:-10px;transform-origin:bottom right;transform:scale(-1,-1)}
 
-        /* ── Particle canvas ── */
-        #particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
+    /* Lantern images on sides */
+    .lantern-layer{position:fixed;inset:0;pointer-events:none;z-index:10}
+    .lantern-layer img{
+      position:absolute;width:90px;
+      filter:drop-shadow(0 0 20px rgba(255,170,50,0.55)) drop-shadow(0 4px 12px rgba(0,0,0,0.8));
+      opacity:0.82;
+    }
+    .lan-tl{top:180px;left:24px;transform:rotate(-6deg)}
+    .lan-tr{top:180px;right:24px;transform:rotate(6deg)}
 
-        /* ── Ambient glows ── */
-        .glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(140px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .glow-1 {
-            width: 600px;
-            height: 600px;
-            background: rgba(25, 65, 40, 0.50);
-            top: -180px;
-            left: -180px;
-        }
-        .glow-2 {
-            width: 450px;
-            height: 450px;
-            background: rgba(201, 168, 76, 0.05);
-            bottom: 5%;
-            right: -100px;
-        }
-        .glow-3 {
-            width: 400px;
-            height: 400px;
-            background: rgba(15, 50, 30, 0.35);
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    /* HERO */
+    #hero{
+      position:relative;min-height:100vh;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;z-index:20;
+      padding:8rem 2rem 4rem;
+    }
 
-        /* ── Navigation ── */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.4rem 3rem;
-            background: linear-gradient(to bottom, rgba(10, 19, 13, 0.96), transparent);
-            backdrop-filter: blur(2px);
-        }
-        .nav-mono {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
-            letter-spacing: 0.25em;
-            color: var(--gold);
-            text-transform: uppercase;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-        }
-        nav ul a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.70rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            opacity: 0.6;
-            transition: opacity 0.3s, color 0.3s;
-        }
-        nav ul a:hover {
-            opacity: 1;
-            color: var(--gold-light);
-        }
+    .eyebrow{
+      font-size:0.63rem;letter-spacing:0.42em;
+      text-transform:uppercase;color:var(--gold);
+      opacity:0.72;margin-bottom:2.2rem;
+    }
 
-        @media (max-width: 720px) {
-            nav ul {
-                display: none;
-            }
-            nav {
-                padding: 1.2rem 1.5rem;
-            }
-        }
+    /* Photo frame */
+    .frame-outer{
+      position:relative;width:240px;height:240px;
+      margin:0 auto 2.6rem;
+    }
+    .frame-ring{
+      position:absolute;inset:-22px;
+      border-radius:50%;
+      /* Gold gradient ring */
+      background:conic-gradient(
+        from 0deg,
+        #6b4c10 0%,#c9a855 8%,#e8d080 15%,#c9a855 22%,
+        #6b4c10 30%,#c9a855 38%,#e8d080 45%,#c9a855 52%,
+        #6b4c10 60%,#c9a855 68%,#e8d080 75%,#c9a855 82%,
+        #6b4c10 90%,#c9a855 96%,#6b4c10 100%
+      );
+      padding:3px;
+      box-shadow:0 0 0 1px rgba(201,168,76,0.2),inset 0 0 0 1px rgba(201,168,76,0.1),0 0 40px rgba(200,162,85,0.18);
+    }
+    .frame-ring-inner{
+      width:100%;height:100%;
+      border-radius:50%;
+      background:var(--deep);
+    }
 
-        /* ── Decorative edge elements ── */
-        .edge-decor {
-            position: fixed;
-            pointer-events: none;
-            z-index: 5;
-        }
+    /* Wreath overlay — using a real image */
+    .wreath-img{
+      position:absolute;inset:-38px;
+      width:calc(100% + 76px);height:calc(100% + 76px);
+      pointer-events:none;
+      /* Filter to darken/tint slightly */
+      filter:drop-shadow(0 0 12px rgba(0,0,0,0.6));
+      object-fit:contain;
+    }
 
-        /* Pinecones at corners */
-        .pinecone {
-            position: fixed;
-            z-index: 6;
-            pointer-events: none;
-            opacity: 0.55;
-            width: 44px;
-            height: 52px;
-        }
-        .pinecone-tl {
-            top: 72px;
-            left: 18px;
-        }
-        .pinecone-tr {
-            top: 72px;
-            right: 18px;
-            transform: scaleX(-1);
-        }
-        .pinecone-bl {
-            bottom: 18px;
-            left: 18px;
-            transform: scaleY(-1);
-        }
-        .pinecone-br {
-            bottom: 18px;
-            right: 18px;
-            transform: scale(-1, -1);
-        }
+    .photo-circle{
+      position:absolute;inset:0;
+      width:240px;height:240px;
+      border-radius:50%;overflow:hidden;
+      background:var(--pine);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+      transition:box-shadow .4s;
+    }
+    .photo-circle:hover{box-shadow:0 0 30px rgba(200,162,85,0.25)}
+    .photo-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:none}
+    .ph-placeholder{
+      display:flex;flex-direction:column;align-items:center;gap:.8rem;
+      opacity:.38;
+    }
+    .ph-placeholder svg{width:36px}
+    .ph-placeholder span{
+      font-size:.57rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--gold);
+    }
+    #fi{display:none}
 
-        .pinecone svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
-        }
+    /* Names */
+    .names{
+      font-family:'Playfair Display',serif;
+      font-style:italic;
+      font-size:clamp(3rem,8vw,6.5rem);
+      font-weight:400;
+      line-height:1.05;
+      color:var(--gold-l);
+      letter-spacing:0.02em;
+      text-shadow:0 2px 40px rgba(200,162,85,0.22);
+    }
+    .amp{
+      display:block;
+      font-family:'Cormorant',serif;
+      font-style:normal;
+      font-weight:300;
+      font-size:clamp(1rem,2.5vw,1.6rem);
+      letter-spacing:0.45em;
+      color:var(--gold);
+      opacity:0.5;
+      margin:.5em 0;
+      text-transform:uppercase;
+    }
 
-        /* ── Fairy lights ── */
-        .fairy-lights {
-            position: fixed;
-            left: 0;
-            right: 0;
-            z-index: 4;
-            pointer-events: none;
-            display: flex;
-            justify-content: space-around;
-            padding: 0 2rem;
-            opacity: 0.80;
-        }
-        .fairy-lights-top {
-            top: 8px;
-            flex-wrap: nowrap;
-        }
-        .fairy-lights-bottom {
-            bottom: 8px;
-            flex-wrap: nowrap;
-        }
+    .hero-date{
+      margin-top:2.4rem;
+      font-family:'Cormorant',serif;
+      font-style:italic;
+      font-size:clamp(1rem,2vw,1.3rem);
+      letter-spacing:0.15em;
+      color:var(--cream);
+      opacity:0.5;
+    }
 
-        .light-bulb {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--gold-light);
-            box-shadow: 0 0 12px 2px rgba(232, 201, 122, 0.6), 0 0 30px 4px rgba(201, 168, 76, 0.20);
-            animation: twinkle 2.2s ease-in-out infinite alternate;
-            flex-shrink: 0;
-            margin: 0 2px;
-        }
-        .light-bulb:nth-child(odd) {
-            animation-duration: 2.8s;
-            animation-delay: 0.6s;
-        }
-        .light-bulb:nth-child(3n) {
-            animation-duration: 1.9s;
-            animation-delay: 0.2s;
-        }
-        .light-bulb:nth-child(5n+2) {
-            animation-duration: 3.2s;
-            animation-delay: 1.0s;
-        }
-        .light-bulb:nth-child(7n+4) {
-            animation-duration: 2.4s;
-            animation-delay: 1.6s;
-        }
+    .ornament-line{
+      display:flex;align-items:center;gap:1.2rem;
+      margin:1.8rem auto 0;
+      width:fit-content;
+    }
+    .ornament-line::before,
+    .ornament-line::after{
+      content:'';display:block;
+      width:60px;height:1px;
+      background:linear-gradient(to right,transparent,rgba(200,162,85,0.45));
+    }
+    .ornament-line::after{
+      background:linear-gradient(to left,transparent,rgba(200,162,85,0.45));
+    }
+    .ornament-line span{
+      font-size:.7rem;color:var(--gold);opacity:.6;letter-spacing:.1em;
+    }
 
-        @keyframes twinkle {
-            0% {
-                opacity: 0.30;
-                transform: scale(0.7);
-                box-shadow: 0 0 4px 1px rgba(232, 201, 122, 0.2);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1.1);
-                box-shadow: 0 0 18px 4px rgba(232, 201, 122, 0.8), 0 0 40px 8px rgba(201, 168, 76, 0.25);
-            }
-        }
+    .scroll-cue{
+      position:absolute;bottom:2.8rem;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:.55rem;
+      opacity:.28;color:var(--gold);
+      font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;
+      animation:bob 2.8s ease-in-out infinite;
+    }
+    .scroll-cue::after{content:'';width:1px;height:32px;background:var(--gold)}
+    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
 
-        /* ── Hero ── */
-        #hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 1;
-            padding: 2rem 1.5rem 4rem;
-        }
+    /* SECTIONS */
+    .sec{
+      position:relative;z-index:20;
+      max-width:700px;margin:0 auto;
+      padding:6.5rem 2rem;
+    }
+    .sec-wide{max-width:940px}
 
-        .hero-eyebrow {
-            font-size: 0.65rem;
-            letter-spacing: 0.40em;
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.70;
-            margin-bottom: 2.2rem;
-            font-weight: 300;
-        }
+    .lbl{
+      font-size:.58rem;letter-spacing:.42em;
+      text-transform:uppercase;color:var(--gold);
+      opacity:.5;margin-bottom:1.6rem;
+    }
 
-        /* ── Photo frame ── */
-        .photo-frame-wrapper {
-            position: relative;
-            margin: 0 auto 2.4rem;
-            width: 200px;
-            height: 200px;
-        }
+    h2{
+      font-family:'Playfair Display',serif;
+      font-weight:400;font-style:italic;
+      font-size:clamp(2rem,4.5vw,3.2rem);
+      line-height:1.2;color:var(--gold-l);
+      margin-bottom:1.4rem;letter-spacing:0.01em;
+    }
 
-        @media (min-width: 480px) {
-            .photo-frame-wrapper {
-                width: 240px;
-                height: 240px;
-            }
-        }
-        @media (min-width: 768px) {
-            .photo-frame-wrapper {
-                width: 280px;
-                height: 280px;
-            }
-        }
+    p.body{
+      font-family:'Cormorant',serif;
+      font-size:1.08rem;line-height:2;
+      opacity:.68;max-width:52ch;
+    }
 
-        /* The round frame with wreath border */
-        .photo-frame {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            position: relative;
-            background: var(--deep);
-            padding: 10px;
-            box-shadow:
-                0 0 0 2px rgba(201, 168, 76, 0.15),
-                0 0 0 6px rgba(45, 90, 61, 0.25),
-                0 0 0 10px rgba(201, 168, 76, 0.08),
-                0 8px 48px rgba(0, 0, 0, 0.6);
-            transition: box-shadow 0.4s;
-        }
-        .photo-frame:hover {
-            box-shadow:
-                0 0 0 2px rgba(201, 168, 76, 0.30),
-                0 0 0 6px rgba(45, 90, 61, 0.35),
-                0 0 0 10px rgba(201, 168, 76, 0.15),
-                0 8px 60px rgba(201, 168, 76, 0.12);
-        }
+    .rule{
+      width:100%;height:1px;
+      background:linear-gradient(to right,transparent,rgba(200,162,85,0.18),transparent);
+      position:relative;z-index:20;
+    }
 
-        .photo-frame-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            background: var(--forest);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+    /* POEM */
+    #poem{text-align:center}
+    #poem .body{
+      font-style:italic;font-size:1.12rem;
+      line-height:2.2;max-width:46ch;
+      margin:0 auto;opacity:.62;
+    }
+    .poem-author{
+      margin-top:2rem;
+      font-family:'Playfair Display',serif;
+      font-style:italic;font-size:1.5rem;
+      color:var(--gold);opacity:.6;
+    }
 
-        .photo-frame-inner img,
-        .photo-frame-inner .photo-placeholder {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    /* EVENTS */
+    .ev-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:1px;background:rgba(200,162,85,0.08);
+      border:1px solid rgba(200,162,85,0.08);
+      margin-top:2.8rem;
+    }
+    .ev-card{
+      background:var(--forest);padding:2.8rem 1.8rem;
+      text-align:center;transition:background .35s;
+    }
+    .ev-card:hover{background:var(--pine)}
+    .ev-icon{font-size:1.1rem;margin-bottom:1rem;opacity:.55}
+    .ev-time{
+      font-family:'Playfair Display',serif;
+      font-style:italic;font-size:2.2rem;font-weight:400;
+      color:var(--gold);display:block;letter-spacing:.02em;
+    }
+    .ev-lbl{
+      font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--cream);opacity:.4;margin:.45rem 0 1rem;display:block;
+    }
+    .ev-loc{font-size:.82rem;opacity:.58;line-height:1.7;font-family:'Cormorant',serif;font-size:1rem}
 
-        .photo-placeholder {
-            background: radial-gradient(ellipse at 30% 25%, #1d3a2a, #0d1a12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            color: rgba(201, 168, 76, 0.20);
-            font-size: 1.2rem;
-            letter-spacing: 0.08em;
-            text-align: center;
-            padding: 2rem;
-            line-height: 1.5;
-        }
-        .photo-placeholder span {
-            display: block;
-            font-size: 2.4rem;
-            opacity: 0.15;
-            margin-bottom: 0.4rem;
-        }
+    /* GALLERY */
+    .gal-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      grid-template-rows:auto auto;gap:3px;margin-top:2.8rem;
+    }
+    .gal-cell{
+      background:var(--forest);aspect-ratio:4/3;
+      display:flex;align-items:center;justify-content:center;
+      opacity:.38;transition:opacity .3s;overflow:hidden;cursor:pointer;
+    }
+    .gal-cell:hover{opacity:.72}
+    .gal-cell:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+    .gal-cell img{width:100%;height:100%;object-fit:cover}
+    .gal-cell svg{width:24px;opacity:.28}
 
-        /* Wreath decorations around the frame */
-        .wreath-ornament {
-            position: absolute;
-            pointer-events: none;
-            z-index: 3;
-            font-size: 1.4rem;
-            line-height: 1;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
-        }
-        .wreath-ornament .berry {
-            color: var(--berry-red);
-            text-shadow: 0 0 12px rgba(181, 59, 59, 0.4);
-        }
-        .wreath-ornament .leaf {
-            color: #3d7a4a;
-            text-shadow: 0 0 8px rgba(61, 122, 74, 0.2);
-        }
-        .wreath-ornament .gold-dot {
-            color: var(--gold);
-            text-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
-        }
+    /* RSVP */
+    label{
+      display:block;font-size:.58rem;letter-spacing:.28em;
+      text-transform:uppercase;color:var(--gold);opacity:.5;
+      margin-bottom:.5rem;
+    }
+    .fg{margin-bottom:1.4rem}
+    input,select,textarea{
+      width:100%;
+      background:rgba(255,255,255,0.025);
+      border:1px solid rgba(200,162,85,0.16);
+      color:var(--cream);font-family:'Inter',sans-serif;
+      font-size:.87rem;padding:.82rem 1rem;
+      outline:none;appearance:none;
+      transition:border-color .3s;
+    }
+    input:focus,select:focus,textarea:focus{border-color:rgba(200,162,85,.45)}
+    select option{background:var(--forest)}
+    textarea{resize:vertical;min-height:72px}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .btn{
+      margin-top:1rem;padding:.88rem 3rem;
+      background:transparent;border:1px solid var(--gold);
+      color:var(--gold);font-family:'Inter',sans-serif;
+      font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;
+      cursor:pointer;transition:background .3s,color .3s;
+    }
+    .btn:hover{background:var(--gold);color:var(--deep)}
+    .rsvp-ok{
+      display:none;text-align:center;padding:3rem;
+      border:1px solid rgba(200,162,85,.14);
+    }
+    .rsvp-ok .ck{font-size:1.6rem;color:var(--gold);margin-bottom:1rem}
 
-        .wo-1 {
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.8rem;
-        }
-        .wo-2 {
-            top: 8px;
-            right: -18px;
-            font-size: 1.3rem;
-        }
-        .wo-3 {
-            bottom: 8px;
-            right: -18px;
-            font-size: 1.3rem;
-        }
-        .wo-4 {
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.8rem;
-        }
-        .wo-5 {
-            top: 8px;
-            left: -18px;
-            font-size: 1.3rem;
-        }
-        .wo-6 {
-            bottom: 8px;
-            left: -18px;
-            font-size: 1.3rem;
-        }
-        .wo-7 {
-            top: 30%;
-            right: -22px;
-            font-size: 1.0rem;
-        }
-        .wo-8 {
-            bottom: 30%;
-            right: -22px;
-            font-size: 1.0rem;
-        }
-        .wo-9 {
-            top: 30%;
-            left: -22px;
-            font-size: 1.0rem;
-        }
-        .wo-10 {
-            bottom: 30%;
-            left: -22px;
-            font-size: 1.0rem;
-        }
+    /* VISIT */
+    .vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.8rem}
+    .vi-lbl{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.45;margin-bottom:.6rem}
+    .vi h3{
+      font-family:'Playfair Display',serif;font-style:italic;
+      font-weight:400;font-size:1.55rem;color:var(--gold-l);margin-bottom:.5rem;
+    }
+    .vi p{font-family:'Cormorant',serif;font-size:1.02rem;opacity:.6}
 
-        @media (max-width: 480px) {
-            .wo-1,
-            .wo-4 {
-                font-size: 1.4rem;
-            }
-            .wo-2,
-            .wo-3,
-            .wo-5,
-            .wo-6 {
-                font-size: 1.0rem;
-            }
-            .wo-7,
-            .wo-8,
-            .wo-9,
-            .wo-10 {
-                display: none;
-            }
-            .photo-frame-wrapper {
-                width: 170px;
-                height: 170px;
-            }
-        }
+    /* FOOTER */
+    footer{
+      position:relative;z-index:20;text-align:center;
+      padding:5rem 2rem;border-top:1px solid rgba(200,162,85,0.08);
+    }
+    .ft-names{
+      font-family:'Playfair Display',serif;font-style:italic;
+      font-size:2rem;color:var(--gold);opacity:.6;letter-spacing:.03em;
+    }
+    .ft-date{margin-top:.7rem;font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;opacity:.25}
 
-        /* ── Hero names (calligraphic) ── */
-        .hero-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.8rem, 10vw, 6.5rem);
-            font-weight: 400;
-            line-height: 1.1;
-            color: var(--gold-light);
-            letter-spacing: 0.02em;
-            margin-top: 0.2rem;
-            text-shadow: 0 2px 24px rgba(201, 168, 76, 0.10);
-        }
-        .hero-names .ampersand {
-            display: inline-block;
-            font-size: clamp(1.6rem, 5vw, 3.6rem);
-            color: var(--gold);
-            opacity: 0.55;
-            margin: 0 0.15em;
-            font-family: 'Great Vibes', cursive;
-        }
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(24px);transition:opacity .95s ease,transform .95s ease}
+    .rv.in{opacity:1;transform:none}
 
-        .hero-date {
-            margin-top: 1.6rem;
-            font-size: 0.70rem;
-            letter-spacing: 0.45em;
-            text-transform: uppercase;
-            color: var(--cream);
-            opacity: 0.50;
-            font-weight: 300;
-        }
-        .hero-divider {
-            width: 56px;
-            height: 1px;
-            background: var(--gold);
-            opacity: 0.30;
-            margin: 1.8rem auto 0;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 2.4rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0.30;
-            font-size: 0.58rem;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
-            color: var(--gold);
-            animation: scrollBob 2.6s ease-in-out infinite;
-        }
-        .scroll-hint::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 32px;
-            background: var(--gold);
-            opacity: 0.4;
-        }
-        @keyframes scrollBob {
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(6px);
-            }
-        }
-
-        /* ── Sections ── */
-        section {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-
-        .section-label {
-            font-size: 0.60rem;
-            letter-spacing: 0.42em;
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.50;
-            margin-bottom: 1.8rem;
-        }
-
-        h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            line-height: 1.25;
-            color: var(--gold-light);
-            margin-bottom: 1.4rem;
-            letter-spacing: 0.02em;
-        }
-
-        p {
-            opacity: 0.72;
-            font-size: 0.92rem;
-            line-height: 1.9;
-            max-width: 54ch;
-        }
-
-        .rule {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.20), transparent);
-            margin: 0 auto;
-        }
-
-        /* ── Events ── */
-        #events section {
-            padding-top: 0;
-        }
-        .events-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1px;
-            background: rgba(201, 168, 76, 0.08);
-            border: 1px solid rgba(201, 168, 76, 0.08);
-            margin-top: 2.8rem;
-        }
-        .event-card {
-            background: var(--forest);
-            padding: 2.5rem 1.8rem;
-            text-align: center;
-            transition: background 0.3s;
-        }
-        .event-card:hover {
-            background: var(--pine);
-        }
-        .event-icon {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            opacity: 0.6;
-        }
-        .event-time {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--gold);
-            display: block;
-        }
-        .event-name {
-            font-size: 0.62rem;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
-            color: var(--cream);
-            opacity: 0.45;
-            margin: 0.3rem 0 0.8rem;
-            display: block;
-        }
-        .event-location {
-            font-size: 0.80rem;
-            opacity: 0.60;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 640px) {
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ── Poem ── */
-        #poem {
-            text-align: center;
-        }
-        #poem p {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.05rem;
-            line-height: 2.2;
-            opacity: 0.60;
-            max-width: 44ch;
-            margin: 0 auto;
-        }
-        #poem .author {
-            margin-top: 1.8rem;
-            font-size: 0.62rem;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.45;
-            font-style: normal;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* ── RSVP ── */
-        #rsvp {
-            max-width: 640px;
-        }
-        .form-group {
-            margin-bottom: 1.4rem;
-        }
-        label {
-            display: block;
-            font-size: 0.60rem;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.55;
-            margin-bottom: 0.5rem;
-        }
-        input,
-        select,
-        textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(201, 168, 76, 0.15);
-            color: var(--cream);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            padding: 0.85rem 1rem;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            appearance: none;
-            border-radius: 0;
-        }
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: rgba(201, 168, 76, 0.50);
-            box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.04);
-        }
-        select option {
-            background: var(--forest);
-        }
-        textarea {
-            resize: vertical;
-            min-height: 76px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        @media (max-width: 520px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 0.8rem;
-            padding: 0.95rem 3.2rem;
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.66rem;
-            letter-spacing: 0.34em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-            border-radius: 0;
-        }
-        .btn:hover {
-            background: var(--gold);
-            color: var(--deep);
-            box-shadow: 0 0 30px rgba(201, 168, 76, 0.10);
-        }
-
-        .rsvp-success {
-            display: none;
-            text-align: center;
-            padding: 3rem 2rem;
-            border: 1px solid rgba(201, 168, 76, 0.12);
-        }
-        .rsvp-success .check {
-            font-size: 2.2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        /* ── Visit ── */
-        #visit {
-            max-width: 960px;
-        }
-        .visit-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem 2.5rem;
-            margin-top: 2.8rem;
-        }
-        .visit-item-label {
-            font-size: 0.58rem;
-            letter-spacing: 0.34em;
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.45;
-            margin-bottom: 0.6rem;
-        }
-        .visit-item h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-size: 1.3rem;
-            color: var(--gold-light);
-            margin-bottom: 0.5rem;
-        }
-        .visit-item p {
-            font-size: 0.84rem;
-        }
-
-        @media (max-width: 640px) {
-            .visit-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-
-        /* ── Gallery ── */
-        #gallery {
-            max-width: 960px;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto auto;
-            gap: 2px;
-            margin-top: 2.8rem;
-        }
-        .gallery-cell {
-            background: var(--forest);
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.35;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .gallery-cell:hover {
-            opacity: 0.70;
-            transform: scale(1.01);
-        }
-        .gallery-cell:first-child {
-            grid-column: span 2;
-            grid-row: span 2;
-            aspect-ratio: auto;
-        }
-        .gallery-cell svg {
-            width: 28px;
-            opacity: 0.25;
-        }
-
-        @media (max-width: 560px) {
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .gallery-cell:first-child {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
-        }
-
-        /* ── Footer ── */
-        footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 4.5rem 2rem;
-            border-top: 1px solid rgba(201, 168, 76, 0.07);
-        }
-        footer .footer-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: var(--gold);
-            opacity: 0.65;
-            letter-spacing: 0.04em;
-        }
-        footer .footer-date {
-            margin-top: 0.8rem;
-            font-size: 0.58rem;
-            letter-spacing: 0.38em;
-            text-transform: uppercase;
-            opacity: 0.25;
-        }
-
-        /* ── Scroll reveal ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.9s ease, transform 0.9s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .scroll-hint {
-                animation: none;
-            }
-            .light-bulb {
-                animation: none;
-            }
-        }
-
-        /* ── Responsive tweaks ── */
-        @media (max-width: 480px) {
-            section {
-                padding: 4rem 1.2rem;
-            }
-            .pinecone {
-                width: 30px;
-                height: 36px;
-            }
-            .pinecone-tl {
-                top: 60px;
-                left: 8px;
-            }
-            .pinecone-tr {
-                top: 60px;
-                right: 8px;
-            }
-            .pinecone-bl {
-                bottom: 8px;
-                left: 8px;
-            }
-            .pinecone-br {
-                bottom: 8px;
-                right: 8px;
-            }
-            .fairy-lights {
-                padding: 0 0.8rem;
-            }
-            .light-bulb {
-                width: 4px;
-                height: 4px;
-                margin: 0 1.2px;
-            }
-            .hero-eyebrow {
-                font-size: 0.55rem;
-                margin-bottom: 1.6rem;
-            }
-        }
-    </style>
+    @media(max-width:700px){
+      nav ul{display:none}
+      nav{padding:1.2rem 1.5rem}
+      .ev-grid{grid-template-columns:1fr}
+      .fr{grid-template-columns:1fr}
+      .vis-grid{grid-template-columns:1fr;gap:2rem}
+      .gal-grid{grid-template-columns:1fr 1fr}
+      .gal-cell:first-child{grid-column:span 2;grid-row:span 1}
+      .corner-layer img{width:200px}
+      .lantern-layer img{width:62px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .rv{opacity:1;transform:none;transition:none}
+      .scroll-cue{animation:none}
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Ambient glows -->
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-    <div class="glow glow-3"></div>
+<div class="gl g1"></div>
+<div class="gl g2"></div>
+<div class="gl g3"></div>
+<canvas id="cv"></canvas>
 
-    <!-- Particle canvas -->
-    <canvas id="particles"></canvas>
+<!-- Corner botanical overlays — high-res Unsplash/open images -->
+<!-- Using open-license botanical/christmas illustrations -->
+<div class="corner-layer" aria-hidden="true">
+  <!-- Top-left: christmas greenery -->
+  <img class="c-tl" 
+    src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&auto=format&fit=crop&q=80"
+    alt="" 
+    style="mix-blend-mode:screen;opacity:0"
+    onerror="this.style.display='none'"
+  />
+  <!-- We'll draw corners with canvas overlay instead — see script -->
+</div>
 
-    <!-- ─── PINE CONES at corners ─── -->
-    <div class="pinecone pinecone-tl" aria-hidden="true">
-        <svg viewBox="0 0 44 52" fill="none">
-            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
-            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
-            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
-            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
-            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
-            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
+<!-- Lantern layer -->
+<div class="lantern-layer" aria-hidden="true" id="lanternLayer">
+  <!-- drawn via canvas in script -->
+</div>
+
+<!-- Decorative corner canvas (always works, no CORS) -->
+<canvas id="deco" style="position:fixed;inset:0;pointer-events:none;z-index:10;"></canvas>
+
+<nav>
+  <span class="nav-logo">D &amp; C</span>
+  <ul>
+    <li><a href="#about">Σχετικά</a></li>
+    <li><a href="#events">Εκδηλώσεις</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+    <li><a href="#gallery">Φωτογραφίες</a></li>
+    <li><a href="#visit">Επίσκεψη</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<div id="hero">
+  <p class="eyebrow">Σας προσκαλούμε στον γάμο μας</p>
+
+  <!-- Couple photo with wreath frame -->
+  <div class="frame-outer">
+    <div class="frame-ring"><div class="frame-ring-inner"></div></div>
+    <!-- Christmas wreath overlay — SVG inline, high-detail botanical style -->
+    <svg class="wreath-img" viewBox="0 0 316 316" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="bg0" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(0,0,0,0)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+        </radialGradient>
+        <!-- Pine needle texture pattern -->
+        <pattern id="needles" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="3" x2="12" y2="3" stroke="#2a5c35" stroke-width="0.8" opacity="0.7"/>
+          <line x1="3" y1="0" x2="3" y2="6" stroke="#2a5c35" stroke-width="0.6" opacity="0.5"/>
+        </pattern>
+        <filter id="leafblur"><feGaussianBlur stdDeviation="0.4"/></filter>
+        <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="lanternglow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+          <feColorMatrix in="b" type="matrix" values="1 0.5 0 0 0  0.3 0.2 0 0 0  0 0 0 0 0  0 0 0 0.6 0" result="colored"/>
+          <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- ======= WREATH BODY — full circle of botanical elements ======= -->
+      <!-- Strategy: place detailed botanical groups every ~20° around the circle (r≈140) -->
+      <!-- Center of SVG = 158,158 -->
+
+      <!-- Pine branch cluster function — we repeat groups rotated around the ring -->
+      <!-- Each cluster: detailed fir branches with individual needles -->
+
+      <!-- CLUSTER TEMPLATE repeated 18 times around the ring -->
+      <!-- Base cluster at 0° (top) pointing outward, then rotated -->
+
+      <g id="wreath-ring">
+
+        <!-- ── 12 o'clock ── -->
+        <g transform="translate(158,158) rotate(0) translate(0,-138)">
+          <g transform="rotate(90)">
+            <!-- Main stem -->
+            <line x1="0" y1="-18" x2="0" y2="18" stroke="#1a3d22" stroke-width="2.2"/>
+            <!-- Left needles -->
+            <line x1="0" y1="-14" x2="-9" y2="-18" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-10" x2="-10" y2="-15" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-6"  x2="-9"  y2="-11" stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="-2"  x2="-10" y2="-7"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="2"   x2="-9"  y2="-3"  stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="6"   x2="-9"  y2="1"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="10"  x2="-8"  y2="5"   stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="14"  x2="-7"  y2="9"   stroke="#2d6038" stroke-width="1"/>
+            <!-- Right needles -->
+            <line x1="0" y1="-14" x2="9"  y2="-18" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-10" x2="10" y2="-15" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-6"  x2="9"  y2="-11" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-2"  x2="10" y2="-7"  stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="2"   x2="9"  y2="-3"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="6"   x2="9"  y2="1"   stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="10"  x2="8"  y2="5"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="14"  x2="7"  y2="9"   stroke="#284f2c" stroke-width="1"/>
+          </g>
+        </g>
+
+        <!-- ── repeat every 20° ── -->
+        <g transform="translate(158,158) rotate(20) translate(0,-138)">
+          <g transform="rotate(90)">
+            <line x1="0" y1="-16" x2="0" y2="16" stroke="#1a3d22" stroke-width="2"/>
+            <line x1="0" y1="-12" x2="-9" y2="-17" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-8"  x2="-10" y2="-13" stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="-4"  x2="-9"  y2="-9"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="0"   x2="-9"  y2="-5"  stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="4"   x2="-8"  y2="-1"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="8"   x2="-8"  y2="3"   stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="12"  x2="-7"  y2="7"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-12" x2="9"   y2="-17" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-8"  x2="10"  y2="-13" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-4"  x2="9"   y2="-9"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="0"   x2="9"   y2="-5"  stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="4"   x2="8"   y2="-1"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="8"   x2="8"   y2="3"   stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="12"  x2="7"   y2="7"   stroke="#2d6038" stroke-width="1"/>
+          </g>
+        </g>
+
+        <g transform="translate(158,158) rotate(40) translate(0,-138)">
+          <g transform="rotate(90)">
+            <line x1="0" y1="-17" x2="0" y2="17" stroke="#1e4428" stroke-width="2.2"/>
+            <line x1="0" y1="-13" x2="-10" y2="-17" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-9"  x2="-10" y2="-14" stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="-5"  x2="-9"  y2="-10" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-1"  x2="-10" y2="-6"  stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="3"   x2="-9"  y2="-2"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="7"   x2="-9"  y2="2"   stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="11"  x2="-8"  y2="6"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="15"  x2="-7"  y2="10"  stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="-13" x2="10" y2="-17" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-9"  x2="10" y2="-14" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-5"  x2="9"  y2="-10" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-1"  x2="10" y2="-6"  stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="3"   x2="9"  y2="-2"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="7"   x2="9"  y2="2"   stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="11"  x2="8"  y2="6"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="15"  x2="7"  y2="10"  stroke="#355e35" stroke-width="1"/>
+          </g>
+        </g>
+
+        <g transform="translate(158,158) rotate(60) translate(0,-138)">
+          <g transform="rotate(90)">
+            <line x1="0" y1="-15" x2="0" y2="15" stroke="#1a3d22" stroke-width="2"/>
+            <line x1="0" y1="-11" x2="-9"  y2="-16" stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-7"  x2="-10" y2="-12" stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="-3"  x2="-9"  y2="-8"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="1"   x2="-9"  y2="-4"  stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="5"   x2="-8"  y2="0"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="9"   x2="-8"  y2="4"   stroke="#355e35" stroke-width="1"/>
+            <line x1="0" y1="13"  x2="-7"  y2="8"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="-11" x2="9"   y2="-16" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-7"  x2="10"  y2="-12" stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="-3"  x2="9"   y2="-8"  stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="1"   x2="9"   y2="-4"  stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="5"   x2="8"   y2="0"   stroke="#2d6038" stroke-width="1"/>
+            <line x1="0" y1="9"   x2="8"   y2="4"   stroke="#284f2c" stroke-width="1"/>
+            <line x1="0" y1="13"  x2="7"   y2="8"   stroke="#2d6038" stroke-width="1"/>
+          </g>
+        </g>
+
+        <g transform="translate(158,158) rotate(80) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-16" x2="0" y2="16" stroke="#1e4428" stroke-width="2.1"/><line x1="0" y1="-12" x2="-9" y2="-17" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-8" x2="-10" y2="-13" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-4" x2="-9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="-9" y2="-5" stroke="#355e35" stroke-width="1"/><line x1="0" y1="4" x2="-8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="-8" y2="3" stroke="#355e35" stroke-width="1"/><line x1="0" y1="12" x2="-7" y2="7" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-12" x2="9" y2="-17" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-8" x2="10" y2="-13" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-4" x2="9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="9" y2="-5" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="4" x2="8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="8" y2="3" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="12" x2="7" y2="7" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(100) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-17" x2="0" y2="17" stroke="#1a3d22" stroke-width="2.2"/><line x1="0" y1="-13" x2="-9" y2="-18" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-9" x2="-10" y2="-14" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-5" x2="-9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="-10" y2="-6" stroke="#355e35" stroke-width="1"/><line x1="0" y1="3" x2="-9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="-9" y2="2" stroke="#355e35" stroke-width="1"/><line x1="0" y1="11" x2="-8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="-7" y2="10" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-13" x2="9" y2="-18" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-9" x2="10" y2="-14" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-5" x2="9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="10" y2="-6" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="3" x2="9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="9" y2="2" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="11" x2="8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="7" y2="10" stroke="#355e35" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(120) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-15" x2="0" y2="15" stroke="#1a3d22" stroke-width="2"/><line x1="0" y1="-11" x2="-9" y2="-16" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-7" x2="-10" y2="-12" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-3" x2="-9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="-9" y2="-4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="5" x2="-8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="-8" y2="4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="13" x2="-7" y2="8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-11" x2="9" y2="-16" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-7" x2="10" y2="-12" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-3" x2="9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="9" y2="-4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="5" x2="8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="8" y2="4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="13" x2="7" y2="8" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(140) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-16" x2="0" y2="16" stroke="#1e4428" stroke-width="2.1"/><line x1="0" y1="-12" x2="-9" y2="-17" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-8" x2="-10" y2="-13" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-4" x2="-9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="-9" y2="-5" stroke="#355e35" stroke-width="1"/><line x1="0" y1="4" x2="-8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="-8" y2="3" stroke="#355e35" stroke-width="1"/><line x1="0" y1="12" x2="-7" y2="7" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-12" x2="9" y2="-17" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-8" x2="10" y2="-13" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-4" x2="9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="9" y2="-5" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="4" x2="8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="8" y2="3" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="12" x2="7" y2="7" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(160) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-15" x2="0" y2="15" stroke="#1a3d22" stroke-width="2"/><line x1="0" y1="-11" x2="-9" y2="-16" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-7" x2="-10" y2="-12" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-3" x2="-9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="-9" y2="-4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="5" x2="-8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="-8" y2="4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="13" x2="-7" y2="8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-11" x2="9" y2="-16" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-7" x2="10" y2="-12" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-3" x2="9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="9" y2="-4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="5" x2="8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="8" y2="4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="13" x2="7" y2="8" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(180) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-17" x2="0" y2="17" stroke="#1e4428" stroke-width="2.2"/><line x1="0" y1="-13" x2="-9" y2="-18" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-9" x2="-10" y2="-14" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-5" x2="-9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="-10" y2="-6" stroke="#355e35" stroke-width="1"/><line x1="0" y1="3" x2="-9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="-9" y2="2" stroke="#355e35" stroke-width="1"/><line x1="0" y1="11" x2="-8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="-7" y2="10" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-13" x2="9" y2="-18" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-9" x2="10" y2="-14" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-5" x2="9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="10" y2="-6" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="3" x2="9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="9" y2="2" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="11" x2="8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="7" y2="10" stroke="#355e35" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(200) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-16" x2="0" y2="16" stroke="#1a3d22" stroke-width="2"/><line x1="0" y1="-12" x2="-9" y2="-17" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-8" x2="-10" y2="-13" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-4" x2="-9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="-9" y2="-5" stroke="#355e35" stroke-width="1"/><line x1="0" y1="4" x2="-8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="-8" y2="3" stroke="#355e35" stroke-width="1"/><line x1="0" y1="12" x2="-7" y2="7" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-12" x2="9" y2="-17" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-8" x2="10" y2="-13" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-4" x2="9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="9" y2="-5" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="4" x2="8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="8" y2="3" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="12" x2="7" y2="7" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(220) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-15" x2="0" y2="15" stroke="#1e4428" stroke-width="2.1"/><line x1="0" y1="-11" x2="-9" y2="-16" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-7" x2="-10" y2="-12" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-3" x2="-9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="-9" y2="-4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="5" x2="-8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="-8" y2="4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="13" x2="-7" y2="8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-11" x2="9" y2="-16" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-7" x2="10" y2="-12" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-3" x2="9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="9" y2="-4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="5" x2="8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="8" y2="4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="13" x2="7" y2="8" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(240) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-17" x2="0" y2="17" stroke="#1a3d22" stroke-width="2.2"/><line x1="0" y1="-13" x2="-9" y2="-18" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-9" x2="-10" y2="-14" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-5" x2="-9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="-10" y2="-6" stroke="#355e35" stroke-width="1"/><line x1="0" y1="3" x2="-9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="-9" y2="2" stroke="#355e35" stroke-width="1"/><line x1="0" y1="11" x2="-8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="-7" y2="10" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-13" x2="9" y2="-18" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-9" x2="10" y2="-14" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-5" x2="9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="10" y2="-6" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="3" x2="9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="9" y2="2" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="11" x2="8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="7" y2="10" stroke="#355e35" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(260) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-16" x2="0" y2="16" stroke="#1e4428" stroke-width="2"/><line x1="0" y1="-12" x2="-9" y2="-17" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-8" x2="-10" y2="-13" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-4" x2="-9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="-9" y2="-5" stroke="#355e35" stroke-width="1"/><line x1="0" y1="4" x2="-8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="-8" y2="3" stroke="#355e35" stroke-width="1"/><line x1="0" y1="12" x2="-7" y2="7" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-12" x2="9" y2="-17" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-8" x2="10" y2="-13" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-4" x2="9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="9" y2="-5" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="4" x2="8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="8" y2="3" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="12" x2="7" y2="7" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(280) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-15" x2="0" y2="15" stroke="#1a3d22" stroke-width="2.1"/><line x1="0" y1="-11" x2="-9" y2="-16" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-7" x2="-10" y2="-12" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-3" x2="-9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="-9" y2="-4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="5" x2="-8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="-8" y2="4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="13" x2="-7" y2="8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-11" x2="9" y2="-16" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-7" x2="10" y2="-12" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-3" x2="9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="9" y2="-4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="5" x2="8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="8" y2="4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="13" x2="7" y2="8" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(300) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-17" x2="0" y2="17" stroke="#1e4428" stroke-width="2.2"/><line x1="0" y1="-13" x2="-9" y2="-18" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-9" x2="-10" y2="-14" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-5" x2="-9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="-10" y2="-6" stroke="#355e35" stroke-width="1"/><line x1="0" y1="3" x2="-9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="-9" y2="2" stroke="#355e35" stroke-width="1"/><line x1="0" y1="11" x2="-8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="-7" y2="10" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-13" x2="9" y2="-18" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-9" x2="10" y2="-14" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-5" x2="9" y2="-10" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-1" x2="10" y2="-6" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="3" x2="9" y2="-2" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="7" x2="9" y2="2" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="11" x2="8" y2="6" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="15" x2="7" y2="10" stroke="#355e35" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(320) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-16" x2="0" y2="16" stroke="#1a3d22" stroke-width="2"/><line x1="0" y1="-12" x2="-9" y2="-17" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-8" x2="-10" y2="-13" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-4" x2="-9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="-9" y2="-5" stroke="#355e35" stroke-width="1"/><line x1="0" y1="4" x2="-8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="-8" y2="3" stroke="#355e35" stroke-width="1"/><line x1="0" y1="12" x2="-7" y2="7" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-12" x2="9" y2="-17" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-8" x2="10" y2="-13" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-4" x2="9" y2="-9" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="0" x2="9" y2="-5" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="4" x2="8" y2="-1" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="8" x2="8" y2="3" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="12" x2="7" y2="7" stroke="#2d6038" stroke-width="1"/></g></g>
+        <g transform="translate(158,158) rotate(340) translate(0,-138)"><g transform="rotate(90)"><line x1="0" y1="-15" x2="0" y2="15" stroke="#1e4428" stroke-width="2.1"/><line x1="0" y1="-11" x2="-9" y2="-16" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-7" x2="-10" y2="-12" stroke="#355e35" stroke-width="1"/><line x1="0" y1="-3" x2="-9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="-9" y2="-4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="5" x2="-8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="-8" y2="4" stroke="#355e35" stroke-width="1"/><line x1="0" y1="13" x2="-7" y2="8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="-11" x2="9" y2="-16" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-7" x2="10" y2="-12" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="-3" x2="9" y2="-8" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="1" x2="9" y2="-4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="5" x2="8" y2="0" stroke="#2d6038" stroke-width="1"/><line x1="0" y1="9" x2="8" y2="4" stroke="#284f2c" stroke-width="1"/><line x1="0" y1="13" x2="7" y2="8" stroke="#2d6038" stroke-width="1"/></g></g>
+
+        <!-- ── Holly leaves scattered around at key points ── -->
+        <!-- Holly at top -->
+        <g transform="translate(158,24)">
+          <ellipse cx="-8" cy="0" rx="10" ry="5" fill="#1a4a25" transform="rotate(-25,-8,0)"/>
+          <ellipse cx="8" cy="0" rx="10" ry="5" fill="#225530" transform="rotate(25,8,0)"/>
+          <ellipse cx="-6" cy="-3" rx="9" ry="4.5" fill="#1e5228" transform="rotate(-40,-6,-3)"/>
+          <ellipse cx="6" cy="-3" rx="9" ry="4.5" fill="#1e5228" transform="rotate(40,6,-3)"/>
+          <circle cx="-2" cy="-1" r="3.5" fill="#7a1212"/>
+          <circle cx="2" cy="-3" r="3" fill="#8f1818"/>
+          <circle cx="0" cy="2" r="3" fill="#6b1010"/>
+        </g>
+        <!-- Holly at right -->
+        <g transform="translate(292,158)">
+          <ellipse cx="0" cy="-8" rx="5" ry="10" fill="#1a4a25" transform="rotate(-25,0,-8)"/>
+          <ellipse cx="0" cy="8" rx="5" ry="10" fill="#225530" transform="rotate(25,0,8)"/>
+          <circle cx="-3" cy="-2" r="3.5" fill="#7a1212"/>
+          <circle cx="-3" cy="4" r="3" fill="#8f1818"/>
+        </g>
+        <!-- Holly at bottom -->
+        <g transform="translate(158,292)">
+          <ellipse cx="-8" cy="0" rx="10" ry="5" fill="#1a4a25" transform="rotate(25,-8,0)"/>
+          <ellipse cx="8" cy="0" rx="10" ry="5" fill="#225530" transform="rotate(-25,8,0)"/>
+          <ellipse cx="-6" cy="3" rx="9" ry="4.5" fill="#1e5228" transform="rotate(40,-6,3)"/>
+          <ellipse cx="6" cy="3" rx="9" ry="4.5" fill="#1e5228" transform="rotate(-40,6,3)"/>
+          <circle cx="-2" cy="1" r="3.5" fill="#7a1212"/>
+          <circle cx="2" cy="3" r="3" fill="#8f1818"/>
+          <circle cx="0" cy="-1" r="3" fill="#6b1010"/>
+        </g>
+        <!-- Holly at left -->
+        <g transform="translate(24,158)">
+          <ellipse cx="0" cy="-8" rx="5" ry="10" fill="#1a4a25" transform="rotate(25,0,-8)"/>
+          <ellipse cx="0" cy="8" rx="5" ry="10" fill="#225530" transform="rotate(-25,0,8)"/>
+          <circle cx="3" cy="-2" r="3.5" fill="#7a1212"/>
+          <circle cx="3" cy="4" r="3" fill="#8f1818"/>
+        </g>
+
+        <!-- Pine cones at diagonal positions -->
+        <g transform="translate(218,218) rotate(45) scale(0.9)">
+          <ellipse cx="0" cy="0" rx="7" ry="13" fill="#3a2510"/>
+          <ellipse cx="0" cy="-9" rx="6.5" ry="3.8" fill="#5a3c18"/>
+          <ellipse cx="-3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="-3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="0" cy="8" rx="4.5" ry="3" fill="#2e200a"/>
+          <!-- Highlight -->
+          <ellipse cx="-1" cy="-9" rx="2" ry="1.2" fill="#7a5a28" opacity="0.5"/>
+        </g>
+        <g transform="translate(98,218) rotate(-45) scale(0.9)">
+          <ellipse cx="0" cy="0" rx="7" ry="13" fill="#3a2510"/>
+          <ellipse cx="0" cy="-9" rx="6.5" ry="3.8" fill="#5a3c18"/>
+          <ellipse cx="-3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="-3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="0" cy="8" rx="4.5" ry="3" fill="#2e200a"/>
+          <ellipse cx="-1" cy="-9" rx="2" ry="1.2" fill="#7a5a28" opacity="0.5"/>
+        </g>
+        <g transform="translate(218,98) rotate(135) scale(0.8)">
+          <ellipse cx="0" cy="0" rx="7" ry="13" fill="#3a2510"/>
+          <ellipse cx="0" cy="-9" rx="6.5" ry="3.8" fill="#5a3c18"/>
+          <ellipse cx="-3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="-3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="0" cy="8" rx="4.5" ry="3" fill="#2e200a"/>
+        </g>
+        <g transform="translate(98,98) rotate(-135) scale(0.8)">
+          <ellipse cx="0" cy="0" rx="7" ry="13" fill="#3a2510"/>
+          <ellipse cx="0" cy="-9" rx="6.5" ry="3.8" fill="#5a3c18"/>
+          <ellipse cx="-3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="3.5" cy="-4" rx="5.5" ry="3.2" fill="#4a3012"/>
+          <ellipse cx="-3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="3.5" cy="2" rx="5" ry="3" fill="#3a280e"/>
+          <ellipse cx="0" cy="8" rx="4.5" ry="3" fill="#2e200a"/>
+        </g>
+
+        <!-- Berry clusters -->
+        <g transform="translate(200,50)"><circle cx="0" cy="0" r="4" fill="#6b1010"/><circle cx="7" cy="-2" r="3.5" fill="#8a1515"/><circle cx="3" cy="6" r="3.5" fill="#7a1212"/><circle cx="-5" cy="4" r="3" fill="#6b1010"/></g>
+        <g transform="translate(116,50)"><circle cx="0" cy="0" r="4" fill="#6b1010"/><circle cx="-7" cy="-2" r="3.5" fill="#8a1515"/><circle cx="-3" cy="6" r="3.5" fill="#7a1212"/><circle cx="5" cy="4" r="3" fill="#6b1010"/></g>
+        <g transform="translate(265,115)"><circle cx="0" cy="0" r="4" fill="#7a1212"/><circle cx="5" cy="5" r="3.5" fill="#8a1515"/><circle cx="-2" cy="6" r="3" fill="#6b1010"/></g>
+        <g transform="translate(265,200)"><circle cx="0" cy="0" r="3.5" fill="#7a1212"/><circle cx="4" cy="-4" r="3" fill="#8a1515"/><circle cx="-3" cy="-5" r="3" fill="#6b1010"/></g>
+        <g transform="translate(51,115)"><circle cx="0" cy="0" r="4" fill="#7a1212"/><circle cx="-5" cy="5" r="3.5" fill="#8a1515"/><circle cx="2" cy="6" r="3" fill="#6b1010"/></g>
+        <g transform="translate(51,200)"><circle cx="0" cy="0" r="3.5" fill="#7a1212"/><circle cx="-4" cy="-4" r="3" fill="#8a1515"/><circle cx="3" cy="-5" r="3" fill="#6b1010"/></g>
+        <g transform="translate(116,265)"><circle cx="0" cy="0" r="4" fill="#6b1010"/><circle cx="-7" cy="2" r="3.5" fill="#8a1515"/><circle cx="-3" cy="-6" r="3.5" fill="#7a1212"/><circle cx="5" cy="-4" r="3" fill="#6b1010"/></g>
+        <g transform="translate(200,265)"><circle cx="0" cy="0" r="4" fill="#6b1010"/><circle cx="7" cy="2" r="3.5" fill="#8a1515"/><circle cx="3" cy="-6" r="3.5" fill="#7a1212"/><circle cx="-5" cy="-4" r="3" fill="#6b1010"/></g>
+
+      </g><!-- end wreath-ring -->
+
+      <!-- Inner and outer gold rings -->
+      <circle cx="158" cy="158" r="148" fill="none" stroke="#c8a255" stroke-width="0.8" opacity="0.25"/>
+      <circle cx="158" cy="158" r="128" fill="none" stroke="#c8a255" stroke-width="1.2" opacity="0.4"/>
+      <circle cx="158" cy="158" r="125" fill="none" stroke="#c8a255" stroke-width="0.5" opacity="0.2"/>
+
+      <!-- Red ribbon bow at bottom -->
+      <g transform="translate(158,285)" filter="url(#softglow)">
+        <!-- Left bow loop -->
+        <path d="M 0 0 Q -22 -18 -32 -8 Q -28 4 -14 2 Q -8 0 0 0 Z" fill="#6b1010"/>
+        <path d="M 0 0 Q -22 -18 -32 -8 Q -28 4 -14 2 Q -8 0 0 0 Z" fill="url(#bowgrad)" opacity="0.6"/>
+        <!-- Right bow loop -->
+        <path d="M 0 0 Q 22 -18 32 -8 Q 28 4 14 2 Q 8 0 0 0 Z" fill="#7a1414"/>
+        <!-- Left tail -->
+        <path d="M -2 2 Q -12 12 -18 22 Q -14 24 -10 20 Q -4 10 0 2 Z" fill="#6b1010"/>
+        <!-- Right tail -->
+        <path d="M 2 2 Q 12 12 18 22 Q 14 24 10 20 Q 4 10 0 2 Z" fill="#7a1414"/>
+        <!-- Center knot -->
+        <ellipse cx="0" cy="0" rx="7" ry="5" fill="#8f1818"/>
+        <ellipse cx="0" cy="-1" rx="4" ry="3" fill="#a82020"/>
+        <!-- Sheen -->
+        <ellipse cx="-10" cy="-10" rx="6" ry="3" fill="rgba(255,100,100,0.15)" transform="rotate(-30,-10,-10)"/>
+        <ellipse cx="10" cy="-10" rx="6" ry="3" fill="rgba(255,100,100,0.12)" transform="rotate(30,10,-10)"/>
+      </g>
+      <defs>
+        <linearGradient id="bowgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="rgba(255,80,80,0.3)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+        </linearGradient>
+      </defs>
+
+    </svg>
+
+    <div class="photo-circle" onclick="document.getElementById('fi').click()">
+      <img id="cpPhoto" src="" alt=""/>
+      <div class="ph-placeholder" id="phHolder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8a255" stroke-width="1">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
         </svg>
+        <span>Προσθέστε<br/>φωτογραφία</span>
+      </div>
     </div>
-    <div class="pinecone pinecone-tr" aria-hidden="true">
-        <svg viewBox="0 0 44 52" fill="none">
-            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
-            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
-            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
-            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
-            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
-            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
-        </svg>
+    <input type="file" id="fi" accept="image/*" onchange="loadP(event)"/>
+  </div>
+
+  <!-- Names -->
+  <div class="names">
+    Δημήτρης
+    <span class="amp">— ❄ —</span>
+    Χρύσα
+  </div>
+
+  <p class="hero-date">Σάββατο, 26 Δεκεμβρίου 2026</p>
+
+  <div class="ornament-line"><span>✦</span></div>
+
+  <div class="scroll-cue">scroll</div>
+</div>
+
+<!-- About -->
+<div id="about"><section class="sec rv">
+  <p class="lbl">Η Ημέρα Μας</p>
+  <h2>Η πιο όμορφη στιγμή της ζωής μας</h2>
+  <p class="body">Μέσα στη μαγεία των Χριστουγέννων και κάτω από το φως της αγάπης, σας καλούμε να γιορτάσετε μαζί μας. Η τέλεση θα γίνει στην Εκκλησία του Μουζακίου και η δεξίωση στην πανέμορφη Ονείρων Έπαυλις, στην Πηγή Τρικάλων.</p>
+</section></div>
+<div class="rule"></div>
+
+<!-- Poem -->
+<div id="poem"><section class="sec rv">
+  <p class="body">Μέσα στη μαγεία των Χριστουγέννων<br/>και κάτω από το φως της αγάπης,<br/>σας προσκαλούμε να μοιραστείτε μαζί μας<br/>την πιο όμορφη στιγμή της ζωής μας.</p>
+  <p class="poem-author">Δημήτρης &amp; Χρύσα</p>
+</section></div>
+<div class="rule"></div>
+
+<!-- Events -->
+<div id="events"><section class="sec rv">
+  <p class="lbl">Εκδηλώσεις</p>
+  <h2>Το Πρόγραμμα</h2>
+  <div class="ev-grid">
+    <div class="ev-card">
+      <div class="ev-icon">⛪</div>
+      <span class="ev-time">15:30</span>
+      <span class="ev-lbl">Τέλεση</span>
+      <p class="ev-loc">Εκκλησία Κοιμήσεως<br/>της Θεοτόκου · Μουζάκι</p>
     </div>
-    <div class="pinecone pinecone-bl" aria-hidden="true">
-        <svg viewBox="0 0 44 52" fill="none">
-            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
-            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
-            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
-            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
-            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
-            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
-        </svg>
+    <div class="ev-card">
+      <div class="ev-icon">🎉</div>
+      <span class="ev-time">20:30</span>
+      <span class="ev-lbl">Δεξίωση</span>
+      <p class="ev-loc">Ονείρων Έπαυλις<br/>Πηγή Τρικάλων</p>
     </div>
-    <div class="pinecone pinecone-br" aria-hidden="true">
-        <svg viewBox="0 0 44 52" fill="none">
-            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
-            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
-            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
-            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
-            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
-            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
-            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
-        </svg>
+    <div class="ev-card">
+      <div class="ev-icon">📅</div>
+      <span class="ev-time" style="font-size:1.9rem;line-height:1.2">26 Δεκ</span>
+      <span class="ev-lbl">Ημερομηνία</span>
+      <p class="ev-loc">Σάββατο<br/>26 Δεκεμβρίου 2026</p>
     </div>
+  </div>
+</section></div>
+<div class="rule"></div>
 
-    <!-- ─── FAIRY LIGHTS ─── -->
-    <div class="fairy-lights fairy-lights-top" id="lightsTop" aria-hidden="true"></div>
-    <div class="fairy-lights fairy-lights-bottom" id="lightsBottom" aria-hidden="true"></div>
+<!-- Gallery -->
+<div id="gallery"><section class="sec sec-wide rv">
+  <p class="lbl">Στιγμές</p>
+  <h2>Φωτογραφίες</h2>
+  <div class="gal-grid">
+    <div class="gal-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <div class="gal-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <div class="gal-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <div class="gal-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <div class="gal-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+  </div>
+</section></div>
+<div class="rule"></div>
 
-    <!-- ─── NAVIGATION ─── -->
-    <nav>
-        <span class="nav-mono">D &amp; C</span>
-        <ul>
-            <li><a href="#about">Σχετικά</a></li>
-            <li><a href="#events">Εκδηλώσεις</a></li>
-            <li><a href="#rsvp">RSVP</a></li>
-            <li><a href="#gallery">Φωτογραφίες</a></li>
-            <li><a href="#visit">Επίσκεψη</a></li>
-        </ul>
-    </nav>
+<!-- RSVP -->
+<div id="rsvp"><section class="sec rv">
+  <p class="lbl">RSVP</p>
+  <h2>Επιβεβαίωση Παρουσίας</h2>
+  <p class="body" style="margin-bottom:2.4rem">Παρακαλούμε επιβεβαιώστε την παρουσία σας έως τις 30 Νοεμβρίου 2026.</p>
+  <div id="rf">
+    <div class="fr"><div class="fg"><label for="fn">Ονοματεπώνυμο</label><input type="text" id="fn" placeholder="Το ονοματεπώνυμό σας"/></div><div class="fg"><label for="gs">Αριθμός Ατόμων</label><select id="gs"><option value="">Επιλέξτε...</option><option>1 άτομο</option><option>2 άτομα</option><option>3 άτομα</option><option>4 άτομα</option><option>5 άτομα</option><option>6+ άτομα</option></select></div></div>
+    <div class="fr"><div class="fg"><label for="em">Email</label><input type="email" id="em" placeholder="email@example.com"/></div><div class="fg"><label for="ph">Τηλέφωνο</label><input type="tel" id="ph" placeholder="+30 69..."/></div></div>
+    <div class="fg"><label for="dt">Διατροφικές Προτιμήσεις</label><textarea id="dt" placeholder="Χορτοφαγικό, αλλεργίες κ.λπ."></textarea></div>
+    <button class="btn" onclick="doRSVP()">Αποστολή</button>
+  </div>
+  <div class="rsvp-ok" id="rok"><div class="ck">✦</div><p class="body" style="max-width:36ch;margin:0 auto">Ευχαριστούμε πολύ. Λάβαμε την επιβεβαίωσή σας και ανυπομονούμε να σας δούμε.</p></div>
+</section></div>
+<div class="rule"></div>
 
-    <!-- ─── HERO ─── -->
-    <div id="hero">
+<!-- Visit -->
+<div id="visit"><section class="sec sec-wide rv">
+  <p class="lbl">Επίσκεψη</p>
+  <h2>Πληροφορίες</h2>
+  <div class="vis-grid">
+    <div class="vi"><p class="vi-lbl">🚗 Πώς να Φτάσετε</p><h3>Οδηγίες</h3><p>Το Μουζάκι βρίσκεται ~40 λεπτά από Τρίκαλα και ~1.5 ώρα από Βόλο. Συστήνουμε Google Maps με "Εκκλησία Μουζακίου". Οι δρόμοι είναι στενοί — οδηγείστε προσεκτικά.</p></div>
+    <div class="vi"><p class="vi-lbl">🏨 Διαμονή</p><h3>Πού να Μείνετε</h3><p>Ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης Airbnb στο Μουζάκι και τις γύρω περιοχές.</p></div>
+    <div class="vi"><p class="vi-lbl">⭐ Τι να Δείτε</p><h3>Αξιοθέατα</h3><p>Τα Μετέωρα, ο Μύλος των Ξωτικών, ιστορικές μονές και η πανέμορφη φύση. Ιδανικό για χαλαρές βόλτες και φωτογραφίες.</p></div>
+    <div class="vi"><p class="vi-lbl">🍽️ Γαστρονομία</p><h3>Τοπικά Φαγητά</h3><p>Παραδοσιακές ταβέρνες με νοστιμότατα φαγητά και ζεστό φιλόξενο περιβάλλον.</p></div>
+  </div>
+</section></div>
 
-        <p class="hero-eyebrow">Σας προσκαλούμε στον γάμο μας</p>
+<footer>
+  <p class="ft-names">Δημήτρης &amp; Χρύσα</p>
+  <p class="ft-date">26 Δεκεμβρίου 2026 · Μουζάκι Τρικάλων</p>
+</footer>
 
-        <!-- Photo frame with wreath -->
-        <div class="photo-frame-wrapper">
-            <div class="photo-frame">
-                <div class="photo-frame-inner">
-                    <!-- Replace the src below with your actual photo -->
-                    <img
-                    src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=400&fit=crop&crop=face&auto=format"
-                    alt="Δημήτρης &amp; Χρύσα"
-                    />
-                    <!-- Fallback placeholder if image fails -->
-                </div>
-            </div>
+<script>
+/* ── floating particles ── */
+(function(){
+  const cv=document.getElementById('cv');
+  const cx=cv.getContext('2d');
+  let W,H;
+  function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+  window.addEventListener('resize',rsz);rsz();
+  const C=['rgba(200,162,85,','rgba(232,195,110,','rgba(255,225,140,','rgba(160,120,45,'];
+  class P{
+    reset(init){
+      this.x=Math.random()*W; this.y=init?Math.random()*H:H+8;
+      this.s=Math.random()*1.6+0.25; this.sp=Math.random()*0.3+0.05;
+      this.dr=(Math.random()-.5)*0.15; this.life=0;
+      this.ml=Math.random()*320+140;
+      this.c=C[Math.floor(Math.random()*C.length)];
+      this.tp=Math.random()*Math.PI*2; this.ts=Math.random()*.025+.007;
+    }
+    constructor(){this.reset(true);}
+    tick(){
+      this.y-=this.sp;this.x+=this.dr;this.life++;this.tp+=this.ts;
+      if(this.life>this.ml||this.y<-8)this.reset(false);
+    }
+    draw(){
+      const t=this.life/this.ml;
+      const f=t<.15?t/.15:t>.8?1-(t-.8)/.2:1;
+      cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);
+      cx.fillStyle=this.c+f*(.45+.45*Math.sin(this.tp))+')';
+      cx.fill();
+    }
+  }
+  const ps=Array.from({length:180},()=>new P());
+  (function loop(){cx.clearRect(0,0,W,H);ps.forEach(p=>{p.tick();p.draw();});requestAnimationFrame(loop);})();
+})();
 
-            <!-- Wreath ornaments (Christmas decorations around the frame) -->
-            <div class="wreath-ornament wo-1"><span class="leaf">✿</span><span class="berry" style="margin-left:-2px;">•</span></div>
-            <div class="wreath-ornament wo-2"><span class="berry">•</span><span class="leaf" style="margin-left:-2px;">✿</span></div>
-            <div class="wreath-ornament wo-3"><span class="leaf">✿</span><span class="berry" style="margin-left:-2px;">•</span></div>
-            <div class="wreath-ornament wo-4"><span class="berry">•</span><span class="leaf" style="margin-left:-2px;">✿</span></div>
-            <div class="wreath-ornament wo-5"><span class="leaf">✿</span><span class="berry" style="margin-left:-2px;">•</span></div>
-            <div class="wreath-ornament wo-6"><span class="berry">•</span><span class="leaf" style="margin-left:-2px;">✿</span></div>
-            <div class="wreath-ornament wo-7"><span class="gold-dot">✦</span></div>
-            <div class="wreath-ornament wo-8"><span class="gold-dot">✦</span></div>
-            <div class="wreath-ornament wo-9"><span class="gold-dot">✦</span></div>
-            <div class="wreath-ornament wo-10"><span class="gold-dot">✦</span></div>
-        </div>
+/* ── corner decorations via canvas ── */
+(function(){
+  const cv=document.getElementById('deco');
+  const cx=cv.getContext('2d');
+  let W,H;
+  function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;draw();}
+  window.addEventListener('resize',rsz);
 
-        <!-- Names in calligraphic font -->
-        <div class="hero-names">
-            Δημήτρης
-            <span class="ampersand">&amp;</span>
-            Χρύσα
-        </div>
+  function drawLantern(cx,x,y,angle){
+    cx.save();
+    cx.translate(x,y);cx.rotate(angle);
 
-        <p class="hero-date">Σάββατο · 26 Δεκεμβρίου 2026</p>
-        <div class="hero-divider"></div>
+    // glow behind
+    const g=cx.createRadialGradient(0,20,0,0,20,55);
+    g.addColorStop(0,'rgba(255,165,40,0.22)');
+    g.addColorStop(1,'rgba(255,165,40,0)');
+    cx.fillStyle=g;cx.beginPath();cx.arc(0,20,55,0,Math.PI*2);cx.fill();
 
-        <div class="scroll-hint">scroll</div>
-    </div>
+    // chain
+    cx.strokeStyle='rgba(200,162,85,0.7)';cx.lineWidth=1.2;
+    cx.beginPath();cx.moveTo(0,-38);cx.lineTo(0,-10);cx.stroke();
 
-    <!-- ─── ABOUT ─── -->
-    <div id="about">
-        <section class="reveal">
-            <p class="section-label">Η Ημέρα Μας</p>
-            <h2>Η πιο όμορφη στιγμή<br />της ζωής μας.</h2>
-            <p>Μέσα στη μαγεία των Χριστουγέννων και κάτω από το φως της αγάπης, σας καλούμε να γιορτάσετε μαζί μας. Η τέλεση θα γίνει στην Εκκλησία του Μουζακίου και η δεξίωση στην πανέμορφη Ονείρων Έπαυλις, στην Πηγή Τρικάλων.</p>
-        </section>
-        <div class="rule"></div>
-    </div>
+    // top cap
+    cx.fillStyle='#9a7820';
+    cx.beginPath();cx.moveTo(-13,-10);cx.quadraticCurveTo(0,-20,13,-10);cx.lineTo(10,0);cx.lineTo(-10,0);cx.closePath();cx.fill();
 
-    <!-- ─── POEM ─── -->
-    <div id="poem">
-        <section class="reveal">
-            <p>
-                Μέσα στη μαγεία των Χριστουγέννων<br />
-                και κάτω από το φως της αγάπης,<br />
-                σας προσκαλούμε<br />
-                να μοιραστείτε μαζί μας<br />
-                την πιο όμορφη στιγμή της ζωής μας.
-            </p>
-            <p class="author">Δημήτρης &amp; Χρύσα</p>
-        </section>
-        <div class="rule"></div>
-    </div>
+    // body shadow
+    cx.shadowColor='rgba(0,0,0,0.5)';cx.shadowBlur=8;
 
-    <!-- ─── EVENTS ─── -->
-    <div id="events">
-        <section class="reveal">
-            <p class="section-label">Εκδηλώσεις</p>
-            <h2>Το Πρόγραμμα</h2>
-            <div class="events-grid">
-                <div class="event-card">
-                    <div class="event-icon">⛪</div>
-                    <span class="event-time">15:30</span>
-                    <span class="event-name">Τέλεση</span>
-                    <p class="event-location">Εκκλησία Κοιμήσεως<br />της Θεοτόκου<br />Μουζάκι</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">🎉</div>
-                    <span class="event-time">20:30</span>
-                    <span class="event-name">Δεξίωση</span>
-                    <p class="event-location">Ονείρων Έπαυλις<br />Πηγή Τρικάλων</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">📅</div>
-                    <span class="event-time" style="font-size:1.4rem;line-height:1.3">26<br />Δεκ</span>
-                    <span class="event-name">Ημερομηνία</span>
-                    <p class="event-location">Σάββατο<br />26 Δεκεμβρίου<br />2026</p>
-                </div>
-            </div>
-        </section>
-        <div class="rule"></div>
-    </div>
+    // body bg
+    cx.fillStyle='#0a1a0d';
+    cx.strokeStyle='rgba(200,162,85,0.55)';cx.lineWidth=1;
+    cx.beginPath();cx.roundRect(-12,0,24,36,3);cx.fill();cx.stroke();
+    cx.shadowBlur=0;
 
-    <!-- ─── GALLERY ─── -->
-    <div id="gallery">
-        <section class="reveal">
-            <p class="section-label">Στιγμές</p>
-            <h2>Φωτογραφίες</h2>
-            <div class="gallery-grid">
-                <div class="gallery-cell">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                </div>
-                <div class="gallery-cell">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                </div>
-                <div class="gallery-cell">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                </div>
-                <div class="gallery-cell">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                </div>
-                <div class="gallery-cell">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                </div>
-            </div>
-        </section>
-        <div class="rule"></div>
-    </div>
+    // glass panels warm glow
+    cx.fillStyle='rgba(255,155,30,0.14)';
+    cx.beginPath();cx.roundRect(-10,2,9,31,2);cx.fill();
+    cx.fillStyle='rgba(255,155,30,0.10)';
+    cx.beginPath();cx.roundRect(1,2,9,31,2);cx.fill();
 
-    <!-- ─── RSVP ─── -->
-    <div id="rsvp">
-        <section class="reveal">
-            <p class="section-label">RSVP</p>
-            <h2>Επιβεβαίωση<br />Παρουσίας</h2>
-            <p style="margin-bottom:2.5rem">Παρακαλούμε επιβεβαιώστε την παρουσία σας έως τις 30 Νοεμβρίου 2026.</p>
+    // flame
+    cx.fillStyle='rgba(255,195,60,0.8)';
+    cx.beginPath();cx.ellipse(0,16,4,7,0,0,Math.PI*2);cx.fill();
+    cx.fillStyle='rgba(255,240,130,0.9)';
+    cx.beginPath();cx.ellipse(0,18,2.2,4,0,0,Math.PI*2);cx.fill();
 
-            <div id="rsvp-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Ονοματεπώνυμο</label>
-                        <input type="text" id="name" placeholder="Το ονοματεπώνυμό σας" />
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Αριθμός Ατόμων</label>
-                        <select id="guests">
-                            <option value="">Επιλέξτε...</option>
-                            <option>1 άτομο</option>
-                            <option>2 άτομα</option>
-                            <option>3 άτομα</option>
-                            <option>4 άτομα</option>
-                            <option>5 άτομα</option>
-                            <option>6+ άτομα</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="email@example.com" />
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Τηλέφωνο</label>
-                        <input type="tel" id="phone" placeholder="+30 69..." />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="diet">Διατροφικές Προτιμήσεις</label>
-                    <textarea id="diet" placeholder="Χορτοφαγικό, αλλεργίες κ.λπ."></textarea>
-                </div>
-                <button class="btn" onclick="submitRSVP()">Αποστολή</button>
-            </div>
+    // center bar
+    cx.strokeStyle='rgba(200,162,85,0.35)';cx.lineWidth=0.8;
+    cx.beginPath();cx.moveTo(-12,18);cx.lineTo(12,18);cx.stroke();
 
-            <div class="rsvp-success" id="rsvp-success">
-                <div class="check">✦</div>
-                <p style="max-width:36ch;margin:0 auto;opacity:0.7">Ευχαριστούμε πολύ! Λάβαμε την επιβεβαίωσή σας και ανυπομονούμε να σας δούμε.</p>
-            </div>
-        </section>
-        <div class="rule"></div>
-    </div>
+    // bottom cap
+    cx.fillStyle='#9a7820';
+    cx.beginPath();cx.moveTo(-10,36);cx.lineTo(10,36);cx.lineTo(8,44);cx.lineTo(-8,44);cx.closePath();cx.fill();
 
-    <!-- ─── VISIT ─── -->
-    <div id="visit">
-        <section class="reveal">
-            <p class="section-label">Επίσκεψη</p>
-            <h2>Πληροφορίες</h2>
-            <div class="visit-grid">
-                <div class="visit-item">
-                    <p class="visit-item-label">🚗 Πώς να Φτάσετε</p>
-                    <h3>Οδηγίες</h3>
-                    <p>Το Μουζάκι βρίσκεται ~40 λεπτά από Τρίκαλα και ~1.5 ώρα από Βόλο. Συστήνουμε Google Maps με "Εκκλησία Μουζακίου". Οι δρόμοι του χωριού είναι στενοί — οδηγείστε προσεκτικά.</p>
-                </div>
-                <div class="visit-item">
-                    <p class="visit-item-label">🏨 Διαμονή</p>
-                    <h3>Πού να Μείνετε</h3>
-                    <p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης Airbnb δωμάτια στο Μουζάκι και τις γύρω περιοχές.</p>
-                </div>
-                <div class="visit-item">
-                    <p class="visit-item-label">⭐ Τι να Δείτε</p>
-                    <h3>Αξιοθέατα</h3>
-                    <p>Τα Μετέωρα, ο Μύλος των Ξωτικών, ιστορικές μονές και η πανέμορφη φύση της περιοχής. Ιδανικό για χαλαρές βόλτες και φωτογραφίες.</p>
-                </div>
-                <div class="visit-item">
-                    <p class="visit-item-label">🍽️ Τοπικά Φαγητά</p>
-                    <h3>Γαστρονομία</h3>
-                    <p>Παραδοσιακές ταβέρνες με νοστιμότατα φαγητά και ζεστό φιλόξενο περιβάλλον — το Μουζάκι είναι γνωστό για την αυθεντική παραδοσιακή κουζίνα του.</p>
-                </div>
-            </div>
-        </section>
-    </div>
+    cx.restore();
+  }
 
-    <!-- ─── FOOTER ─── -->
-    <footer>
-        <p class="footer-names">Δημήτρης &amp; Χρύσα</p>
-        <p class="footer-date">26 Δεκεμβρίου 2026 · Μουζάκι Τρικάλων</p>
-    </footer>
+  function drawPineBranch(cx,x,y,angle,len){
+    cx.save();cx.translate(x,y);cx.rotate(angle);
+    const segments=Math.floor(len/9);
+    cx.strokeStyle='#1a3d22';cx.lineWidth=2;
+    cx.beginPath();cx.moveTo(0,0);cx.lineTo(0,len);cx.stroke();
+    for(let i=0;i<segments;i++){
+      const yp=i*9+4;
+      const nlen=14-i*0.5;
+      // left needles
+      for(let n=0;n<6;n++){
+        const ny=yp+n*2.2;
+        const nx=-(nlen-n*1.5);
+        cx.strokeStyle=n%2===0?'#2d6038':'#355e35';
+        cx.lineWidth=0.9;
+        cx.beginPath();cx.moveTo(0,ny);cx.lineTo(nx,ny-4);cx.stroke();
+      }
+      // right needles
+      for(let n=0;n<6;n++){
+        const ny=yp+n*2.2;
+        const nx=nlen-n*1.5;
+        cx.strokeStyle=n%2===0?'#284f2c':'#2d6038';
+        cx.lineWidth=0.9;
+        cx.beginPath();cx.moveTo(0,ny);cx.lineTo(nx,ny-4);cx.stroke();
+      }
+    }
+    cx.restore();
+  }
 
-    <script>
-        /* ── Particles ── */
-        (function() {
-            const canvas = document.getElementById('particles');
-            const ctx = canvas.getContext('2d');
-            let W, H, particles = [];
+  function drawHollyLeaf(cx,x,y,angle){
+    cx.save();cx.translate(x,y);cx.rotate(angle);
+    cx.fillStyle='#1a4d28';
+    // Wavy ellipse approximation
+    cx.beginPath();
+    cx.moveTo(0,-14);
+    cx.bezierCurveTo(10,-10,12,-4,0,0);
+    cx.bezierCurveTo(-12,-4,-10,-10,0,-14);
+    cx.fill();
+    // Midrib
+    cx.strokeStyle='rgba(255,255,255,0.1)';cx.lineWidth=0.6;
+    cx.beginPath();cx.moveTo(0,-14);cx.lineTo(0,0);cx.stroke();
+    cx.restore();
+  }
 
-            function resize() {
-                W = canvas.width = window.innerWidth;
-                H = canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
+  function drawPineCone(cx,x,y,angle){
+    cx.save();cx.translate(x,y);cx.rotate(angle);
+    const scales=[
+      {y:-14,w:5,h:3.5},{y:-10,w:7,h:3.8},{y:-6,w:8.5,h:4},
+      {y:-2,w:9,h:4.2},{y:2,w:9,h:4},{y:6,w:8,h:3.8},
+      {y:10,w:6.5,h:3.5},{y:14,w:4.5,h:3}
+    ];
+    const coneGrad=cx.createLinearGradient(-9,0,9,0);
+    coneGrad.addColorStop(0,'#3a2510');coneGrad.addColorStop(0.4,'#5a3c18');
+    coneGrad.addColorStop(1,'#2e1e0a');
+    scales.forEach(s=>{
+      cx.fillStyle=coneGrad;
+      cx.beginPath();cx.ellipse(0,s.y,s.w,s.h,0,0,Math.PI*2);cx.fill();
+      cx.fillStyle='rgba(255,255,255,0.06)';
+      cx.beginPath();cx.ellipse(-s.w*.3,s.y-1.5,s.w*.35,s.h*.35,0,0,Math.PI*2);cx.fill();
+    });
+    cx.restore();
+  }
 
-            const GOLD_COLORS = [
-                'rgba(201,168,76,',
-                'rgba(232,201,122,',
-                'rgba(255,230,150,',
-                'rgba(170,130,50,',
-            ];
+  function drawHollyCluster(cx,x,y,angle){
+    cx.save();cx.translate(x,y);cx.rotate(angle);
+    drawHollyLeaf(cx,-8,-2,-0.4);
+    drawHollyLeaf(cx,8,-2,0.4);
+    drawHollyLeaf(cx,-4,-10,-0.1);
+    drawHollyLeaf(cx,4,-10,0.1);
+    // berries
+    const berryPos=[{x:0,y:-4},{x:5,y:-7},{x:-5,y:-7},{x:0,y:-10}];
+    berryPos.forEach(b=>{
+      const bg=cx.createRadialGradient(b.x-1,b.y-1,0.5,b.x,b.y,4);
+      bg.addColorStop(0,'#c03030');bg.addColorStop(1,'#550a0a');
+      cx.fillStyle=bg;
+      cx.beginPath();cx.arc(b.x,b.y,3.8,0,Math.PI*2);cx.fill();
+      cx.fillStyle='rgba(255,200,200,0.25)';
+      cx.beginPath();cx.arc(b.x-1.2,b.y-1.2,1.2,0,Math.PI*2);cx.fill();
+    });
+    cx.restore();
+  }
 
-            class Particle {
-                constructor() { this.reset(true); }
-                reset(init) {
-                    this.x = Math.random() * W;
-                    this.y = init ? Math.random() * H : H + 10;
-                    this.size = Math.random() * 1.6 + 0.3;
-                    this.speed = Math.random() * 0.30 + 0.04;
-                    this.drift = (Math.random() - 0.5) * 0.15;
-                    this.life = 0;
-                    this.maxLife = Math.random() * 280 + 140;
-                    this.col = GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)];
-                    this.twinkleSpeed = Math.random() * 0.025 + 0.006;
-                    this.twinklePhase = Math.random() * Math.PI * 2;
-                }
-                update() {
-                    this.y -= this.speed;
-                    this.x += this.drift;
-                    this.life += 1;
-                    this.twinklePhase += this.twinkleSpeed;
-                    if (this.life > this.maxLife || this.y < -10) this.reset(false);
-                }
-                draw() {
-                    const t = this.life / this.maxLife;
-                    const fade = t < 0.15 ? t / 0.15 : t > 0.8 ? 1 - (t - 0.8) / 0.2 : 1;
-                    const twinkle = 0.5 + 0.5 * Math.sin(this.twinklePhase);
-                    const alpha = fade * twinkle * 0.55;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = this.col + alpha + ')';
-                    ctx.fill();
-                }
-            }
+  function cornerDecor(cx,x,y,flipX,flipY){
+    cx.save();
+    cx.translate(x,y);
+    cx.scale(flipX?-1:1,flipY?-1:1);
 
-            for (let i = 0; i < 120; i++) particles.push(new Particle());
+    // Gold filigree border lines
+    cx.strokeStyle='rgba(200,162,85,0.3)';cx.lineWidth=1;
+    cx.beginPath();cx.moveTo(10,10);cx.lineTo(280,10);cx.stroke();
+    cx.beginPath();cx.moveTo(10,10);cx.lineTo(10,260);cx.stroke();
+    // Corner ornament
+    cx.strokeStyle='rgba(200,162,85,0.45)';cx.lineWidth=1.2;
+    cx.beginPath();cx.moveTo(10,10);cx.quadraticCurveTo(60,10,60,60);cx.stroke();
+    cx.beginPath();cx.moveTo(10,10);cx.quadraticCurveTo(10,60,60,60);cx.stroke();
+    // scroll ends
+    cx.strokeStyle='rgba(200,162,85,0.35)';cx.lineWidth=1;
+    cx.beginPath();cx.arc(60,10,8,Math.PI,0,true);cx.stroke();
+    cx.beginPath();cx.arc(10,60,8,-Math.PI/2,Math.PI/2,true);cx.stroke();
 
-            function loop() {
-                ctx.clearRect(0, 0, W, H);
-                particles.forEach(p => { p.update();
-                    p.draw(); });
-                requestAnimationFrame(loop);
-            }
-            loop();
-        })();
+    // Pine branches from corner
+    drawPineBranch(cx,14,14,Math.PI*0.35,130);  // going right-down
+    drawPineBranch(cx,14,14,Math.PI*0.12,110);  // going right
 
-        /* ── Fairy lights generator ── */
-        (function() {
-            const topContainer = document.getElementById('lightsTop');
-            const bottomContainer = document.getElementById('lightsBottom');
-            const count = Math.min(40, Math.floor(window.innerWidth / 18));
+    // Pine cones
+    drawPineCone(cx,80,40,0.3);
+    drawPineCone(cx,48,100,-0.5);
 
-            function createBulbs(container) {
-                for (let i = 0; i < count; i++) {
-                    const bulb = document.createElement('span');
-                    bulb.className = 'light-bulb';
-                    // Random animation delay (already handled by CSS nth-child)
-                    container.appendChild(bulb);
-                }
-            }
-            createBulbs(topContainer);
-            createBulbs(bottomContainer);
-        })();
+    // Holly clusters
+    drawHollyCluster(cx,140,30,0.1);
+    drawHollyCluster(cx,30,140,-0.2);
 
-        /* ── Scroll reveal ── */
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add('visible');
-            });
-        }, { threshold: 0.12 });
-        revealEls.forEach(el => observer.observe(el));
+    // Lantern
+    drawLantern(cx,28,190,-0.15);
 
-        /* ── RSVP submit ── */
-        function submitRSVP() {
-            const name = document.getElementById('name').value.trim();
-            const guests = document.getElementById('guests').value;
-            if (!name || !guests) {
-                alert('Παρακαλούμε συμπληρώστε το ονοματεπώνυμο και τον αριθμό ατόμων.');
-                return;
-            }
-            document.getElementById('rsvp-form').style.display = 'none';
-            const s = document.getElementById('rsvp-success');
-            s.style.display = 'block';
-        }
-    </script>
+    cx.restore();
+  }
 
+  function draw(){
+    cx.clearRect(0,0,W,H);
+    cornerDecor(cx,0,0,false,false);   // top-left
+    cornerDecor(cx,W,0,true,false);    // top-right
+    cornerDecor(cx,0,H,false,true);    // bottom-left
+    cornerDecor(cx,W,H,true,true);     // bottom-right
+  }
+
+  rsz();
+})();
+
+/* ── scroll reveal ── */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ── photo upload ── */
+function loadP(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    const img=document.getElementById('cpPhoto');
+    img.src=ev.target.result;img.style.display='block';
+    document.getElementById('phHolder').style.display='none';
+  };r.readAsDataURL(f);
+}
+
+/* ── RSVP ── */
+function doRSVP(){
+  if(!document.getElementById('fn').value.trim()||!document.getElementById('gs').value){
+    alert('Παρακαλούμε συμπληρώστε ονοματεπώνυμο και αριθμό ατόμων.');return;
+  }
+  document.getElementById('rf').style.display='none';
+  document.getElementById('rok').style.display='block';
+}
+</script>
 </body>
 </html>
