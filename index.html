@@ -1,777 +1,1310 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Δημήτρης & Χρύσα · 26.12.2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Δημήτρης &amp; Χρύσα · 26.12.2026</title>
 
-  <style>
-    :root {
-      --deep:   #0b130e;
-      --forest: #112218;
-      --pine:   #1a3326;
-      --gold:   #c9a84c;
-      --gold-light: #e8c97a;
-      --cream:  #f0e6c8;
-      --mist:   rgba(201,168,76,0.12);
-    }
+    <!-- Google Fonts: calligraphic & refined -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <style>
+        /* ── Reset & variables ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    html { scroll-behavior: smooth; }
+        :root {
+            --deep: #0a130d;
+            --forest: #102016;
+            --pine: #183325;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --gold-pale: #f5e6b8;
+            --cream: #f0e6c8;
+            --wreath-green: #2d5a3d;
+            --berry-red: #b53b3b;
+            --mist: rgba(201, 168, 76, 0.10);
+            --shadow-glow: rgba(201, 168, 76, 0.25);
+        }
 
-    body {
-      background: var(--deep);
-      color: var(--cream);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* ── Canvas particles ── */
-    #particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
+        body {
+            background: var(--deep);
+            color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    /* ── Nav ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.4rem 3rem;
-      background: linear-gradient(to bottom, rgba(11,19,14,0.95), transparent);
-    }
-    .nav-mono {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
-    nav ul a {
-      color: var(--cream);
-      text-decoration: none;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.3s, color 0.3s;
-    }
-    nav ul a:hover { opacity: 1; color: var(--gold-light); }
+        /* ── Particle canvas ── */
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    /* ── Hero ── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 1;
-      padding: 2rem;
-    }
+        /* ── Ambient glows ── */
+        .glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .glow-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(25, 65, 40, 0.50);
+            top: -180px;
+            left: -180px;
+        }
+        .glow-2 {
+            width: 450px;
+            height: 450px;
+            background: rgba(201, 168, 76, 0.05);
+            bottom: 5%;
+            right: -100px;
+        }
+        .glow-3 {
+            width: 400px;
+            height: 400px;
+            background: rgba(15, 50, 30, 0.35);
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    .hero-eyebrow {
-      font-size: 0.68rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.8;
-      margin-bottom: 2.5rem;
-    }
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem 3rem;
+            background: linear-gradient(to bottom, rgba(10, 19, 13, 0.96), transparent);
+            backdrop-filter: blur(2px);
+        }
+        .nav-mono {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        nav ul a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.70rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        nav ul a:hover {
+            opacity: 1;
+            color: var(--gold-light);
+        }
 
-    .hero-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 12vw, 9rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1;
-      color: var(--gold-light);
-      letter-spacing: -0.01em;
-    }
+        @media (max-width: 720px) {
+            nav ul {
+                display: none;
+            }
+            nav {
+                padding: 1.2rem 1.5rem;
+            }
+        }
 
-    .hero-ampersand {
-      display: block;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: var(--gold);
-      opacity: 0.6;
-      margin: 0.3em 0;
-      font-style: normal;
-      letter-spacing: 0.15em;
-    }
+        /* ── Decorative edge elements ── */
+        .edge-decor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+        }
 
-    .hero-date {
-      margin-top: 2.8rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.55;
-    }
+        /* Pinecones at corners */
+        .pinecone {
+            position: fixed;
+            z-index: 6;
+            pointer-events: none;
+            opacity: 0.55;
+            width: 44px;
+            height: 52px;
+        }
+        .pinecone-tl {
+            top: 72px;
+            left: 18px;
+        }
+        .pinecone-tr {
+            top: 72px;
+            right: 18px;
+            transform: scaleX(-1);
+        }
+        .pinecone-bl {
+            bottom: 18px;
+            left: 18px;
+            transform: scaleY(-1);
+        }
+        .pinecone-br {
+            bottom: 18px;
+            right: 18px;
+            transform: scale(-1, -1);
+        }
 
-    .hero-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.4;
-      margin: 2.2rem auto 0;
-    }
+        .pinecone svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+        }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0.35;
-      font-size: 0.62rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      animation: scrollBob 2.5s ease-in-out infinite;
-    }
-    .scroll-hint::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 36px;
-      background: var(--gold);
-    }
-    @keyframes scrollBob {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
-    }
+        /* ── Fairy lights ── */
+        .fairy-lights {
+            position: fixed;
+            left: 0;
+            right: 0;
+            z-index: 4;
+            pointer-events: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 2rem;
+            opacity: 0.80;
+        }
+        .fairy-lights-top {
+            top: 8px;
+            flex-wrap: nowrap;
+        }
+        .fairy-lights-bottom {
+            bottom: 8px;
+            flex-wrap: nowrap;
+        }
 
-    /* ── Sections ── */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 7rem 2rem;
-    }
+        .light-bulb {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            box-shadow: 0 0 12px 2px rgba(232, 201, 122, 0.6), 0 0 30px 4px rgba(201, 168, 76, 0.20);
+            animation: twinkle 2.2s ease-in-out infinite alternate;
+            flex-shrink: 0;
+            margin: 0 2px;
+        }
+        .light-bulb:nth-child(odd) {
+            animation-duration: 2.8s;
+            animation-delay: 0.6s;
+        }
+        .light-bulb:nth-child(3n) {
+            animation-duration: 1.9s;
+            animation-delay: 0.2s;
+        }
+        .light-bulb:nth-child(5n+2) {
+            animation-duration: 3.2s;
+            animation-delay: 1.0s;
+        }
+        .light-bulb:nth-child(7n+4) {
+            animation-duration: 2.4s;
+            animation-delay: 1.6s;
+        }
 
-    .section-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.6;
-      margin-bottom: 2rem;
-    }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.30;
+                transform: scale(0.7);
+                box-shadow: 0 0 4px 1px rgba(232, 201, 122, 0.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.1);
+                box-shadow: 0 0 18px 4px rgba(232, 201, 122, 0.8), 0 0 40px 8px rgba(201, 168, 76, 0.25);
+            }
+        }
 
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      line-height: 1.2;
-      color: var(--gold-light);
-      margin-bottom: 1.5rem;
-    }
+        /* ── Hero ── */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+            padding: 2rem 1.5rem 4rem;
+        }
 
-    p {
-      opacity: 0.75;
-      font-size: 0.93rem;
-      line-height: 1.9;
-      max-width: 54ch;
-    }
+        .hero-eyebrow {
+            font-size: 0.65rem;
+            letter-spacing: 0.40em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.70;
+            margin-bottom: 2.2rem;
+            font-weight: 300;
+        }
 
-    .rule {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(201,168,76,0.25), transparent);
-      margin: 0 auto;
-    }
+        /* ── Photo frame ── */
+        .photo-frame-wrapper {
+            position: relative;
+            margin: 0 auto 2.4rem;
+            width: 200px;
+            height: 200px;
+        }
 
-    /* ── Events ── */
-    #events section { padding-top: 0; }
-    .events-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.12);
-      margin-top: 3rem;
-    }
-    .event-card {
-      background: var(--forest);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: background 0.3s;
-    }
-    .event-card:hover { background: var(--pine); }
-    .event-icon {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      opacity: 0.7;
-    }
-    .event-time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 300;
-      color: var(--gold);
-      display: block;
-    }
-    .event-name {
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.5;
-      margin: 0.4rem 0 1rem;
-      display: block;
-    }
-    .event-location {
-      font-size: 0.82rem;
-      opacity: 0.65;
-      line-height: 1.6;
-    }
+        @media (min-width: 480px) {
+            .photo-frame-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+        }
+        @media (min-width: 768px) {
+            .photo-frame-wrapper {
+                width: 280px;
+                height: 280px;
+            }
+        }
 
-    /* ── Poem ── */
-    #poem {
-      text-align: center;
-    }
-    #poem p {
-      font-family: 'EB Garamond', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      line-height: 2.1;
-      opacity: 0.65;
-      max-width: 44ch;
-      margin: 0 auto;
-    }
-    #poem .author {
-      margin-top: 2rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.5;
-      font-style: normal;
-      font-family: 'Inter', sans-serif;
-    }
+        /* The round frame with wreath border */
+        .photo-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            background: var(--deep);
+            padding: 10px;
+            box-shadow:
+                0 0 0 2px rgba(201, 168, 76, 0.15),
+                0 0 0 6px rgba(45, 90, 61, 0.25),
+                0 0 0 10px rgba(201, 168, 76, 0.08),
+                0 8px 48px rgba(0, 0, 0, 0.6);
+            transition: box-shadow 0.4s;
+        }
+        .photo-frame:hover {
+            box-shadow:
+                0 0 0 2px rgba(201, 168, 76, 0.30),
+                0 0 0 6px rgba(45, 90, 61, 0.35),
+                0 0 0 10px rgba(201, 168, 76, 0.15),
+                0 8px 60px rgba(201, 168, 76, 0.12);
+        }
 
-    /* ── RSVP ── */
-    #rsvp {
-      max-width: 640px;
-    }
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    label {
-      display: block;
-      font-size: 0.62rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.6;
-      margin-bottom: 0.6rem;
-    }
-    input, select, textarea {
-      width: 100%;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,168,76,0.2);
-      color: var(--cream);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      padding: 0.85rem 1rem;
-      outline: none;
-      transition: border-color 0.3s;
-      appearance: none;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(201,168,76,0.55);
-    }
-    select option { background: var(--forest); }
-    textarea { resize: vertical; min-height: 80px; }
+        .photo-frame-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--forest);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
+        .photo-frame-inner img,
+        .photo-frame-inner .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.95rem 3rem;
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn:hover { background: var(--gold); color: var(--deep); }
+        .photo-placeholder {
+            background: radial-gradient(ellipse at 30% 25%, #1d3a2a, #0d1a12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: rgba(201, 168, 76, 0.20);
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
+            text-align: center;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+        .photo-placeholder span {
+            display: block;
+            font-size: 2.4rem;
+            opacity: 0.15;
+            margin-bottom: 0.4rem;
+        }
 
-    .rsvp-success {
-      display: none;
-      text-align: center;
-      padding: 3rem;
-      border: 1px solid rgba(201,168,76,0.2);
-    }
-    .rsvp-success .check {
-      font-size: 2rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
+        /* Wreath decorations around the frame */
+        .wreath-ornament {
+            position: absolute;
+            pointer-events: none;
+            z-index: 3;
+            font-size: 1.4rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+        }
+        .wreath-ornament .berry {
+            color: var(--berry-red);
+            text-shadow: 0 0 12px rgba(181, 59, 59, 0.4);
+        }
+        .wreath-ornament .leaf {
+            color: #3d7a4a;
+            text-shadow: 0 0 8px rgba(61, 122, 74, 0.2);
+        }
+        .wreath-ornament .gold-dot {
+            color: var(--gold);
+            text-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+        }
 
-    /* ── Map / Visit ── */
-    #visit {
-      max-width: 960px;
-    }
-    .visit-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-top: 3rem;
-    }
-    .visit-item-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.55;
-      margin-bottom: 0.7rem;
-    }
-    .visit-item h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 1.3rem;
-      color: var(--gold-light);
-      margin-bottom: 0.6rem;
-    }
-    .visit-item p { font-size: 0.85rem; }
+        .wo-1 {
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+        }
+        .wo-2 {
+            top: 8px;
+            right: -18px;
+            font-size: 1.3rem;
+        }
+        .wo-3 {
+            bottom: 8px;
+            right: -18px;
+            font-size: 1.3rem;
+        }
+        .wo-4 {
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+        }
+        .wo-5 {
+            top: 8px;
+            left: -18px;
+            font-size: 1.3rem;
+        }
+        .wo-6 {
+            bottom: 8px;
+            left: -18px;
+            font-size: 1.3rem;
+        }
+        .wo-7 {
+            top: 30%;
+            right: -22px;
+            font-size: 1.0rem;
+        }
+        .wo-8 {
+            bottom: 30%;
+            right: -22px;
+            font-size: 1.0rem;
+        }
+        .wo-9 {
+            top: 30%;
+            left: -22px;
+            font-size: 1.0rem;
+        }
+        .wo-10 {
+            bottom: 30%;
+            left: -22px;
+            font-size: 1.0rem;
+        }
 
-    /* ── Gallery placeholder ── */
-    #gallery {
-      max-width: 960px;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 2px;
-      margin-top: 3rem;
-    }
-    .gallery-cell {
-      background: var(--forest);
-      aspect-ratio: 4/3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.4;
-      transition: opacity 0.3s;
-    }
-    .gallery-cell:hover { opacity: 0.7; }
-    .gallery-cell:first-child {
-      grid-column: span 2;
-      grid-row: span 2;
-      aspect-ratio: auto;
-    }
-    .gallery-cell svg { width: 28px; opacity: 0.3; }
+        @media (max-width: 480px) {
+            .wo-1,
+            .wo-4 {
+                font-size: 1.4rem;
+            }
+            .wo-2,
+            .wo-3,
+            .wo-5,
+            .wo-6 {
+                font-size: 1.0rem;
+            }
+            .wo-7,
+            .wo-8,
+            .wo-9,
+            .wo-10 {
+                display: none;
+            }
+            .photo-frame-wrapper {
+                width: 170px;
+                height: 170px;
+            }
+        }
 
-    /* ── Footer ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 5rem 2rem;
-      border-top: 1px solid rgba(201,168,76,0.1);
-    }
-    footer .footer-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.6rem;
-      color: var(--gold);
-      opacity: 0.7;
-      letter-spacing: 0.05em;
-    }
-    footer .footer-date {
-      margin-top: 0.8rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      opacity: 0.3;
-    }
+        /* ── Hero names (calligraphic) ── */
+        .hero-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.8rem, 10vw, 6.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--gold-light);
+            letter-spacing: 0.02em;
+            margin-top: 0.2rem;
+            text-shadow: 0 2px 24px rgba(201, 168, 76, 0.10);
+        }
+        .hero-names .ampersand {
+            display: inline-block;
+            font-size: clamp(1.6rem, 5vw, 3.6rem);
+            color: var(--gold);
+            opacity: 0.55;
+            margin: 0 0.15em;
+            font-family: 'Great Vibes', cursive;
+        }
 
-    /* ── Ambient glow ── */
-    .glow {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .glow-1 {
-      width: 500px; height: 500px;
-      background: rgba(20,60,30,0.55);
-      top: -100px; left: -100px;
-    }
-    .glow-2 {
-      width: 400px; height: 400px;
-      background: rgba(201,168,76,0.06);
-      bottom: 10%; right: -80px;
-    }
-    .glow-3 {
-      width: 350px; height: 350px;
-      background: rgba(15,45,25,0.4);
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-    }
+        .hero-date {
+            margin-top: 1.6rem;
+            font-size: 0.70rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--cream);
+            opacity: 0.50;
+            font-weight: 300;
+        }
+        .hero-divider {
+            width: 56px;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.30;
+            margin: 1.8rem auto 0;
+        }
 
-    /* ── Fade-in on scroll ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.30;
+            font-size: 0.58rem;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+            color: var(--gold);
+            animation: scrollBob 2.6s ease-in-out infinite;
+        }
+        .scroll-hint::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 32px;
+            background: var(--gold);
+            opacity: 0.4;
+        }
+        @keyframes scrollBob {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(6px);
+            }
+        }
 
-    /* ── Mobile ── */
-    @media (max-width: 680px) {
-      nav ul { display: none; }
-      nav { padding: 1.2rem 1.5rem; }
-      .events-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .visit-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-cell:first-child { grid-column: span 2; grid-row: span 1; }
-    }
+        /* ── Sections ── */
+        section {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
 
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .scroll-hint { animation: none; }
-    }
-  </style>
+        .section-label {
+            font-size: 0.60rem;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.50;
+            margin-bottom: 1.8rem;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.25;
+            color: var(--gold-light);
+            margin-bottom: 1.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        p {
+            opacity: 0.72;
+            font-size: 0.92rem;
+            line-height: 1.9;
+            max-width: 54ch;
+        }
+
+        .rule {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.20), transparent);
+            margin: 0 auto;
+        }
+
+        /* ── Events ── */
+        #events section {
+            padding-top: 0;
+        }
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            margin-top: 2.8rem;
+        }
+        .event-card {
+            background: var(--forest);
+            padding: 2.5rem 1.8rem;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .event-card:hover {
+            background: var(--pine);
+        }
+        .event-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            opacity: 0.6;
+        }
+        .event-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--gold);
+            display: block;
+        }
+        .event-name {
+            font-size: 0.62rem;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+            color: var(--cream);
+            opacity: 0.45;
+            margin: 0.3rem 0 0.8rem;
+            display: block;
+        }
+        .event-location {
+            font-size: 0.80rem;
+            opacity: 0.60;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── Poem ── */
+        #poem {
+            text-align: center;
+        }
+        #poem p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            opacity: 0.60;
+            max-width: 44ch;
+            margin: 0 auto;
+        }
+        #poem .author {
+            margin-top: 1.8rem;
+            font-size: 0.62rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.45;
+            font-style: normal;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ── RSVP ── */
+        #rsvp {
+            max-width: 640px;
+        }
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+        label {
+            display: block;
+            font-size: 0.60rem;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.55;
+            margin-bottom: 0.5rem;
+        }
+        input,
+        select,
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            padding: 0.85rem 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            appearance: none;
+            border-radius: 0;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(201, 168, 76, 0.50);
+            box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.04);
+        }
+        select option {
+            background: var(--forest);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 76px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 520px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 0.8rem;
+            padding: 0.95rem 3.2rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.66rem;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            border-radius: 0;
+        }
+        .btn:hover {
+            background: var(--gold);
+            color: var(--deep);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.10);
+        }
+
+        .rsvp-success {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(201, 168, 76, 0.12);
+        }
+        .rsvp-success .check {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* ── Visit ── */
+        #visit {
+            max-width: 960px;
+        }
+        .visit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem 2.5rem;
+            margin-top: 2.8rem;
+        }
+        .visit-item-label {
+            font-size: 0.58rem;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.45;
+            margin-bottom: 0.6rem;
+        }
+        .visit-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+        .visit-item p {
+            font-size: 0.84rem;
+        }
+
+        @media (max-width: 640px) {
+            .visit-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* ── Gallery ── */
+        #gallery {
+            max-width: 960px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 2px;
+            margin-top: 2.8rem;
+        }
+        .gallery-cell {
+            background: var(--forest);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.35;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .gallery-cell:hover {
+            opacity: 0.70;
+            transform: scale(1.01);
+        }
+        .gallery-cell:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+        .gallery-cell svg {
+            width: 28px;
+            opacity: 0.25;
+        }
+
+        @media (max-width: 560px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .gallery-cell:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 4.5rem 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.07);
+        }
+        footer .footer-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--gold);
+            opacity: 0.65;
+            letter-spacing: 0.04em;
+        }
+        footer .footer-date {
+            margin-top: 0.8rem;
+            font-size: 0.58rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            opacity: 0.25;
+        }
+
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .scroll-hint {
+                animation: none;
+            }
+            .light-bulb {
+                animation: none;
+            }
+        }
+
+        /* ── Responsive tweaks ── */
+        @media (max-width: 480px) {
+            section {
+                padding: 4rem 1.2rem;
+            }
+            .pinecone {
+                width: 30px;
+                height: 36px;
+            }
+            .pinecone-tl {
+                top: 60px;
+                left: 8px;
+            }
+            .pinecone-tr {
+                top: 60px;
+                right: 8px;
+            }
+            .pinecone-bl {
+                bottom: 8px;
+                left: 8px;
+            }
+            .pinecone-br {
+                bottom: 8px;
+                right: 8px;
+            }
+            .fairy-lights {
+                padding: 0 0.8rem;
+            }
+            .light-bulb {
+                width: 4px;
+                height: 4px;
+                margin: 0 1.2px;
+            }
+            .hero-eyebrow {
+                font-size: 0.55rem;
+                margin-bottom: 1.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Ambient glows -->
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-  <div class="glow glow-3"></div>
+    <!-- Ambient glows -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
 
-  <!-- Particle canvas -->
-  <canvas id="particles"></canvas>
+    <!-- Particle canvas -->
+    <canvas id="particles"></canvas>
 
-  <!-- Navigation -->
-  <nav>
-    <span class="nav-mono">D &amp; C</span>
-    <ul>
-      <li><a href="#about">Σχετικά</a></li>
-      <li><a href="#events">Εκδηλώσεις</a></li>
-      <li><a href="#rsvp">RSVP</a></li>
-      <li><a href="#gallery">Φωτογραφίες</a></li>
-      <li><a href="#visit">Επίσκεψη</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero -->
-  <div id="hero">
-    <p class="hero-eyebrow">Σας προσκαλούμε στον γάμο μας</p>
-    <div class="hero-names">
-      Δημήτρης
-      <span class="hero-ampersand">&amp;</span>
-      Χρύσα
+    <!-- ─── PINE CONES at corners ─── -->
+    <div class="pinecone pinecone-tl" aria-hidden="true">
+        <svg viewBox="0 0 44 52" fill="none">
+            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
+            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
+            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
+            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
+            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
+            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
+        </svg>
     </div>
-    <p class="hero-date">Σάββατο · 26 Δεκεμβρίου 2026</p>
-    <div class="hero-divider"></div>
-    <div class="scroll-hint">scroll</div>
-  </div>
+    <div class="pinecone pinecone-tr" aria-hidden="true">
+        <svg viewBox="0 0 44 52" fill="none">
+            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
+            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
+            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
+            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
+            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
+            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
+        </svg>
+    </div>
+    <div class="pinecone pinecone-bl" aria-hidden="true">
+        <svg viewBox="0 0 44 52" fill="none">
+            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
+            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
+            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
+            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
+            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
+            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
+        </svg>
+    </div>
+    <div class="pinecone pinecone-br" aria-hidden="true">
+        <svg viewBox="0 0 44 52" fill="none">
+            <ellipse cx="22" cy="26" rx="16" ry="22" fill="#4a3520" opacity="0.9" />
+            <ellipse cx="22" cy="26" rx="14" ry="20" fill="#5c3d24" />
+            <path d="M12 18 Q16 12 22 14 Q28 12 32 18 Q28 22 22 20 Q16 22 12 18Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 24 Q16 18 22 20 Q28 18 32 24 Q28 28 22 26 Q16 28 12 24Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M12 30 Q16 24 22 26 Q28 24 32 30 Q28 34 22 32 Q16 34 12 30Z" fill="#6b4a2e" opacity="0.7" />
+            <path d="M13 36 Q17 30 22 32 Q27 30 31 36 Q27 39 22 38 Q17 39 13 36Z" fill="#5c3d24" opacity="0.6" />
+            <ellipse cx="22" cy="8" rx="6" ry="4" fill="#4a3520" opacity="0.8" />
+            <ellipse cx="22" cy="6" rx="4" ry="3" fill="#5c3d24" opacity="0.5" />
+            <path d="M18 4 L22 1 L26 4 L24 8 L20 8 L18 4Z" fill="#8b6b44" opacity="0.5" />
+        </svg>
+    </div>
 
-  <!-- About -->
-  <div id="about">
-    <section class="reveal">
-      <p class="section-label">Η Ημέρα Μας</p>
-      <h2>Η πιο όμορφη στιγμή<br/>της ζωής μας.</h2>
-      <p>Μέσα στη μαγεία των Χριστουγέννων και κάτω από το φως της αγάπης, σας καλούμε να γιορτάσετε μαζί μας. Η τέλεση θα γίνει στην Εκκλησία του Μουζακίου και η δεξίωση στην πανέμορφη Ονείρων Έπαυλις, στην Πηγή Τρικάλων.</p>
-    </section>
-    <div class="rule"></div>
-  </div>
+    <!-- ─── FAIRY LIGHTS ─── -->
+    <div class="fairy-lights fairy-lights-top" id="lightsTop" aria-hidden="true"></div>
+    <div class="fairy-lights fairy-lights-bottom" id="lightsBottom" aria-hidden="true"></div>
 
-  <!-- Poem -->
-  <div id="poem">
-    <section class="reveal">
-      <p>
-        Μέσα στη μαγεία των Χριστουγέννων<br/>
-        και κάτω από το φως της αγάπης,<br/>
-        σας προσκαλούμε<br/>
-        να μοιραστείτε μαζί μας<br/>
-        την πιο όμορφη στιγμή της ζωής μας.
-      </p>
-      <p class="author">Δημήτρης &amp; Χρύσα</p>
-    </section>
-    <div class="rule"></div>
-  </div>
+    <!-- ─── NAVIGATION ─── -->
+    <nav>
+        <span class="nav-mono">D &amp; C</span>
+        <ul>
+            <li><a href="#about">Σχετικά</a></li>
+            <li><a href="#events">Εκδηλώσεις</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="#gallery">Φωτογραφίες</a></li>
+            <li><a href="#visit">Επίσκεψη</a></li>
+        </ul>
+    </nav>
 
-  <!-- Events -->
-  <div id="events">
-    <section class="reveal">
-      <p class="section-label">Εκδηλώσεις</p>
-      <h2>Το Πρόγραμμα</h2>
-      <div class="events-grid">
-        <div class="event-card">
-          <div class="event-icon">⛪</div>
-          <span class="event-time">15:30</span>
-          <span class="event-name">Τέλεση</span>
-          <p class="event-location">Εκκλησία Κοιμήσεως<br/>της Θεοτόκου<br/>Μουζάκι</p>
-        </div>
-        <div class="event-card">
-          <div class="event-icon">🎉</div>
-          <span class="event-time">20:30</span>
-          <span class="event-name">Δεξίωση</span>
-          <p class="event-location">Ονείρων Έπαυλις<br/>Πηγή Τρικάλων</p>
-        </div>
-        <div class="event-card">
-          <div class="event-icon">📅</div>
-          <span class="event-time" style="font-size:1.4rem;line-height:1.3">26<br/>Δεκ</span>
-          <span class="event-name">Ημερομηνία</span>
-          <p class="event-location">Σάββατο<br/>26 Δεκεμβρίου<br/>2026</p>
-        </div>
-      </div>
-    </section>
-    <div class="rule"></div>
-  </div>
+    <!-- ─── HERO ─── -->
+    <div id="hero">
 
-  <!-- Gallery -->
-  <div id="gallery">
-    <section class="reveal">
-      <p class="section-label">Στιγμές</p>
-      <h2>Φωτογραφίες</h2>
-      <div class="gallery-grid">
-        <div class="gallery-cell">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="gallery-cell">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="gallery-cell">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="gallery-cell">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="gallery-cell">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-      </div>
-    </section>
-    <div class="rule"></div>
-  </div>
+        <p class="hero-eyebrow">Σας προσκαλούμε στον γάμο μας</p>
 
-  <!-- RSVP -->
-  <div id="rsvp">
-    <section class="reveal">
-      <p class="section-label">RSVP</p>
-      <h2>Επιβεβαίωση<br/>Παρουσίας</h2>
-      <p style="margin-bottom:2.5rem">Παρακαλούμε επιβεβαιώστε την παρουσία σας έως τις 30 Νοεμβρίου 2026.</p>
+        <!-- Photo frame with wreath -->
+        <div class="photo-frame-wrapper">
+            <div class="photo-frame">
+                <div class="photo-frame-inner">
+                    <!-- Replace the src below with your actual photo -->
+                    <img
+                    src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=400&fit=crop&crop=face&auto=format"
+                    alt="Δημήτρης &amp; Χρύσα"
+                    />
+                    <!-- Fallback placeholder if image fails -->
+                </div>
+            </div>
 
-      <div id="rsvp-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Ονοματεπώνυμο</label>
-            <input type="text" id="name" placeholder="Το ονοματεπώνυμό σας" />
-          </div>
-          <div class="form-group">
-            <label for="guests">Αριθμός Ατόμων</label>
-            <select id="guests">
-              <option value="">Επιλέξτε...</option>
-              <option>1 άτομο</option>
-              <option>2 άτομα</option>
-              <option>3 άτομα</option>
-              <option>4 άτομα</option>
-              <option>5 άτομα</option>
-              <option>6+ άτομα</option>
-            </select>
-          </div>
+            <!-- Wreath ornaments (Christmas decorations around the frame) -->
+            <div class="wreath-ornament wo-1"><span class="leaf">✿</span><span class="berry" style="margin-left:-2px;">•</span></div>
+            <div class="wreath-ornament wo-2"><span class="berry">•</span><span class="leaf" style="margin-left:-2px;">✿</span></div>
+            <div class="wreath-ornament wo-3"><span class="leaf">✿</span><span class="berry" style="margin-left:-2px;">•</span></div>
+            <div class="wreath-ornament wo-4"><span class="berry">•</span><span class="leaf" style="margin-left:-2px;">✿</span></div>
+            <div class="wreath-ornament wo-5"><span class="leaf">✿</span><span class="berry" style="margin-left:-2px;">•</span></div>
+            <div class="wreath-ornament wo-6"><span class="berry">•</span><span class="leaf" style="margin-left:-2px;">✿</span></div>
+            <div class="wreath-ornament wo-7"><span class="gold-dot">✦</span></div>
+            <div class="wreath-ornament wo-8"><span class="gold-dot">✦</span></div>
+            <div class="wreath-ornament wo-9"><span class="gold-dot">✦</span></div>
+            <div class="wreath-ornament wo-10"><span class="gold-dot">✦</span></div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="email@example.com" />
-          </div>
-          <div class="form-group">
-            <label for="phone">Τηλέφωνο</label>
-            <input type="tel" id="phone" placeholder="+30 69..." />
-          </div>
+
+        <!-- Names in calligraphic font -->
+        <div class="hero-names">
+            Δημήτρης
+            <span class="ampersand">&amp;</span>
+            Χρύσα
         </div>
-        <div class="form-group">
-          <label for="diet">Διατροφικές Προτιμήσεις</label>
-          <textarea id="diet" placeholder="Χορτοφαγικό, αλλεργίες κ.λπ."></textarea>
-        </div>
-        <button class="btn" onclick="submitRSVP()">Αποστολή</button>
-      </div>
 
-      <div class="rsvp-success" id="rsvp-success">
-        <div class="check">✦</div>
-        <p style="max-width:36ch;margin:0 auto;opacity:0.7">Ευχαριστούμε πολύ! Λάβαμε την επιβεβαίωσή σας και ανυπομονούμε να σας δούμε.</p>
-      </div>
-    </section>
-    <div class="rule"></div>
-  </div>
+        <p class="hero-date">Σάββατο · 26 Δεκεμβρίου 2026</p>
+        <div class="hero-divider"></div>
 
-  <!-- Visit -->
-  <div id="visit">
-    <section class="reveal">
-      <p class="section-label">Επίσκεψη</p>
-      <h2>Πληροφορίες</h2>
-      <div class="visit-grid">
-        <div class="visit-item">
-          <p class="visit-item-label">🚗 Πώς να Φτάσετε</p>
-          <h3>Οδηγίες</h3>
-          <p>Το Μουζάκι βρίσκεται ~40 λεπτά από Τρίκαλα και ~1.5 ώρα από Βόλο. Συστήνουμε Google Maps με "Εκκλησία Μουζακίου". Οι δρόμοι του χωριού είναι στενοί — οδηγείστε προσεκτικά.</p>
-        </div>
-        <div class="visit-item">
-          <p class="visit-item-label">🏨 Διαμονή</p>
-          <h3>Πού να Μείνετε</h3>
-          <p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης Airbnb δωμάτια στο Μουζάκι και τις γύρω περιοχές.</p>
-        </div>
-        <div class="visit-item">
-          <p class="visit-item-label">⭐ Τι να Δείτε</p>
-          <h3>Αξιοθέατα</h3>
-          <p>Τα Μετέωρα, ο Μύλος των Ξωτικών, ιστορικές μονές και η πανέμορφη φύση της περιοχής. Ιδανικό για χαλαρές βόλτες και φωτογραφίες.</p>
-        </div>
-        <div class="visit-item">
-          <p class="visit-item-label">🍽️ Τοπικά Φαγητά</p>
-          <h3>Γαστρονομία</h3>
-          <p>Παραδοσιακές ταβέρνες με νοστιμότατα φαγητά και ζεστό φιλόξενο περιβάλλον — το Μουζάκι είναι γνωστό για την αυθεντική παραδοσιακή κουζίνα του.</p>
-        </div>
-      </div>
-    </section>
-  </div>
+        <div class="scroll-hint">scroll</div>
+    </div>
 
-  <!-- Footer -->
-  <footer>
-    <p class="footer-names">Δημήτρης &amp; Χρύσα</p>
-    <p class="footer-date">26 Δεκεμβρίου 2026 · Μουζάκι Τρικάλων</p>
-  </footer>
+    <!-- ─── ABOUT ─── -->
+    <div id="about">
+        <section class="reveal">
+            <p class="section-label">Η Ημέρα Μας</p>
+            <h2>Η πιο όμορφη στιγμή<br />της ζωής μας.</h2>
+            <p>Μέσα στη μαγεία των Χριστουγέννων και κάτω από το φως της αγάπης, σας καλούμε να γιορτάσετε μαζί μας. Η τέλεση θα γίνει στην Εκκλησία του Μουζακίου και η δεξίωση στην πανέμορφη Ονείρων Έπαυλις, στην Πηγή Τρικάλων.</p>
+        </section>
+        <div class="rule"></div>
+    </div>
 
-  <script>
-    /* ── Particles ── */
-    (function() {
-      const canvas = document.getElementById('particles');
-      const ctx = canvas.getContext('2d');
-      let W, H, particles = [];
+    <!-- ─── POEM ─── -->
+    <div id="poem">
+        <section class="reveal">
+            <p>
+                Μέσα στη μαγεία των Χριστουγέννων<br />
+                και κάτω από το φως της αγάπης,<br />
+                σας προσκαλούμε<br />
+                να μοιραστείτε μαζί μας<br />
+                την πιο όμορφη στιγμή της ζωής μας.
+            </p>
+            <p class="author">Δημήτρης &amp; Χρύσα</p>
+        </section>
+        <div class="rule"></div>
+    </div>
 
-      function resize() {
-        W = canvas.width  = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
+    <!-- ─── EVENTS ─── -->
+    <div id="events">
+        <section class="reveal">
+            <p class="section-label">Εκδηλώσεις</p>
+            <h2>Το Πρόγραμμα</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-icon">⛪</div>
+                    <span class="event-time">15:30</span>
+                    <span class="event-name">Τέλεση</span>
+                    <p class="event-location">Εκκλησία Κοιμήσεως<br />της Θεοτόκου<br />Μουζάκι</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🎉</div>
+                    <span class="event-time">20:30</span>
+                    <span class="event-name">Δεξίωση</span>
+                    <p class="event-location">Ονείρων Έπαυλις<br />Πηγή Τρικάλων</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">📅</div>
+                    <span class="event-time" style="font-size:1.4rem;line-height:1.3">26<br />Δεκ</span>
+                    <span class="event-name">Ημερομηνία</span>
+                    <p class="event-location">Σάββατο<br />26 Δεκεμβρίου<br />2026</p>
+                </div>
+            </div>
+        </section>
+        <div class="rule"></div>
+    </div>
 
-      const GOLD_COLORS = [
-        'rgba(201,168,76,',
-        'rgba(232,201,122,',
-        'rgba(255,230,150,',
-        'rgba(170,130,50,',
-      ];
+    <!-- ─── GALLERY ─── -->
+    <div id="gallery">
+        <section class="reveal">
+            <p class="section-label">Στιγμές</p>
+            <h2>Φωτογραφίες</h2>
+            <div class="gallery-grid">
+                <div class="gallery-cell">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                </div>
+                <div class="gallery-cell">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                </div>
+                <div class="gallery-cell">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                </div>
+                <div class="gallery-cell">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                </div>
+                <div class="gallery-cell">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <div class="rule"></div>
+    </div>
 
-      class Particle {
-        constructor() { this.reset(true); }
-        reset(init) {
-          this.x = Math.random() * W;
-          this.y = init ? Math.random() * H : H + 10;
-          this.size = Math.random() * 1.8 + 0.3;
-          this.speed = Math.random() * 0.35 + 0.05;
-          this.drift = (Math.random() - 0.5) * 0.18;
-          this.life  = 0;
-          this.maxLife = Math.random() * 300 + 150;
-          this.col  = GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)];
-          // twinkle
-          this.twinkleSpeed = Math.random() * 0.03 + 0.008;
-          this.twinklePhase = Math.random() * Math.PI * 2;
+    <!-- ─── RSVP ─── -->
+    <div id="rsvp">
+        <section class="reveal">
+            <p class="section-label">RSVP</p>
+            <h2>Επιβεβαίωση<br />Παρουσίας</h2>
+            <p style="margin-bottom:2.5rem">Παρακαλούμε επιβεβαιώστε την παρουσία σας έως τις 30 Νοεμβρίου 2026.</p>
+
+            <div id="rsvp-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Ονοματεπώνυμο</label>
+                        <input type="text" id="name" placeholder="Το ονοματεπώνυμό σας" />
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Αριθμός Ατόμων</label>
+                        <select id="guests">
+                            <option value="">Επιλέξτε...</option>
+                            <option>1 άτομο</option>
+                            <option>2 άτομα</option>
+                            <option>3 άτομα</option>
+                            <option>4 άτομα</option>
+                            <option>5 άτομα</option>
+                            <option>6+ άτομα</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Τηλέφωνο</label>
+                        <input type="tel" id="phone" placeholder="+30 69..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="diet">Διατροφικές Προτιμήσεις</label>
+                    <textarea id="diet" placeholder="Χορτοφαγικό, αλλεργίες κ.λπ."></textarea>
+                </div>
+                <button class="btn" onclick="submitRSVP()">Αποστολή</button>
+            </div>
+
+            <div class="rsvp-success" id="rsvp-success">
+                <div class="check">✦</div>
+                <p style="max-width:36ch;margin:0 auto;opacity:0.7">Ευχαριστούμε πολύ! Λάβαμε την επιβεβαίωσή σας και ανυπομονούμε να σας δούμε.</p>
+            </div>
+        </section>
+        <div class="rule"></div>
+    </div>
+
+    <!-- ─── VISIT ─── -->
+    <div id="visit">
+        <section class="reveal">
+            <p class="section-label">Επίσκεψη</p>
+            <h2>Πληροφορίες</h2>
+            <div class="visit-grid">
+                <div class="visit-item">
+                    <p class="visit-item-label">🚗 Πώς να Φτάσετε</p>
+                    <h3>Οδηγίες</h3>
+                    <p>Το Μουζάκι βρίσκεται ~40 λεπτά από Τρίκαλα και ~1.5 ώρα από Βόλο. Συστήνουμε Google Maps με "Εκκλησία Μουζακίου". Οι δρόμοι του χωριού είναι στενοί — οδηγείστε προσεκτικά.</p>
+                </div>
+                <div class="visit-item">
+                    <p class="visit-item-label">🏨 Διαμονή</p>
+                    <h3>Πού να Μείνετε</h3>
+                    <p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης Airbnb δωμάτια στο Μουζάκι και τις γύρω περιοχές.</p>
+                </div>
+                <div class="visit-item">
+                    <p class="visit-item-label">⭐ Τι να Δείτε</p>
+                    <h3>Αξιοθέατα</h3>
+                    <p>Τα Μετέωρα, ο Μύλος των Ξωτικών, ιστορικές μονές και η πανέμορφη φύση της περιοχής. Ιδανικό για χαλαρές βόλτες και φωτογραφίες.</p>
+                </div>
+                <div class="visit-item">
+                    <p class="visit-item-label">🍽️ Τοπικά Φαγητά</p>
+                    <h3>Γαστρονομία</h3>
+                    <p>Παραδοσιακές ταβέρνες με νοστιμότατα φαγητά και ζεστό φιλόξενο περιβάλλον — το Μουζάκι είναι γνωστό για την αυθεντική παραδοσιακή κουζίνα του.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <p class="footer-names">Δημήτρης &amp; Χρύσα</p>
+        <p class="footer-date">26 Δεκεμβρίου 2026 · Μουζάκι Τρικάλων</p>
+    </footer>
+
+    <script>
+        /* ── Particles ── */
+        (function() {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            let W, H, particles = [];
+
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            const GOLD_COLORS = [
+                'rgba(201,168,76,',
+                'rgba(232,201,122,',
+                'rgba(255,230,150,',
+                'rgba(170,130,50,',
+            ];
+
+            class Particle {
+                constructor() { this.reset(true); }
+                reset(init) {
+                    this.x = Math.random() * W;
+                    this.y = init ? Math.random() * H : H + 10;
+                    this.size = Math.random() * 1.6 + 0.3;
+                    this.speed = Math.random() * 0.30 + 0.04;
+                    this.drift = (Math.random() - 0.5) * 0.15;
+                    this.life = 0;
+                    this.maxLife = Math.random() * 280 + 140;
+                    this.col = GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)];
+                    this.twinkleSpeed = Math.random() * 0.025 + 0.006;
+                    this.twinklePhase = Math.random() * Math.PI * 2;
+                }
+                update() {
+                    this.y -= this.speed;
+                    this.x += this.drift;
+                    this.life += 1;
+                    this.twinklePhase += this.twinkleSpeed;
+                    if (this.life > this.maxLife || this.y < -10) this.reset(false);
+                }
+                draw() {
+                    const t = this.life / this.maxLife;
+                    const fade = t < 0.15 ? t / 0.15 : t > 0.8 ? 1 - (t - 0.8) / 0.2 : 1;
+                    const twinkle = 0.5 + 0.5 * Math.sin(this.twinklePhase);
+                    const alpha = fade * twinkle * 0.55;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.col + alpha + ')';
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+            function loop() {
+                ctx.clearRect(0, 0, W, H);
+                particles.forEach(p => { p.update();
+                    p.draw(); });
+                requestAnimationFrame(loop);
+            }
+            loop();
+        })();
+
+        /* ── Fairy lights generator ── */
+        (function() {
+            const topContainer = document.getElementById('lightsTop');
+            const bottomContainer = document.getElementById('lightsBottom');
+            const count = Math.min(40, Math.floor(window.innerWidth / 18));
+
+            function createBulbs(container) {
+                for (let i = 0; i < count; i++) {
+                    const bulb = document.createElement('span');
+                    bulb.className = 'light-bulb';
+                    // Random animation delay (already handled by CSS nth-child)
+                    container.appendChild(bulb);
+                }
+            }
+            createBulbs(topContainer);
+            createBulbs(bottomContainer);
+        })();
+
+        /* ── Scroll reveal ── */
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => observer.observe(el));
+
+        /* ── RSVP submit ── */
+        function submitRSVP() {
+            const name = document.getElementById('name').value.trim();
+            const guests = document.getElementById('guests').value;
+            if (!name || !guests) {
+                alert('Παρακαλούμε συμπληρώστε το ονοματεπώνυμο και τον αριθμό ατόμων.');
+                return;
+            }
+            document.getElementById('rsvp-form').style.display = 'none';
+            const s = document.getElementById('rsvp-success');
+            s.style.display = 'block';
         }
-        update() {
-          this.y    -= this.speed;
-          this.x    += this.drift;
-          this.life += 1;
-          this.twinklePhase += this.twinkleSpeed;
-          if (this.life > this.maxLife || this.y < -10) this.reset(false);
-        }
-        draw() {
-          const t    = this.life / this.maxLife;
-          const fade = t < 0.15 ? t / 0.15 : t > 0.8 ? 1 - (t - 0.8) / 0.2 : 1;
-          const twinkle = 0.5 + 0.5 * Math.sin(this.twinklePhase);
-          const alpha = fade * twinkle * 0.65;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = this.col + alpha + ')';
-          ctx.fill();
-        }
-      }
+    </script>
 
-      for (let i = 0; i < 140; i++) particles.push(new Particle());
-
-      function loop() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(loop);
-      }
-      loop();
-    })();
-
-    /* ── Scroll reveal ── */
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-
-    /* ── RSVP submit ── */
-    function submitRSVP() {
-      const name = document.getElementById('name').value.trim();
-      const guests = document.getElementById('guests').value;
-      if (!name || !guests) {
-        alert('Παρακαλούμε συμπληρώστε το ονοματεπώνυμο και τον αριθμό ατόμων.');
-        return;
-      }
-      document.getElementById('rsvp-form').style.display = 'none';
-      const s = document.getElementById('rsvp-success');
-      s.style.display = 'block';
-    }
-  </script>
 </body>
 </html>
