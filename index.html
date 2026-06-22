@@ -50,6 +50,23 @@
             line-height: 1.8;
             overflow-x: hidden;
             min-height: 100vh;
+            /* ─── Background image ─── */
+            background-image: url('https://i.imgur.com/bqI0Szih.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* Semi-transparent overlay to keep text readable and preserve the dark, moody feel */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 31, 22, 0.55); /* deep pine overlay */
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* ─── Particle canvas ─── */
@@ -57,7 +74,7 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
 
         /* ─── Ambient glows ─── */
@@ -66,7 +83,7 @@
             border-radius: 50%;
             filter: blur(160px);
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
         .glow-1 {
             width: 700px;
@@ -263,7 +280,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            z-index: 1;
+            z-index: 2;
             padding: 2rem 1.5rem 4rem;
         }
 
@@ -560,7 +577,7 @@
         /* ─── Sections ─── */
         section {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 720px;
             margin: 0 auto;
             padding: 5rem 2rem;
@@ -874,7 +891,7 @@
         /* ─── Footer ─── */
         footer {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             text-align: center;
             padding: 4rem 2rem;
             border-top: 1px solid rgba(201, 168, 76, 0.06);
