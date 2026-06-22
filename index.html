@@ -41,24 +41,27 @@ body{
 
 /* ── photographic frame background (the supplied Christmas frame artwork) ── */
 .bg-fixed{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg-photo-wrap{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:var(--bg0);
+}
 .bg-photo{
   position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:var(--frame-img);
-  background-size:cover;
+  background-size:100% 100%;
   background-position:center;
   background-repeat:no-repeat;
   background-attachment:fixed;
 }
 .bg-base{
-  /* darkening + color-grading wash over the photo so foreground text stays legible
-     while the photographed frame (roses, lanterns, bells, glitter) stays visible at the edges */
+  /* light darkening only — keep the photographed frame's color & detail intact,
+     just enough wash in the center so foreground text stays legible */
   position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 56% 46% at 50% 46%, rgba(4,8,5,0.74) 0%, rgba(4,8,5,0.42) 45%, transparent 72%),
-    linear-gradient(rgba(4,9,6,0.22), rgba(4,9,6,0.4));
+    radial-gradient(ellipse 46% 38% at 50% 46%, rgba(4,8,5,0.5) 0%, rgba(4,8,5,0.22) 50%, transparent 75%);
 }
 .bg-noise{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.35;
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.15;
   background-image:
     repeating-radial-gradient(circle at 12% 18%, rgba(255,255,255,0.016) 0px, transparent 1.4px),
     repeating-radial-gradient(circle at 68% 42%, rgba(255,255,255,0.012) 0px, transparent 1.1px),
@@ -68,7 +71,7 @@ body{
 }
 .bg-vignette{
   position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 78% 68% at 50% 45%, transparent 50%, rgba(0,0,0,0.5) 100%);
+  background:radial-gradient(ellipse 88% 78% at 50% 45%, transparent 62%, rgba(0,0,0,0.28) 100%);
 }
 canvas#sparkle{position:fixed;inset:0;z-index:1;pointer-events:none}
 
@@ -98,43 +101,27 @@ nav a:hover{opacity:1;color:var(--gold-l)}
 #hero{
   position:relative;min-height:100vh;
   display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
+  align-items:center;justify-content:flex-start;
   text-align:center;z-index:20;
-  padding:9rem 2rem 4rem;
+  padding:6.5rem 2rem 4rem;
 }
 .eyebrow{
   font-size:0.6rem;letter-spacing:0.4em;
   text-transform:uppercase;color:var(--gold-l);
-  opacity:0.6;margin-bottom:2.2rem;
+  opacity:0.6;margin-bottom:2rem;
 }
 
-/* Photo medallion */
-.frame-outer{position:relative;width:236px;height:236px;margin:0 auto 2.4rem}
-.medallion-glow{
-  position:absolute;inset:-50px;border-radius:50%;
-  background:radial-gradient(circle, rgba(169,130,63,0.16), transparent 70%);
-  filter:blur(6px);
-}
-.frame-ring{
-  position:absolute;inset:-16px;border-radius:50%;
-  background:
-    conic-gradient(from 0deg,
-      #4a3614 0%, #a9823f 6%, #e3c787 12%, #a9823f 18%,
-      #4a3614 26%, #a9823f 34%, #e3c787 40%, #a9823f 46%,
-      #4a3614 54%, #a9823f 62%, #e3c787 68%, #a9823f 74%,
-      #4a3614 82%, #a9823f 90%, #e3c787 96%, #4a3614 100%);
-  padding:3px;
-  box-shadow:0 0 0 1px rgba(169,130,63,0.25), inset 0 0 0 1px rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.6);
-}
-.frame-ring-inner{width:100%;height:100%;border-radius:50%;background:var(--bg1)}
-.wreath-svg{position:absolute;inset:-46px;width:calc(100% + 92px);height:calc(100% + 92px);pointer-events:none}
+/* Photo medallion — simple, unobtrusive frame so the background photo's own
+   ornamentation (roses, lanterns, bells) stays the visual frame, not a second ring */
+.frame-outer{position:relative;width:188px;height:188px;margin:0 auto 2rem}
 .photo-circle{
-  position:absolute;inset:0;width:236px;height:236px;border-radius:50%;overflow:hidden;
+  position:absolute;inset:0;width:188px;height:188px;border-radius:50%;overflow:hidden;
   background:var(--pine);display:flex;align-items:center;justify-content:center;
   cursor:pointer;transition:box-shadow .4s;
-  box-shadow:inset 0 0 30px rgba(0,0,0,0.6);
+  border:1px solid rgba(217,184,115,0.45);
+  box-shadow:inset 0 0 24px rgba(0,0,0,0.55), 0 6px 22px rgba(0,0,0,0.5);
 }
-.photo-circle:hover{box-shadow:inset 0 0 30px rgba(0,0,0,0.6),0 0 26px rgba(169,130,63,0.3)}
+.photo-circle:hover{box-shadow:inset 0 0 24px rgba(0,0,0,0.55),0 0 20px rgba(169,130,63,0.35), 0 6px 22px rgba(0,0,0,0.5)}
 .photo-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:none;filter:saturate(0.92) contrast(1.04)}
 .ph-placeholder{display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:.35}
 .ph-placeholder svg{width:32px}
@@ -254,6 +241,7 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
 </head>
 <body>
 
+<div class="bg-photo-wrap"></div>
 <div class="bg-photo"></div>
 <div class="bg-base"></div>
 <div class="bg-noise"></div>
@@ -278,10 +266,6 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   <p class="eyebrow">Σας προσκαλούμε στον γάμο μας</p>
 
   <div class="frame-outer">
-    <div class="medallion-glow"></div>
-    <div class="frame-ring"><div class="frame-ring-inner"></div></div>
-    <svg class="wreath-svg" id="wreathSvg" viewBox="0 0 328 328" xmlns="http://www.w3.org/2000/svg"></svg>
-
     <div class="photo-circle" onclick="document.getElementById('fi').click()">
       <img id="cpPhoto" src="" alt=""/>
       <div class="ph-placeholder" id="phHolder">
@@ -417,72 +401,6 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   }
   const ps=Array.from({length:90},()=>new P());
   (function loop(){cx.clearRect(0,0,W,H);ps.forEach(p=>{p.tick();p.draw();});requestAnimationFrame(loop);})();
-})();
-
-/* ───────────────────── hero medallion wreath (full ring, denser & more realistic) ───────────────────── */
-(function(){
-  const NS='http://www.w3.org/2000/svg';
-  function el(tag,attrs){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
-  const wsvg=document.getElementById('wreathSvg');
-  const wdefs=el('defs',{});
-  const wNeedle=el('linearGradient',{id:'wNeedle',x1:'0%',y1:'0%',x2:'100%',y2:'100%'});
-  wNeedle.appendChild(el('stop',{offset:'0%','stop-color':'#234a28'}));
-  wNeedle.appendChild(el('stop',{offset:'100%','stop-color':'#0e2616'}));
-  wdefs.appendChild(wNeedle);
-  const wBerry=el('radialGradient',{id:'wBerry',cx:'35%',cy:'30%',r:'70%'});
-  wBerry.appendChild(el('stop',{offset:'0%','stop-color':'#c24040'}));
-  wBerry.appendChild(el('stop',{offset:'55%','stop-color':'#7a1418'}));
-  wBerry.appendChild(el('stop',{offset:'100%','stop-color':'#3a0a0d'}));
-  wdefs.appendChild(wBerry);
-  const wGold=el('linearGradient',{id:'wGold',x1:'0%',y1:'0%',x2:'100%',y2:'100%'});
-  wGold.appendChild(el('stop',{offset:'0%','stop-color':'#e3c787'}));
-  wGold.appendChild(el('stop',{offset:'50%','stop-color':'#a9823f'}));
-  wGold.appendChild(el('stop',{offset:'100%','stop-color':'#5e4419'}));
-  wdefs.appendChild(wGold);
-  wsvg.appendChild(wdefs);
-
-  const cx0=164,cy0=164,R=144;
-  const ring=el('g',{});
-  for(let a=0;a<360;a+=14){
-    const rad=a*Math.PI/180;
-    const x=cx0+Math.cos(rad)*R, y=cy0+Math.sin(rad)*R;
-    const branch=el('g',{transform:`translate(${x},${y}) rotate(${a+90})`});
-    const len=16+Math.sin(a*0.7)*3;
-    branch.appendChild(el('line',{x1:'0',y1:`${-len}`,x2:'0',y2:`${len}`,stroke:'#13290f','stroke-width':'2'}));
-    for(let s=-len+3;s<len-2;s+=3.4){
-      const shade = Math.random()>0.5?'#2a5430':'#1a3820';
-      branch.appendChild(el('line',{x1:'0',y1:`${s}`,x2:`${-7-Math.random()*2}`,y2:`${s-3.4}`,stroke:shade,'stroke-width':'0.9'}));
-      branch.appendChild(el('line',{x1:'0',y1:`${s}`,x2:`${7+Math.random()*2}`,y2:`${s-3.4}`,stroke:shade,'stroke-width':'0.9'}));
-    }
-    ring.appendChild(branch);
-  }
-  wsvg.appendChild(ring);
-
-  // berries + holly accents at 4 cardinal-ish points
-  function ringBerry(angle,scale){
-    const rad=angle*Math.PI/180;
-    const x=cx0+Math.cos(rad)*R, y=cy0+Math.sin(rad)*R;
-    const grp=el('g',{transform:`translate(${x},${y}) scale(${scale})`});
-    const pts=[[0,0,4],[6,-3,3.4],[3,5,3.4],[-5,3,3.2]];
-    pts.forEach(p=>{ grp.appendChild(el('circle',{cx:p[0],cy:p[1],r:p[2],fill:'url(#wBerry)'})); });
-    return grp;
-  }
-  [10,100,190,280].forEach(a=>wsvg.appendChild(ringBerry(a,1)));
-
-  // small gold rings
-  wsvg.appendChild(el('circle',{cx:cx0,cy:cy0,r:'138','fill':'none',stroke:'#a9823f','stroke-width':'0.7',opacity:'0.3'}));
-  wsvg.appendChild(el('circle',{cx:cx0,cy:cy0,r:'118','fill':'none',stroke:'#a9823f','stroke-width':'1.1',opacity:'0.4'}));
-
-  // bow + small bells at bottom of wreath
-  const bow=el('g',{transform:`translate(${cx0},${cy0+R+18})`});
-  bow.appendChild(el('path',{d:'M0,0 Q-20,-16 -30,-7 Q-26,5 -13,2 Q-7,0 0,0 Z',fill:'#5c1014'}));
-  bow.appendChild(el('path',{d:'M0,0 Q20,-16 30,-7 Q26,5 13,2 Q7,0 0,0 Z',fill:'#6f1418'}));
-  bow.appendChild(el('ellipse',{cx:'0',cy:'0',rx:'6.5',ry:'4.5',fill:'#7a1a1e'}));
-  bow.appendChild(el('path',{d:'M-2,2 Q-10,11 -15,20 Q-11,22 -8,18 Q-3,9 0,2 Z',fill:'#5c1014'}));
-  bow.appendChild(el('path',{d:'M2,2 Q10,11 15,20 Q11,22 8,18 Q3,9 0,2 Z',fill:'#6f1418'}));
-  bow.appendChild(el('circle',{cx:'-9',cy:'25',r:'5.5',fill:'url(#wGold)'}));
-  bow.appendChild(el('circle',{cx:'9',cy:'25',r:'5.5',fill:'url(#wGold)'}));
-  wsvg.appendChild(bow);
 })();
 
 /* ───────────────────── scroll reveal ───────────────────── */
