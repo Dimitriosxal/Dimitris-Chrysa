@@ -473,7 +473,7 @@ canvas#sparkle{
 
   <div class="frame-outer">
     <div class="photo-circle" onclick="document.getElementById('fi').click()">
-      <img id="cpPhoto" src="" alt=""/>
+      <img id="cpPhoto" src="" alt="<img id="cpPhoto" src="https://i.imgur.com/K9lEqF2.jpeg" alt="hero photo"/>"/>
       <div class="ph-placeholder" id="phHolder">
         <svg viewBox="0 0 24 24" fill="none" stroke="#a9823f" stroke-width="1">
           <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -481,7 +481,7 @@ canvas#sparkle{
         <span>Προσθέστε<br/>φωτογραφία</span>
       </div>
     </div>
-    <input type="file" id="fi" accept="image/*" onchange="loadP(event)"/>
+   
   </div>
 
   <div class="names">
@@ -585,7 +585,7 @@ canvas#sparkle{
   <p class="lbl">Επίσκεψη</p>
   <h2>Πληροφορίες</h2>
   <div class="vis-grid">
-    <div class="vi"><p class="vi-lbl">🚗 Προτάσεις</p><h3>Για πριν τον γάμο</h3><p>Σας προτείνουμε επίσκεψη σε μια απο τις ομορφότερες ταβέρνες τις Ελλάδας "Κεραμαριώ" βρίσκεται 10 λεπτά μακρυά απο την εκκλησία, γεμάτο ελάφια και άλλες εκπλήξεις </p><p>(Προσοχή, μην φάτε πολύ, σας θέλουμε μαζί μας) </p><p>Υπάρχουν επίσης αρκετά καφέ μες στην πόλη για αυτούς που θέλουν να κρατηθούν νηστικοί για το γλέντι (σας αγαπάμε εσάς)</p></div>
+    <div class="vi"><p class="vi-lbl">🚗 Προτάσεις</p><h3>Για πριν το μυστήριο</h3><p>Σας προτείνουμε επίσκεψη σε μια απο τις ομορφότερες ταβέρνες τις Ελλάδας "Κεραμαριώ" βρίσκεται 10 λεπτά μακρυά απο την εκκλησία, γεμάτο ελάφια και άλλες εκπλήξεις </p><p>(Προσοχή, μην φάτε πολύ, σας θέλουμε μαζί μας) </p><p>Υπάρχουν επίσης αρκετά καφέ μες στην πόλη για αυτούς που θέλουν να κρατηθούν νηστικοί για το γλέντι (σας αγαπάμε εσάς)</p></div>
     <div class="vi"><p class="vi-lbl">🚗 Προτάσεις</p><h3>Για μετά το μυστήριο</h3><p>Επειδή η αναμονή για το γλέντι θα είναι μεγάλη, σας προτείνουμε επίσκεψη στον μύλο των ξωτικών (15 λεπτά απο το χώρο δεξίωσης), πεζοπορία κατα μήκος του τεράστιο ποταμού του Μουζακίου (περίπατος ΔΕΗ),ιστορικές μονές και πανέμορφη φύση.</p><p> Το Μουζάκι είναι ιδανικό για χαλαρές βόλτες και φωτογραφίες.</p></div>
     <div class="vi"><p class="vi-lbl">🏨 Διαμονή</p><h3>Πού να Μείνετε</h3><p>Ξενοδοχεία στα Τρίκαλα και Καρδίτσα (μισή ώρα μαξ απο το μουζάκι). Υπάρχουν επίσης Airbnb στο Μουζάκι και τις γύρω περιοχές.Μην το αφήσετε τελευταία στιγμή, ο μύλος τα προλαβαίνει όλα)</p></div>
     <div class="vi"><p class="vi-lbl">🍽️ Γαστρονομία</p><h3>Τοπικά Εστιατόρια</h3><p>Παραδοσιακές ταβέρνες με νοστιμότατα φαγητά και ζεστό φιλόξενο περιβάλλον.</p></div>
@@ -633,16 +633,7 @@ canvas#sparkle{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-/* ───────────────────── photo upload ───────────────────── */
-function loadP(e){
-  const f=e.target.files[0];if(!f)return;
-  const r=new FileReader();
-  r.onload=ev=>{
-    const img=document.getElementById('cpPhoto');
-    img.src=ev.target.result;img.style.display='block';
-    document.getElementById('phHolder').style.display='none';
-  };r.readAsDataURL(f);
-}
+
 
 /* ───────────────────── RSVP ───────────────────── */
 function doRSVP(){
