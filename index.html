@@ -264,7 +264,27 @@ p.body{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:2;op
   100% {opacity:0; transform:scale(1.15);}
 }
 /* gallery */
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:3px;margin-top:2.6rem}
+<div class="gal-grid">
+
+  <div class="gal-cell"><img src="https://i.imgur.com/YoYqsqh.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/Ic4qRfG.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/yTYugao.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/ic3u4oz.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/DvIwezC.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/WYdOK9m.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/MFWfnLT.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/CUTt5Eh.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/6BhO0A6.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/b21wlGG.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/qpW1LhY.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/vg5lphu.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/EMe0RYC.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/Ej6KabN.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/tpxC4BF.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/txJzaQW.jpeg"></div>
+  <div class="gal-cell"><img src="https://i.imgur.com/MfzFb0Y.jpeg"></div>
+
+</div>
 .gal-cell{background:var(--bg1);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;opacity:.4;transition:opacity .3s;overflow:hidden;cursor:pointer}
 .gal-cell:hover{opacity:.72}
 .gal-cell:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
@@ -449,7 +469,17 @@ canvas#sparkle{
 .ph-placeholder{
   display:none;
 }
-  
+.gal-cell img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .4s ease;
+}
+
+.gal-cell:hover img{
+  transform:scale(1.05);
+}  
 </style>
 </head>
 <body>
