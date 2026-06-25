@@ -48,14 +48,17 @@ body{
 .bg-photo{
   position:fixed;
   inset:0;
+  width:100vw;
+  height:100vh;
   z-index:0;
   pointer-events:none;
+
   background-image:var(--frame-img);
-  background-size:cover;
-  background-position:center center;
+  background-size:contain;
+  background-position:center;
   background-repeat:no-repeat;
+
   transform:scale(1.02);
-  filter:saturate(1.06) contrast(1.04);
 }
 
 .bg-photo::after{
@@ -76,9 +79,9 @@ body{
 
 @media (max-width: 768px){
   .bg-photo{
-    background-size:100% 100%; /* κρατάμε το mobile όπως είναι */
-    transform:none;
-    filter:none;
+    background-size:cover;
+    background-position:center;
+    transform:scale(1);
   }
 }
 .bg-base{
@@ -396,15 +399,54 @@ canvas#sparkle{
     radial-gradient(circle at 70% 80%, rgba(240,217,153,.12), transparent 45%);
   z-index:0;
 }
-  .sec::before{
+.sec{
+  position:relative;
+  z-index:2;
+  border-radius:12px;
+  padding:6rem 2rem;
+}
+
+/* base glass */
+.sec::before{
   content:'';
   position:absolute;
   inset:0;
-  background:rgba(10,18,12,0.55);
+  background:rgba(10,18,12,0.42);
   border:1px solid rgba(169,130,63,0.12);
-  border-radius:10px;
+  border-radius:12px;
   z-index:-1;
   backdrop-filter: blur(6px);
+}
+  #about .sec::before{
+  background:linear-gradient(
+    135deg,
+    rgba(169,130,63,0.10),
+    rgba(10,18,12,0.45)
+  );
+}
+
+#events .sec::before{
+  background:radial-gradient(
+    circle at 30% 20%,
+    rgba(240,217,153,0.14),
+    rgba(10,18,12,0.45)
+  );
+}
+
+#rsvp .sec::before{
+  background:radial-gradient(
+    circle at 70% 30%,
+    rgba(169,130,63,0.18),
+    rgba(10,18,12,0.45)
+  );
+}
+
+#visit .sec::before{
+  background:linear-gradient(
+    to bottom,
+    rgba(58,94,58,0.12),
+    rgba(10,18,12,0.45)
+  );
 }
 </style>
 </head>
