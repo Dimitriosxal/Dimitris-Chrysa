@@ -48,17 +48,14 @@ body{
 .bg-photo{
   position:fixed;
   inset:0;
-  width:100vw;
-  height:100vh;
   z-index:0;
   pointer-events:none;
-
   background-image:var(--frame-img);
-  background-size:contain;
-  background-position:center;
+  background-size:cover;
+  background-position:center center;
   background-repeat:no-repeat;
-
   transform:scale(1.02);
+  filter:saturate(1.06) contrast(1.04);
 }
 
 .bg-photo::after{
@@ -78,31 +75,11 @@ body{
 }
 
 @media (max-width: 768px){
-.bg-photo{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.bg-photo::before{
-  content:'';
-  width:100%;
-  height:100%;
-
-  background-image:var(--frame-img);
-  background-repeat:no-repeat;
-  background-position:center;
-
-  /* 🔥 το κόλπο */
-  background-size:contain;
-
-  transform:scale(1);
-}
+  .bg-photo{
+    background-size:100% 100%; /* κρατάμε το mobile όπως είναι */
+    transform:none;
+    filter:none;
+  }
 }
 .bg-base{
   background:
@@ -130,16 +107,12 @@ canvas#sparkle{position:fixed;inset:0;z-index:1;pointer-events:none}
 
 /* ── NAV ── */
 nav{
-  position:fixed;
-  top:0;left:0;right:0;
-  z-index:200;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
   padding:1.3rem 3.5rem;
-
-  background:rgba(5,9,6,.45);
+  background:linear-gradient(to bottom,rgba(5,9,6,0.92) 55%,transparent);
   backdrop-filter:blur(10px);
+  background:rgba(5,9,6,.88);
 }
 .nav-logo{
   font-family:'Playfair Display',serif;
@@ -226,9 +199,9 @@ nav a:hover{opacity:1;color:var(--gold-l)}
   margin:0 auto;
   padding:6rem 2rem;
   text-align:center;
-}
-    .vi{
+  .vi{
   text-align:center;
+}
 }
 .sec-wide{max-width:920px}
 .lbl{
@@ -407,12 +380,7 @@ footer{
 .bg-noise,
 .bg-vignette,
 canvas#sparkle{
-  z-index:1;
-  pointer-events:none;
-}
-
-.bg-photo{
-  z-index:0;
+  pointer-events: none;
 }
 
 #rsvp{
@@ -428,61 +396,15 @@ canvas#sparkle{
     radial-gradient(circle at 70% 80%, rgba(240,217,153,.12), transparent 45%);
   z-index:0;
 }
-.sec{
-  position:relative;
-  z-index:2;
-  border-radius:12px;
-  padding:6rem 2rem;
-}
-
-/* base glass */
-.sec::before{
+  .sec::before{
   content:'';
   position:absolute;
   inset:0;
-  background:rgba(10,18,12,0.42);
+  background:rgba(10,18,12,0.55);
   border:1px solid rgba(169,130,63,0.12);
-  border-radius:12px;
+  border-radius:10px;
   z-index:-1;
   backdrop-filter: blur(6px);
-}
-  #about .sec::before{
-  background:linear-gradient(
-    135deg,
-    rgba(169,130,63,0.10),
-    rgba(10,18,12,0.45)
-  );
-}
-
-#events .sec::before{
-  background:radial-gradient(
-    circle at 30% 20%,
-    rgba(240,217,153,0.14),
-    rgba(10,18,12,0.45)
-  );
-}
-
-#rsvp .sec::before{
-  background:radial-gradient(
-    circle at 70% 30%,
-    rgba(169,130,63,0.18),
-    rgba(10,18,12,0.45)
-  );
-}
-
-#visit .sec::before{
-  background:linear-gradient(
-    to bottom,
-    rgba(58,94,58,0.12),
-    rgba(10,18,12,0.45)
-  );
-}
-  canvas#sparkle{
-  z-index:1;
-}
-
-.bg-photo{
-  z-index:0;
 }
 </style>
 </head>
@@ -536,6 +458,12 @@ canvas#sparkle{
   <div class="scroll-cue">scroll</div>
 </div>
 
+<div id="about"><section class="sec rv">
+  <p class="lbl">Η Ημέρα Μας</p>
+  <h2>Η πιο όμορφη στιγμή της ζωής μας</h2>
+</section></div>
+<div class="rule"></div>
+
 <div id="poem"><section class="sec rv">
   <p class="body">Μέσα στη μαγεία των Χριστουγέννων<br/>και κάτω από το φως της αγάπης,<br/>σας προσκαλούμε να μοιραστείτε μαζί μας<br/>την πιο όμορφη στιγμή της ζωής μας.</p>
 </section></div>
@@ -577,7 +505,7 @@ canvas#sparkle{
 
   <!-- Δεξίωση -->
   <a class="ev-card-link"
-     href="https://maps.app.goo.gl/F4Suzyo1iuKvcAn7A"
+     href="https://maps.app.goo.gl/F4Suzyo1iuKvcAn7A""
      target="_blank">
 
     <div class="ev-card">
