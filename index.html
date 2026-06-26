@@ -394,7 +394,7 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   .ev-grid{grid-template-columns:1fr}
   .fr{grid-template-columns:1fr}
   .vis-grid{grid-template-columns:1fr;gap:1.8rem}
-  .gal-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:repeat(3,1fr)}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -527,7 +527,7 @@ canvas#sparkle{
 
   <div class="frame-outer">
     <div class="photo-circle" onclick="document.getElementById('fi').click()">
-      <img id="cpPhoto" src="https://i.imgur.com/tCxAsz9.jpeg" alt="hero photo"/>
+      <img id="cpPhoto" src="https://i.imgur.com/K9lEqF2.jpeg" alt="hero photo"/>
       <div class="ph-placeholder" id="phHolder">
         <svg viewBox="0 0 24 24" fill="none" stroke="#a9823f" stroke-width="1">
           <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
