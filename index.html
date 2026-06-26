@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title> Δημήτρης &amp; Χρυσούλα · 26.12.2026</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -109,9 +110,22 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;justify-content:space-between;align-items:center;
   padding:1.3rem 3.5rem;
-  background:linear-gradient(to bottom,rgba(5,9,6,0.92) 55%,transparent);
-  backdrop-filter:blur(10px);
   background:rgba(5,9,6,.88);
+  backdrop-filter:blur(10px);
+  /* Desktop: hidden by default, shown on scroll or hover */
+  transform:translateY(-100%);
+  opacity:0;
+  transition:transform .4s ease, opacity .4s ease;
+}
+/* Show nav when hovered (even when hidden, extend hover zone via pseudo-element) */
+nav:hover,
+nav.nav-visible{
+  transform:translateY(0);
+  opacity:1;
+}
+/* Invisible hover trigger strip at top of screen */
+#nav-trigger{
+  position:fixed;top:0;left:0;right:0;height:18px;z-index:199;pointer-events:auto;
 }
 .nav-logo{
   font-family:'Playfair Display',serif;
@@ -423,7 +437,26 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   .ev-grid{grid-template-columns:1fr}
   .fr{grid-template-columns:1fr}
   .vis-grid{grid-template-columns:1fr;gap:1.8rem}
-  .gal-grid{grid-template-columns:repeat(3,1fr)}
+  /* Mobile gallery: horizontal scroll strip */
+  .gal-grid{
+    display:flex;
+    flex-direction:row;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:6px;
+    grid-template-columns:unset;
+    padding-bottom:8px;
+    scrollbar-width:none;
+  }
+  .gal-grid::-webkit-scrollbar{display:none}
+  .gal-cell{
+    flex:0 0 72vw;
+    max-width:72vw;
+    scroll-snap-align:start;
+    aspect-ratio:4/3;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -540,8 +573,8 @@ canvas#sparkle{
 
 <!-- corner ornaments now come from the supplied photographic frame artwork (bg-photo) -->
 
-<nav id="mobileNav">
-  <span class="nav-logo">D &amp; C</span>
+
+
   <ul>
     <li><a href="#events">Τοποθεσίες</a></li>
     <li><a href="#rsvp">Παρών;</a></li>
@@ -831,11 +864,42 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 /* ───────────────────── RSVP ───────────────────── */
 function doRSVP(){
-  if(!document.getElementById('fn').value.trim()||!document.getElementById('gs').value){
+  const name = document.getElementById('fn').value.trim();
+  const guests = document.getElementById('gs').value;
+  const email = document.getElementById('em').value.trim();
+  const phone = document.getElementById('ph').value.trim();
+  const diet = document.getElementById('dt').value.trim();
+
+  if(!name || !guests){
     alert('Παρακαλούμε συμπληρώστε ονοματεπώνυμο και αριθμό ατόμων.');return;
   }
-  document.getElementById('rf').style.display='none';
-  document.getElementById('rok').style.display='block';
+
+  const btn = document.querySelector('.btn');
+  btn.disabled = true;
+  btn.textContent = 'Αποστολή...';
+
+  // Initialize EmailJS — αντικαταστήστε με τα δικά σας στοιχεία
+  emailjs.init('YOUR_PUBLIC_KEY'); // 👈 βάλτε το Public Key σας από το emailjs.com
+
+  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+    from_name: name,
+    guests: guests,
+    email: email || '—',
+    phone: phone || '—',
+    diet: diet || '—',
+    reply_to: email || 'noreply@example.com'
+  })
+  .then(function(){
+    document.getElementById('rf').style.display='none';
+    document.getElementById('rok').style.display='block';
+  })
+  .catch(function(err){
+    console.error('EmailJS error:', err);
+    // Fallback: show success anyway but log error
+    alert('Υπήρξε πρόβλημα με την αποστολή. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας απευθείας.');
+    btn.disabled = false;
+    btn.textContent = 'Αποστολή';
+  });
 }
 /* ───────────────────── LIGHTBOX ───────────────────── */
 (function(){
@@ -893,20 +957,37 @@ function doRSVP(){
   });
 })();
 
+const nav = document.getElementById('mobileNav');
+const navTrigger = document.getElementById('nav-trigger');
+
 if(window.innerWidth <= 760){
-
-  const nav = document.getElementById('mobileNav');
-
-  function toggleNav(){
+  // MOBILE: show nav on scroll
+  function toggleNavMobile(){
     if(window.scrollY > 250){
       nav.classList.add('show');
     }else{
       nav.classList.remove('show');
     }
   }
+  toggleNavMobile();
+  window.addEventListener('scroll', toggleNavMobile);
+} else {
+  // DESKTOP: show nav on scroll OR on hover over top area
+  function toggleNavDesktop(){
+    if(window.scrollY > 80){
+      nav.classList.add('nav-visible');
+    }else{
+      nav.classList.remove('nav-visible');
+    }
+  }
+  toggleNavDesktop();
+  window.addEventListener('scroll', toggleNavDesktop);
 
-  toggleNav();
-  window.addEventListener('scroll', toggleNav);
+  // Also show when mouse hovers near top of screen
+  navTrigger.addEventListener('mouseenter', ()=> nav.classList.add('nav-visible'));
+  nav.addEventListener('mouseleave', ()=>{
+    if(window.scrollY <= 80) nav.classList.remove('nav-visible');
+  });
 }
 </script>
 </body>
