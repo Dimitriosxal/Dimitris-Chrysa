@@ -555,7 +555,7 @@ canvas#sparkle{
   <span class="nav-logo">D &amp; C</span>
   <ul>
     <li><a href="#events">Τοποθεσίες</a></li>
-    <li><a href="#rsvp">Παρουσίες</a></li>
+    <li><a href="#rsvp">Παρών</a></li>
     <li><a href="#gallery">Φωτογραφίες</a></li>
     <li><a href="#visit">Επίσκεψη</a></li>
   </ul>
@@ -868,9 +868,8 @@ function doRSVP(){
       message: 'Ονοματεπώνυμο: ' + name + '\nΆτομα: ' + guests + '\nΤηλέφωνο: ' + (phone||'—') + '\nEmail: ' + (email||'—') + '\nΔιατροφικές: ' + (diet||'—')
     })
   })
-  .then(r => r.json())
-  .then(data => {
-   if(data.success || data.ok || data.next){
+  .then(r => {
+    if(r.ok){
       document.getElementById('rf').style.display='none';
       document.getElementById('rok').style.display='block';
     } else {
