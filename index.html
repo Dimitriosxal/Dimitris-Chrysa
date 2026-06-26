@@ -819,10 +819,10 @@ canvas#sparkle{
       this.warm=Math.random()>0.4;
     }
     constructor(){this.reset(true);}
-    tick(){this.y-=this.sp;this.x+=this.dr;this.life++;this.tp+=this.ts;if(this.life>this.ml||this.y<-6)this.reset(false);}
+    tick(){this.y-=this.sp;this.x+=this.dr;this.life++;this.tp+=this.ts;if(this.life>this.ml||this.y<-700)this.reset(false);}
     draw(){
       const t=this.life/this.ml;
-      const f=t<.18?t/.18:t>.82?1-(t-.82)/.18:1;
+      const f = t < .08 ? t/.08 : 1;
       const a=f*(.45+.35*Math.sin(this.tp));
       cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);
       cx.fillStyle=this.warm?`rgba(217,184,115,${a})`:`rgba(180,160,120,${a*0.7})`;
