@@ -190,7 +190,7 @@ nav a:hover{opacity:1;color:var(--gold-l)}
 .ornament-line span{font-size:.68rem;color:var(--gold-l);opacity:.7;letter-spacing:.1em}
 
 .scroll-cue{
-  position:absolute;bottom:2.6rem;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:calc(2.6rem + 2cm);left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:.5rem;
   opacity:.3;color:var(--gold-l);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
   animation:bob 2.8s ease-in-out infinite;
@@ -553,9 +553,9 @@ canvas#sparkle{
 <!-- ── HERO ── -->
 <div id="hero">
 
-  <p class="eyebrow" style="font-size:0.5rem; transform:translateY(-2cm);">Σας προσκαλούμε στον γάμο μας</p>
+  <p class="eyebrow" style="font-size:0.5rem; transform:translateY(-1cm);">Σας προσκαλούμε στον γάμο μας</p>
 
-  <div class="frame-outer" style="transform:translateY(-2cm);">
+  <div class="frame-outer" style="transform:translateY(-1cm);">
     <div class="photo-circle" onclick="document.getElementById('fi').click()">
       <img id="cpPhoto" src="https://i.imgur.com/tCxAsz9.jpeg" alt="hero photo"/>
       <div class="ph-placeholder" id="phHolder">
@@ -571,7 +571,7 @@ canvas#sparkle{
     <span class="amp">— ❄ —</span>
   </div>
 
-  <p class="hero-date" style="margin-top:6rem; transform:translateY(-2cm);">Σάββατο, 26 Δεκεμβρίου 2026</p>
+  <p class="hero-date" style="margin-top:6rem; transform:translateY(-1cm);">Σάββατο, 26 Δεκεμβρίου 2026</p>
   <div class="ornament-line"><span>✦</span></div>
   <div class="scroll-cue">scroll</div>
 </div>
@@ -638,9 +638,9 @@ canvas#sparkle{
 <div id="gallery"><section class="sec sec-wide rv">
   <p class="lbl">Στιγμές</p>
   <h2>Φωτογραφίες</h2>
-  <p class="ev-hint">πάτα με</p>
+  <p class="ev-hint">πάτα στην φωτό για μεγένθυνση</p>
   <div class="gal-grid">
-    <div class="gal-cell" data-index="0"  data-type="img" data-src="https://i.imgur.com/xrc8vRI.jpeg"  data-caption="Ο Γαμπρός μικρός"><img src="https://i.imgur.com/xrc8vRI.jpeg" loading="lazy" alt=""><p class="ev-hint">πάτα με</p></div>
+    <div class="gal-cell" data-index="0"  data-type="img" data-src="https://i.imgur.com/xrc8vRI.jpeg"  data-caption="Ο Γαμπρός μικρός"><img src="https://i.imgur.com/xrc8vRI.jpeg" loading="lazy" alt=""></div>
     <div class="gal-cell" data-index="1"  data-type="img" data-src="https://i.imgur.com/Da18iyN.jpeg"  data-caption="Η Νύφη μικρή"><img src="https://i.imgur.com/Da18iyN.jpeg" loading="lazy" alt=""></div>
     <div class="gal-cell" data-index="2"  data-type="img" data-src="https://i.imgur.com/c9RYBUn.jpeg"  data-caption="Το ζευγάρι μεγάλο"><img src="https://i.imgur.com/c9RYBUn.jpeg" loading="lazy" alt=""></div>
     <div class="gal-cell" data-index="3"  data-type="img" data-src="https://i.imgur.com/0HFM7Y2.jpeg"  data-caption="Γνωρίστε την Κουμπάρα"><img src="https://i.imgur.com/0HFM7Y2.jpeg" loading="lazy" alt=""></div>
