@@ -75,8 +75,7 @@ body{
 
 @media (max-width: 768px){
   .bg-photo{
-    background-size:cover;
-    background-position:top center;
+    background-size:100% 100%; /* κρατάμε το mobile όπως είναι */
     transform:none;
     filter:none;
   }
@@ -132,12 +131,12 @@ nav a:hover{opacity:1;color:var(--gold-l)}
 
 /* ── HERO ── */
 #hero{
-  position:relative;min-height:100vh;min-height:100dvh;
+  position:relative;min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:flex-start;
   text-align:center;z-index:20;
   padding:6.5rem 2rem 4rem;
-  padding-top: 7.4rem;
+  padding-top: 8rem;
 }
 .eyebrow{
   font-size:0.6rem;letter-spacing:0.4em;
