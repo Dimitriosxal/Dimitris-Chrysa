@@ -870,7 +870,7 @@ Diet: ${diet||'—'}`);
   })
   .then(r => r.json())
   .then(data => {
-    if(data.ok || data.next){
+    if(data.success){
       document.getElementById('rf').style.display='none';
       document.getElementById('rok').style.display='block';
     } else {
