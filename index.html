@@ -504,6 +504,55 @@ canvas#sparkle{
   pointer-events: none;
 }
 
+/* ── Tighter spacing once the user has scrolled (initial load stays untouched) ── */
+.sec{
+  transition: padding .5s ease;
+}
+#events, #gallery, #rsvp, #visit{
+  transition: padding .5s ease;
+}
+.rule{
+  transition: margin .5s ease;
+}
+body.scrolled .sec{
+  padding: 4.2rem 2rem;
+}
+body.scrolled #events,
+body.scrolled #gallery,
+body.scrolled #rsvp,
+body.scrolled #visit{
+  padding-top: 3.4rem;
+  padding-bottom: 3.4rem;
+}
+body.scrolled .rule{
+  margin: 1.2rem auto;
+}
+@media(max-width:760px){
+  body.scrolled .sec{
+    padding: 3rem 1.4rem;
+  }
+  body.scrolled #events,
+  body.scrolled #gallery,
+  body.scrolled #rsvp,
+  body.scrolled #visit{
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+  }
+  body.scrolled .rule{
+    margin: 1rem auto;
+  }
+}
+
+/* ── Stronger background blur on the section "cards" while scrolled ── */
+.sec::before{
+  transition: backdrop-filter .5s ease, background .5s ease;
+}
+body.scrolled .sec::before{
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10,18,12,0.7);
+}
+
 #rsvp{
   position: relative;
   overflow: hidden;
@@ -958,6 +1007,27 @@ function doRSVP(){
     if(Math.abs(dx) > 40) navigate(dx < 0 ? 1 : -1);
     tsX = null;
   }, {passive:true});
+})();
+
+/* ───────────────────── tighten spacing + intensify blur after scroll starts ───────────────────── */
+(function(){
+  const body = document.body;
+  let ticking = false;
+  function applyScrolledState(){
+    if(window.scrollY > 60){
+      body.classList.add('scrolled');
+    } else {
+      body.classList.remove('scrolled');
+    }
+    ticking = false;
+  }
+  applyScrolledState();
+  window.addEventListener('scroll', () => {
+    if(!ticking){
+      requestAnimationFrame(applyScrolledState);
+      ticking = true;
+    }
+  });
 })();
 
 const nav = document.getElementById('mobileNav');
