@@ -836,7 +836,7 @@ canvas#sparkle{
       cx.fill();
     }
   }
-  const ps=Array.from({length:260},()=>new P());
+  const ps=Array.from({length:2100},()=>new P());
   (function loop(){cx.clearRect(0,0,W,H);ps.forEach(p=>{p.tick();p.draw();});requestAnimationFrame(loop);})();
 })();
 
