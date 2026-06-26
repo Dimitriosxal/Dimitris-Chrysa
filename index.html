@@ -278,8 +278,8 @@ p.body{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:2;op
 
 @keyframes goldDust{
   0%   {opacity:0; transform:scale(.9);}
-  30%  {opacity:.9;}
-  60%  {opacity:.6;}
+  10%  {opacity:.9;}
+  80%  {opacity:.8;}
   100% {opacity:0; transform:scale(1.15);}
 }
 
@@ -857,30 +857,27 @@ function doRSVP(){
 
   fetch('https://api.web3forms.com/submit', {
     method:'POST',
-    headers:{'Accept':'application/json'},
-    body:(()=>{const fd=new FormData();
-      fd.append('access_key','4f691138-562e-4730-a0e4-e89ba01ce815');
-      fd.append('subject','RSVP — Δημήτρης & Χρυσούλα');
-      fd.append('name',name);
-      fd.append('email',email||'noreply@example.com');
-      fd.append('message',`Guests: ${guests}
-Phone: ${phone||'—'}
-Diet: ${diet||'—'}`);
-      return fd;})()
+    headers:{'Accept':'application/json','Content-Type':'application/json'},
+    body: JSON.stringify({
+      access_key: '4f691138-562e-4730-a0e4-e89ba01ce815',
+      subject: 'RSVP — Δημήτρης & Χρυσούλα',
+      from_name: 'Wedding RSVP',
+      replyto: email || 'noreply@example.com',
+      name: name,
+      email: email || 'noreply@example.com',
+      message: 'Ονοματεπώνυμο: ' + name + '\nΆτομα: ' + guests + '\nΤηλέφωνο: ' + (phone||'—') + '\nEmail: ' + (email||'—') + '\nΔιατροφικές: ' + (diet||'—')
+    })
   })
   .then(r => r.json())
-.then(data => {
-    console.log(data);
-
-    if(data.success){
-        document.getElementById('rf').style.display='none';
-        document.getElementById('rok').style.display='block';
+  .then(data => {
+    if(data.ok || data.next){
+      document.getElementById('rf').style.display='none';
+      document.getElementById('rok').style.display='block';
     } else {
-        alert(data.message || 'Υπήρξε πρόβλημα.');
-        btn.disabled = false;
-        btn.textContent = 'Αποστολή';
+      alert('Υπήρξε πρόβλημα. Δοκιμάστε ξανά.');
+      btn.disabled=false; btn.textContent='Αποστολή';
     }
-})
+  })
   .catch(() => {
     alert('Υπήρξε πρόβλημα σύνδεσης. Δοκιμάστε ξανά.');
     btn.disabled=false; btn.textContent='Αποστολή';
