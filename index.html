@@ -141,8 +141,15 @@ nav a:hover{opacity:1;color:var(--gold-l)}
 .eyebrow{
   font-size:0.6rem;letter-spacing:0.4em;
   text-transform:uppercase;color:var(--gold-l);
-  opacity:0.85;margin-bottom:2rem;
+  opacity:0.95;margin-bottom:2rem;
   text-shadow:0 1px 6px rgba(0,0,0,.85);
+  background:rgba(5,9,6,0.45);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(217,184,115,0.18);
+  border-radius:2rem;
+  padding:0.55rem 1.4rem;
+  display:inline-block;
 }
 
 /* Photo medallion — simple, unobtrusive frame so the background photo's own
@@ -343,8 +350,31 @@ textarea{resize:vertical;min-height:70px}
 /* visit */
 .vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;margin-top:2.6rem}
 .vi-lbl{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);opacity:.76;margin-bottom:.55rem}
-.vi h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:1.45rem;color:var(--gold-l);margin-bottom:.45rem}
+.vi h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:1.45rem;color:var(--gold-l);margin-bottom:1rem}
 .vi p{font-family:'Cormorant Garamond',serif;font-size:1rem;opacity:.62;color:var(--cream-dim)}
+.vi-items{display:flex;flex-direction:column;gap:.85rem}
+.vi-item{
+  background:rgba(14,24,16,0.55);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(169,130,63,0.14);
+  border-left:2px solid rgba(169,130,63,0.45);
+  border-radius:0 6px 6px 0;
+  padding:.9rem 1.1rem;
+  text-align:left;
+}
+.vi-tag{
+  display:inline-block;
+  font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-l);opacity:.8;
+  margin-bottom:.4rem;
+}
+.vi-item p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.97rem;line-height:1.75;
+  opacity:.72;color:var(--cream-dim);
+  margin:0;
+}
 
 footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border-top:1px solid rgba(169,130,63,0.1)}
 .ft-names{font-family:'Playfair Display',serif;font-style:italic;font-size:1.85rem;color:var(--gold);opacity:.65;letter-spacing:.02em}
@@ -677,12 +707,69 @@ canvas#sparkle{
   <p class="lbl">Επίσκεψη</p>
   <h2>Πληροφορίες</h2>
   <div class="vis-grid">
-    <div class="vi"><p class="vi-lbl">🦌🍽️ Προτάσεις</p><h3>Για πριν το μυστήριο</h3><p>i) Σας προτείνουμε επίσκεψη σε μια απο τις ομορφότερες ταβέρνες τις Ελλάδας "Κεραμαριώ" βρίσκεται 10 λεπτά μακρυά απο την εκκλησία, γεμάτο ελάφια και άλλες εκπλήξεις </p><p>(Προσοχή, μην φάτε πολύ, σας θέλουμε μαζί μας) </p><p>ii) Πεζοπορία κατα μήκος του τεράστιο ποταμού του Μουζακίου (περίπατος ΔΕΗ),ιστορικές μονές και πανέμορφη φύση.</p></div>
-    <div class="vi"><p class="vi-lbl">🚗 Προτάσεις</p><h3>Για μετά το μυστήριο</h3><p>Επειδή η αναμονή για το γλέντι θα είναι μεγάλη, σας προτείνουμε </p><p>i) Επίσκεψη στον μύλο των ξωτικών (15 λεπτά απο το χώρο δεξίωσης) Μοναδική Χριστουγεννιάτικη Εμπειρία </p><p>ii) Καφετέριες: (People, Abariza, Mouzaki Palace) </p><p> Το Μουζάκι είναι ιδανικό για χαλαρές βόλτες και φωτογραφίες. Περιηγηθείτε</p></div>
-    <div class="vi"><p class="vi-lbl">🏨 Διαμονή</p><h3>Πού να Μείνετε</h3><p>Ξενοδοχεία στα Τρίκαλα και Καρδίτσα (μισή ώρα μαξ απο το μουζάκι). Υπάρχουν επίσης Airbnb στο Μουζάκι και τις γύρω περιοχές.Μην το αφήσετε τελευταία στιγμή, ο μύλος τα προλαβαίνει όλα)</p></div>
-    <div class="vi"><p class="vi-lbl">❄️ Extra</p><h3>Λίγα Λόγια για το Μουζάκι</h3><p>Το Μουζάκι Καρδίτσας είναι μια όμορφη κωμόπολη χτισμένη στους πρόποδες της Πίνδου, δίπλα στον ποταμό Πάμισο. Συνδυάζει τη φυσική ομορφιά του βουνού με τη φιλοξενία της θεσσαλικής υπαίθρου, αποτελώντας ιδανική αφετηρία για εξορμήσεις στη Λίμνη Πλαστήρα και στα ορεινά χωριά της περιοχής.
+    <!-- Πριν το μυστήριο -->
+    <div class="vi">
+      <p class="vi-lbl">🦌 Πριν το Μυστήριο</p>
+      <h3>Γεύση & Φύση</h3>
+      <div class="vi-items">
+        <div class="vi-item">
+          <span class="vi-tag">🍽️ Γεύμα</span>
+          <p>Ταβέρνα <strong>«Κεραμαριώ»</strong> — μία από τις ομορφότερες της Ελλάδας, γεμάτη ελάφια και εκπλήξεις, μόλις 10 λεπτά από την εκκλησία. <em>(Μη φάτε κι όλας — σας θέλουμε μαζί μας!)</em></p>
+        </div>
+        <div class="vi-item">
+          <span class="vi-tag">🌲 Φύση</span>
+          <p>Περίπατος κατά μήκος του ποταμού Μουζακίου <em>(Διαδρομή ΔΕΗ)</em> — ιστορικές μονές και πανέμορφο τοπίο.</p>
+        </div>
+      </div>
+    </div>
 
-Αυτό που το κάνει ξεχωριστό είναι το καταπράσινο τοπίο, τα παραδοσιακά πέτρινα γεφύρια, οι πεζοπορικές διαδρομές, οι ιαματικές πηγές και η αυθεντική τοπική γαστρονομία. Είναι ένας προορισμός που προσφέρει ηρεμία, επαφή με τη φύση και γνήσια θεσσαλική φιλοξενία όλες τις εποχές του χρόνου.</p></div>
+    <!-- Μετά το μυστήριο -->
+    <div class="vi">
+      <p class="vi-lbl">✨ Μετά το Μυστήριο</p>
+      <h3>Χρόνος για Εξερεύνηση</h3>
+      <div class="vi-items">
+        <div class="vi-item">
+          <span class="vi-tag">🎄 Must-See</span>
+          <p><strong>Μύλος των Ξωτικών</strong> — μοναδική χριστουγεννιάτικη εμπειρία, 15 λεπτά από τον χώρο δεξίωσης. Μην το χάσετε!</p>
+        </div>
+        <div class="vi-item">
+          <span class="vi-tag">☕ Καφέ</span>
+          <p>People · Abariza · Mouzaki Palace — ιδανικά για έναν καφέ και χαλαρές βόλτες στο κέντρο του Μουζακίου.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Διαμονή -->
+    <div class="vi">
+      <p class="vi-lbl">🏨 Διαμονή</p>
+      <h3>Πού να Μείνετε</h3>
+      <div class="vi-items">
+        <div class="vi-item">
+          <span class="vi-tag">🏩 Ξενοδοχεία</span>
+          <p>Τρίκαλα & Καρδίτσα — μισή ώρα από το Μουζάκι. Ιδανική επιλογή για άνετη διαμονή.</p>
+        </div>
+        <div class="vi-item">
+          <span class="vi-tag">🏡 Airbnb</span>
+          <p>Υπάρχουν επιλογές και στο ίδιο το Μουζάκι και στις γύρω περιοχές. <em>Μην αφήσετε την κράτηση για τελευταία στιγμή — ο Μύλος τα «κλείνει» όλα!</em></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Μουζάκι -->
+    <div class="vi">
+      <p class="vi-lbl">❄️ Το Μέρος μας</p>
+      <h3>Μουζάκι Καρδίτσας</h3>
+      <div class="vi-items">
+        <div class="vi-item">
+          <span class="vi-tag">🏔️ Τοπίο</span>
+          <p>Κτισμένο στους πρόποδες της Πίνδου, δίπλα στον ποταμό Πάμισο — πέτρινα γεφύρια, καταπράσινο τοπίο και αυθεντική θεσσαλική φιλοξενία.</p>
+        </div>
+        <div class="vi-item">
+          <span class="vi-tag">🌊 Εξορμήσεις</span>
+          <p>Λίμνη Πλαστήρα, ορεινά χωριά, ιαματικές πηγές και πεζοπορικές διαδρομές — ένας προορισμός για κάθε εποχή.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section></div>
 
