@@ -869,15 +869,18 @@ Diet: ${diet||'—'}`);
       return fd;})()
   })
   .then(r => r.json())
-  .then(data => {
+.then(data => {
+    console.log(data);
+
     if(data.success){
-      document.getElementById('rf').style.display='none';
-      document.getElementById('rok').style.display='block';
+        document.getElementById('rf').style.display='none';
+        document.getElementById('rok').style.display='block';
     } else {
-      alert('Υπήρξε πρόβλημα. Δοκιμάστε ξανά.');
-      btn.disabled=false; btn.textContent='Αποστολή';
+        alert(data.message || 'Υπήρξε πρόβλημα.');
+        btn.disabled = false;
+        btn.textContent = 'Αποστολή';
     }
-  })
+})
   .catch(() => {
     alert('Υπήρξε πρόβλημα σύνδεσης. Δοκιμάστε ξανά.');
     btn.disabled=false; btn.textContent='Αποστολή';
