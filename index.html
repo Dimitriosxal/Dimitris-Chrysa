@@ -823,7 +823,7 @@ canvas#sparkle{
     draw(){
       const t=this.life/this.ml;
       const f = t < .08 ? t/.08 : 1;
-      const a=f*(.45+.35*Math.sin(this.tp));
+      const a = 0.8;
       cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);
       cx.fillStyle=this.warm?`rgba(217,184,115,${a})`:`rgba(180,160,120,${a*0.7})`;
       cx.fill();
