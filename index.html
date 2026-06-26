@@ -819,7 +819,14 @@ canvas#sparkle{
       this.warm=Math.random()>0.4;
     }
     constructor(){this.reset(true);}
-    tick(){this.y-=this.sp;this.x+=this.dr;this.life++;this.tp+=this.ts;if(this.life>this.ml||this.y<-2100)this.reset(false);}
+    tick(){
+    this.y -= this.sp;
+    this.x += this.dr;
+    this.life++;
+    this.tp += this.ts;
+
+    // προσωρινά χωρίς reset
+}
     draw(){
       const t=this.life/this.ml;
       const f = t < .08 ? t/.08 : 1;
