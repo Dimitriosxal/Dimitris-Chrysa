@@ -202,12 +202,32 @@ nav a:hover{opacity:1;color:var(--gold-l)}
 
 .scroll-cue{
   position:absolute;bottom:calc(2.6rem + 7cm);left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  opacity:2;color:var(--gold-l);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
-  animation:bob 2.8s ease-in-out infinite;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  opacity:.85;color:var(--gold-hi);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;
+  font-weight:500;
+  text-shadow:0 1px 8px rgba(0,0,0,.9);
+  padding:.7rem 1.1rem .9rem;
+  animation:bob 2.4s ease-in-out infinite;
 }
-.scroll-cue::after{content:'';width:1px;height:30px;background:var(--gold-l)}
-@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+.scroll-cue::before{
+  content:'';
+  position:absolute;
+  inset:-8px -16px;
+  background:radial-gradient(circle, rgba(217,184,115,.28), transparent 70%);
+  filter:blur(10px);
+  z-index:-1;
+  animation:cueGlow 2.4s ease-in-out infinite;
+}
+.scroll-cue::after{content:'';width:1px;height:34px;background:linear-gradient(to bottom, var(--gold-hi), transparent)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(9px)}}
+@keyframes cueGlow{0%,100%{opacity:.5}50%{opacity:1}}
+.scroll-cue{
+  transition: opacity .5s ease, transform .5s ease;
+}
+body.scrolled .scroll-cue{
+  opacity:0;
+  pointer-events:none;
+}
 
 /* ── SECTIONS ── */
 .sec{
