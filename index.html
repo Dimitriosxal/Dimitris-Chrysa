@@ -266,11 +266,59 @@ p.body{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:2;op
   100% {opacity:0; transform:scale(1.15);}
 }
 
-.gal-cell{background:var(--bg1);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;opacity:.4;transition:opacity .3s;overflow:hidden;cursor:pointer}
-.gal-cell:hover{opacity:.72}
-.gal-cell:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
-.gal-cell img{width:100%;height:100%;object-fit:cover}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gal-cell{background:var(--bg1);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .3s,transform .3s;overflow:hidden;cursor:pointer;position:relative}
+.gal-cell:hover{opacity:1}
+.gal-cell img,.gal-cell video{width:100%;height:100%;object-fit:cover}
 .gal-cell svg{width:22px;opacity:.3}
+.gal-cell video{display:block}
+
+/* ── LIGHTBOX ── */
+#lb{
+  display:none;position:fixed;inset:0;z-index:900;
+  background:rgba(5,9,6,0.92);
+  backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;flex-direction:column;
+  padding:2rem;
+}
+#lb.open{display:flex}
+#lb-inner{
+  position:relative;max-width:820px;width:100%;
+  display:flex;flex-direction:column;align-items:center;gap:1.4rem;
+}
+#lb-media{
+  max-height:62vh;max-width:100%;object-fit:contain;
+  border:1px solid rgba(169,130,63,0.25);
+  box-shadow:0 0 60px rgba(0,0,0,.7);
+}
+#lb-media-video{
+  max-height:62vh;max-width:100%;
+  border:1px solid rgba(169,130,63,0.25);
+  box-shadow:0 0 60px rgba(0,0,0,.7);
+}
+#lb-caption{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.05rem;color:var(--cream-dim);opacity:.88;
+  text-align:center;max-width:52ch;line-height:1.9;
+  min-height:1.5em;
+}
+#lb-close{
+  position:fixed;top:1.4rem;right:1.8rem;
+  background:none;border:none;cursor:pointer;
+  color:var(--gold-l);font-size:1.6rem;opacity:.6;
+  transition:opacity .2s;z-index:901;line-height:1;
+}
+#lb-close:hover{opacity:1}
+#lb-nav{
+  display:flex;gap:1.4rem;margin-top:.3rem;
+}
+#lb-prev,#lb-next{
+  background:none;border:1px solid rgba(169,130,63,0.3);
+  color:var(--gold-l);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;padding:.55rem 1.3rem;cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+#lb-prev:hover,#lb-next:hover{background:rgba(169,130,63,0.12);border-color:rgba(169,130,63,0.6)}
 
 /* rsvp */
 label{display:block;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-l);opacity:.55;margin-bottom:.5rem}
@@ -347,7 +395,6 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   .fr{grid-template-columns:1fr}
   .vis-grid{grid-template-columns:1fr;gap:1.8rem}
   .gal-grid{grid-template-columns:1fr 1fr}
-  .gal-cell:first-child{grid-column:span 2;grid-row:span 1}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -450,17 +497,7 @@ canvas#sparkle{
 .ph-placeholder{
   display:none;
 }
-.gal-cell img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:transform .4s ease;
-}
 
-.gal-cell:hover img{
-  transform:scale(1.05);
-}  
 </style>
 </head>
 <body>
@@ -575,25 +612,26 @@ canvas#sparkle{
   <p class="lbl">Στιγμές</p>
   <h2>Φωτογραφίες</h2>
   <div class="gal-grid">
+    <div class="gal-cell" data-index="0" data-type="img" data-src="https://i.imgur.com/YoYqsqh.jpeg" data-caption="Περιγραφή φωτογραφίας 1 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/YoYqsqh.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="1" data-type="img" data-src="https://i.imgur.com/Ic4qRfG.jpeg" data-caption="Περιγραφή φωτογραφίας 2 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/Ic4qRfG.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="2" data-type="img" data-src="https://i.imgur.com/yTYugao.jpeg" data-caption="Περιγραφή φωτογραφίας 3 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/yTYugao.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="3" data-type="img" data-src="https://i.imgur.com/ic3u4oz.jpeg" data-caption="Περιγραφή φωτογραφίας 4 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/ic3u4oz.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="4" data-type="img" data-src="https://i.imgur.com/DvIwezC.jpeg" data-caption="Περιγραφή φωτογραφίας 5 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/DvIwezC.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="5" data-type="img" data-src="https://i.imgur.com/WYdOK9m.jpeg" data-caption="Περιγραφή φωτογραφίας 6 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/WYdOK9m.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="6" data-type="img" data-src="https://i.imgur.com/MFWfnLT.jpeg" data-caption="Περιγραφή φωτογραφίας 7 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/MFWfnLT.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="7" data-type="img" data-src="https://i.imgur.com/CUTt5Eh.jpeg" data-caption="Περιγραφή φωτογραφίας 8 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/CUTt5Eh.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="8" data-type="img" data-src="https://i.imgur.com/6BhO0A6.jpeg" data-caption="Περιγραφή φωτογραφίας 9 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/6BhO0A6.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="9" data-type="img" data-src="https://i.imgur.com/b21wlGG.jpeg" data-caption="Περιγραφή φωτογραφίας 10 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/b21wlGG.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="10" data-type="img" data-src="https://i.imgur.com/qpW1LhY.jpeg" data-caption="Περιγραφή φωτογραφίας 11 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/qpW1LhY.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="11" data-type="img" data-src="https://i.imgur.com/vg5lphu.jpeg" data-caption="Περιγραφή φωτογραφίας 12 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/vg5lphu.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="12" data-type="img" data-src="https://i.imgur.com/EMe0RYC.jpeg" data-caption="Περιγραφή φωτογραφίας 13 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/EMe0RYC.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="13" data-type="img" data-src="https://i.imgur.com/Ej6KabN.jpeg" data-caption="Περιγραφή φωτογραφίας 14 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/Ej6KabN.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="14" data-type="img" data-src="https://i.imgur.com/tpxC4BF.jpeg" data-caption="Περιγραφή φωτογραφίας 15 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/tpxC4BF.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="15" data-type="img" data-src="https://i.imgur.com/txJzaQW.jpeg" data-caption="Περιγραφή φωτογραφίας 16 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/txJzaQW.jpeg" loading="lazy" alt=""></div>
+    <div class="gal-cell" data-index="16" data-type="img" data-src="https://i.imgur.com/MfzFb0Y.jpeg" data-caption="Περιγραφή φωτογραφίας 17 — γράψε εδώ τη δική σου λεζάντα."><img src="https://i.imgur.com/MfzFb0Y.jpeg" loading="lazy" alt=""></div>
 
-      <div class="gal-cell"><img src="https://i.imgur.com/YoYqsqh.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/Ic4qRfG.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/yTYugao.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/ic3u4oz.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/DvIwezC.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/WYdOK9m.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/MFWfnLT.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/CUTt5Eh.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/6BhO0A6.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/b21wlGG.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/qpW1LhY.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/vg5lphu.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/EMe0RYC.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/Ej6KabN.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/tpxC4BF.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/txJzaQW.jpeg"></div>
-  <div class="gal-cell"><img src="https://i.imgur.com/MfzFb0Y.jpeg"></div>
-</div>
+    <!-- ΠΑΡΑΔΕΙΓΜΑ ΒΙΝΤΕΟ — αντικατέστησε το src με το δικό σου URL -->
+    <!-- <div class="gal-cell" data-index="17" data-type="video" data-src="https://example.com/video.mp4" data-caption="Περιγραφή βίντεο — γράψε εδώ."><video src="https://example.com/video.mp4" muted autoplay loop playsinline></video></div> -->
   </div>
 </section></div>
 <div class="rule"></div>
@@ -629,6 +667,20 @@ canvas#sparkle{
   
   <p class="ft-date">26 Δεκεμβρίου 2026 · Μουζάκι Καρδίτσας</p>
 </footer>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lb" role="dialog" aria-modal="true">
+  <button id="lb-close" aria-label="Κλείσιμο">✕</button>
+  <div id="lb-inner">
+    <img id="lb-media" src="" alt="" style="display:none">
+    <video id="lb-media-video" controls autoplay muted playsinline style="display:none"></video>
+    <p id="lb-caption"></p>
+    <div id="lb-nav">
+      <button id="lb-prev">← Προηγ.</button>
+      <button id="lb-next">Επόμ. →</button>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ───────────────────── sparkle particles (subtle, slow, realistic gold dust) ───────────────────── */
@@ -676,7 +728,62 @@ function doRSVP(){
   document.getElementById('rf').style.display='none';
   document.getElementById('rok').style.display='block';
 }
-  /* mobile nav appears after scroll */
+/* ───────────────────── LIGHTBOX ───────────────────── */
+(function(){
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-media');
+  const lbVid = document.getElementById('lb-media-video');
+  const lbCap = document.getElementById('lb-caption');
+  const cells = Array.from(document.querySelectorAll('.gal-cell'));
+  let cur = 0;
+
+  function openLb(idx){
+    cur = idx;
+    const c = cells[cur];
+    const type = c.dataset.type || 'img';
+    const src  = c.dataset.src  || '';
+    const cap  = c.dataset.caption || '';
+    if(type === 'video'){
+      lbImg.style.display = 'none';
+      lbVid.style.display = 'block';
+      lbVid.src = src;
+      lbVid.play();
+    } else {
+      lbVid.pause(); lbVid.src='';
+      lbVid.style.display = 'none';
+      lbImg.style.display = 'block';
+      lbImg.src = src;
+    }
+    lbCap.textContent = cap;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb(){
+    lb.classList.remove('open');
+    lbVid.pause(); lbVid.src='';
+    lbImg.src='';
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir){
+    cur = (cur + dir + cells.length) % cells.length;
+    openLb(cur);
+  }
+
+  cells.forEach((c, i) => c.addEventListener('click', () => openLb(i)));
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
+  document.getElementById('lb-next').addEventListener('click', () => navigate(1));
+  lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLb();
+    if(e.key === 'ArrowLeft') navigate(-1);
+    if(e.key === 'ArrowRight') navigate(1);
+  });
+})();
+
 if(window.innerWidth <= 760){
 
   const nav = document.getElementById('mobileNav');
