@@ -782,7 +782,129 @@ canvas#sparkle{
     </div>
   </div>
 </section></div>
+<!-- RSVP section - add this where you want the RSVP form to appear -->
+<section id="rsvp" class="sec">
+  <h2 class="section-title">RSVP / Επιβεβαίωση Παρουσίας</h2>
+  <p class="section-lead">Πείτε μας εάν θα παρευρεθείτε — θα χαρούμε πολύ να σας έχουμε μαζί μας.</p>
 
+  <form id="rsvp-form" class="rsvp-form" novalidate>
+    <!-- REQUIRED: your Web3Forms access key -->
+    <input type="hidden" name="access_key" value="4f691138-562e-4730-a0e4-e89ba01ce815">
+    <!-- Optional: email subject you will receive -->
+    <input type="hidden" name="subject" value="RSVP — Δημήτρης & Χρυσούλα">
+
+    <!-- Honeypot to reduce spam -->
+    <div style="display:none!important">
+      <label>Leave this field empty</label>
+      <input type="text" name="botcheck" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="rsvp-grid">
+      <label>
+        Όνομα / Name *
+        <input type="text" name="name" required placeholder="Π.χ. Μαρία Παπαδοπούλου">
+      </label>
+
+      <label>
+        Email *
+        <input type="email" name="email" required placeholder="yourname@example.com">
+      </label>
+
+      <fieldset class="attending">
+        <legend>Θα έρθετε; / Will you attend? *</legend>
+        <label><input type="radio" name="attending" value="Yes" required> Ναι / Yes</label>
+        <label><input type="radio" name="attending" value="No"> Όχι / No</label>
+      </fieldset>
+
+      <label>
+        Αριθμός καλεσμένων / Number of guests
+        <select name="guests">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </label>
+
+      <label class="full">
+        Μήνυμα / Message
+        <textarea name="message" rows="4" placeholder="Προαιρετικά — π.χ. πρόγραμμα διατροφής, ευχές"></textarea>
+      </label>
+    </div>
+
+    <div class="rsvp-actions">
+      <button type="submit" class="btn-primary">Υποβολή RSVP</button>
+      <div id="rsvp-status" class="rsvp-status" aria-live="polite"></div>
+    </div>
+  </form>
+</section>
+
+<!-- Minimal CSS to match the site's look — place inside your existing <style> or CSS file -->
+<style>
+  /* RSVP form styles (small, unobtrusive) */
+  .rsvp-form { margin-top:1.2rem; background: rgba(8,10,8,0.45); padding:1.25rem; border:1px solid rgba(217,184,115,0.12); border-radius:10px; }
+  .rsvp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.9rem; align-items:start; }
+  .rsvp-grid label { display:flex; flex-direction:column; font-size:0.95rem; color:var(--cream); }
+  .rsvp-grid input[type="text"], .rsvp-grid input[type="email"], .rsvp-grid select, .rsvp-grid textarea {
+    margin-top:0.4rem; padding:0.6rem 0.7rem; border-radius:6px; border:1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.03); color:var(--cream); font:inherit;
+  }
+  fieldset.attending { border:0; padding:0; margin:0.35rem 0; display:flex; gap:0.9rem; align-items:center; }
+  .rsvp-actions { margin-top:0.9rem; display:flex; gap:1rem; align-items:center; }
+  .btn-primary { background:var(--gold); color:#111; border:none; padding:0.65rem 1rem; border-radius:8px; cursor:pointer; font-weight:600; }
+  .rsvp-status { color:var(--cream); font-size:0.95rem; opacity:0.95; }
+  .rsvp-status.success { color:var(--green-hi); }
+  .rsvp-status.error { color:var(--red-l); }
+  /* Make radio/labels easier to tap on mobile */
+  .attending label { display:inline-flex; gap:0.4rem; align-items:center; cursor:pointer; }
+  .section-title{font-family:'Cormorant Garamond',serif;margin-bottom:0.35rem}
+  .section-lead{color:var(--cream-dim);margin-bottom:0.9rem}
+</style>
+
+<!-- Client JS: submit via fetch to Web3Forms and show response inline -->
+<script>
+  (function(){
+    const form = document.getElementById('rsvp-form');
+    const statusEl = document.getElementById('rsvp-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Αποστολή... / Sending...';
+      statusEl.className = 'rsvp-status';
+
+      // Collect form data
+      const fd = new FormData(form);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: fd
+        });
+
+        const json = await res.json();
+
+        if (json.success) {
+          statusEl.textContent = 'Ευχαριστούμε — η απάντηση σας καταχωρήθηκε. / Thank you — your RSVP has been recorded.';
+          statusEl.classList.add('success');
+          form.reset();
+
+          // Optional: if you want to redirect after success, uncomment and edit the URL:
+          // setTimeout(()=> window.location.href = 'https://yourdomain.com/thank-you.html', 1400);
+        } else {
+          // Web3Forms will often return error details in json.error or message
+          console.error('Web3Forms error', json);
+          statusEl.textContent = 'Σφάλμα κατά την αποστολή. Προσπαθήστε ξανά ή στείλτε email. / An error occurred — please try again or email us.';
+          statusEl.classList.add('error');
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Δίκτυο ή σφάλμα σύνδεσης. Προσπαθήστε ξανά. / Network error — please try again.';
+        statusEl.classList.add('error');
+      }
+    });
+  })();
+</script>
 <footer>
   
   <p class="ft-date">26 Δεκεμβρίου 2026 · Μουζάκι Καρδίτσας</p>
