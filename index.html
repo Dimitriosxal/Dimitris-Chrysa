@@ -380,6 +380,15 @@ textarea{resize:vertical;min-height:70px}
 
 /* visit */
 .vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;margin-top:2.6rem}
+
+/* family / koumparoi — compact, always 3-in-a-row */
+.fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-top:2rem}
+.fam-grid .vi-lbl{font-size:.46rem;letter-spacing:.16em;margin-bottom:.35rem}
+.fam-grid .vi h3{font-size:.92rem;margin-bottom:.55rem}
+.fam-grid .vi-items{gap:.4rem}
+.fam-grid .vi-item{padding:.5rem .55rem;border-left-width:2px}
+.fam-grid .vi-tag{font-size:.42rem;letter-spacing:.1em;margin-bottom:.2rem}
+.fam-grid .vi-item p{font-size:.74rem;line-height:1.4}
 .vi-lbl{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);opacity:.76;margin-bottom:.55rem}
 .vi h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:1.45rem;color:var(--gold-l);margin-bottom:1rem}
 .vi p{font-family:'Cormorant Garamond',serif;font-size:1rem;opacity:.62;color:var(--cream-dim)}
@@ -454,6 +463,12 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   .ev-grid{grid-template-columns:1fr}
   .fr{grid-template-columns:1fr}
   .vis-grid{grid-template-columns:1fr;gap:1.8rem}
+  .fam-grid{gap:.5rem}
+  .fam-grid .vi-item{padding:.4rem .4rem}
+  .fam-grid .vi-item p{font-size:.66rem;line-height:1.3}
+  .fam-grid .vi h3{font-size:.78rem}
+  .fam-grid .vi-tag{font-size:.38rem}
+  .fam-grid .vi-lbl{font-size:.42rem}
   .gal-grid{grid-template-columns:repeat(3,1fr)}
 }
 
@@ -624,8 +639,8 @@ body.scrolled .sec::before{
   <span class="nav-logo">D &amp; C</span>
   <ul>
     <li><a href="#events">Τοποθεσίες</a></li>
-    <li><a href="#rsvp">Παρουσιολόγιο</a></li>
     <li><a href="#gallery">Φωτογραφίες</a></li>
+    <li><a href="#rsvp">Παρουσιολόγιο</a></li>
     <li><a href="#visit">Επίσκεψη</a></li>
     <li><a href="#family">Οικογένεια και Κουμπάροι</a></li>
   </ul>
@@ -855,7 +870,7 @@ body.scrolled .sec::before{
 <div id="family"><section class="sec sec-wide rv">
   <p class="lbl">Με Αγάπη</p>
   <h2>Οικογένεια &amp; Κουμπάροι</h2>
-  <div class="vis-grid">
+  <div class="fam-grid">
     <!-- Κουμπάροι -->
     <div class="vi">
       <p class="vi-lbl">💍 Κουμπάροι</p>
@@ -884,14 +899,6 @@ body.scrolled .sec::before{
         <div class="vi-item">
           <span class="vi-tag">✦ Οικογένεια</span>
           <p>Ελένη Στάχτου</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">✦ Οικογένεια</span>
-          <p>Έλμα Χαλάτση</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">✦ Οικογένεια</span>
-          <p>Καλιόπη Στάχτου</p>
         </div>
       </div>
     </div>
